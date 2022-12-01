@@ -3,20 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Police_Department;
+
 import java.util.ArrayList;
 
 /**
  *
  * @author hp
  */
-public class PoliceDirectory {
-    private ArrayList<PoliceClass> policeDir;
+public class ComplaintDirectory {
+     private ArrayList<ComplaintClass> complaintDir;
 
-    public ArrayList<PoliceClass> getPoliceDir() {
-        return policeDir;
+    public ComplaintDirectory(ArrayList<ComplaintClass> complaintDir) {
+        this.complaintDir = complaintDir;
     }
 
-    public PoliceDirectory(ArrayList<PoliceClass> policeDir) {
-        this.policeDir = policeDir;
+    public ArrayList<ComplaintClass> getComplaintDir() {
+        return complaintDir;
     }
+
 }
