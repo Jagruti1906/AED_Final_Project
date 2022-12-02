@@ -11,10 +11,12 @@ package Fire_Department;
 public class FireVehicleClass {
     private String vehicleType;
     private String vehicleNumber;
+    private String status;
 
-    public FireVehicleClass(String vehicleType, String vehicleNumber) {
+    public FireVehicleClass(String vehicleType, String vehicleNumber, String status) {
         this.vehicleType = vehicleType;
         this.vehicleNumber = vehicleNumber;
+        this.status = status;
     }
 
     public String getVehicleType() {
@@ -31,6 +33,14 @@ public class FireVehicleClass {
 
     public void setVehicleNumber(String vehicleNumber) {
         this.vehicleNumber = vehicleNumber;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

@@ -13,12 +13,22 @@ public class FireEmergencyClass {
     private String address;
     private String phoneNumber;
     private int zip;
+    private String status;
 
-    public FireEmergencyClass(String name, String address, String phoneNumber, int zip) {
+    public FireEmergencyClass(String name, String address, String phoneNumber, int zip, String status) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.zip = zip;
+        this.status = status;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getName() {
