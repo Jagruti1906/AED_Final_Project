@@ -18,8 +18,11 @@ public class AppointmentDetailsClass {
     private int doctorID;
     private String status;
     private String hospitalName;
+    private String desc;
 
-    public AppointmentDetailsClass(Date date, String patientName, String doctorName, int patientID, int doctorID, String hospitalName, String status) {
+
+
+    public AppointmentDetailsClass(Date date, String patientName, String doctorName, int patientID, int doctorID, String hospitalName, String status,String desc) {
         this.date = date;
         this.patientName = patientName;
         this.doctorName = doctorName;
@@ -27,6 +30,7 @@ public class AppointmentDetailsClass {
         this.doctorID = doctorID;
         this.hospitalName = hospitalName;
         this.status = status;
+        this.desc=desc;
     }
 
     public Date getDate() {
@@ -83,5 +87,12 @@ public class AppointmentDetailsClass {
 
     public void setHospitalName(String hospitalName) {
         this.hospitalName = hospitalName;
+    }
+        public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
