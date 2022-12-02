@@ -4,6 +4,9 @@
  */
 package UI_Medical_Department;
 
+import Medical_Department.AppointmentDetailsDirectory;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jagru
@@ -30,6 +33,9 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         viewProfile = new javax.swing.JButton();
         addAvailability = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        docName = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        appListTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,31 +52,59 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
         logout.setText("Logout");
 
+        docName.setText("Doctor Name");
+
+        appListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(appListTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(309, 309, 309)
+                .addComponent(docName, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout)
                     .addComponent(addAvailability)
                     .addComponent(viewProfile)
                     .addComponent(appointmentList))
-                .addContainerGap(537, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(appointmentList)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(viewProfile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addAvailability)
-                .addGap(18, 18, 18)
-                .addComponent(logout)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(docName)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(appointmentList)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(viewProfile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addAvailability)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(logout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,6 +112,21 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
+        String[] columnNames = {"ID","Name", "Hospital Name", "Community", "City"};
+        AppointmentDetailsDirectory appointmentDir = new AppointmentDetailsDirectory();
+        String[][] rows = new String[appointmentDir.getCount(WIDTH, "Doctor")][5];
+        int i=0;
+//        for (HashMap.Entry<String, DoctorClass> set : doctors.entrySet()) {
+//            int id = set.getValue().getDoctorID();
+//            rows[i][0] = Integer.toString(id);
+//            rows[i][1] = set.getValue().getName();
+//            rows[i][2] = set.getValue().getHospitalName();
+//            rows[i][3] = set.getValue().getCommunityName();
+//            rows[i][4] = set.getValue().getCity();
+//            i++;
+//        }
+//        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+//        view.jTable1.setModel(model);
     }//GEN-LAST:event_appointmentListActionPerformed
 
     /**
@@ -117,7 +166,10 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAvailability;
+    private javax.swing.JTable appListTable;
     private javax.swing.JButton appointmentList;
+    private javax.swing.JLabel docName;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;
     private javax.swing.JButton viewProfile;
     // End of variables declaration//GEN-END:variables
