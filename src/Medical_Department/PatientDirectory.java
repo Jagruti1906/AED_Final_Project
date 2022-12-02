@@ -10,15 +10,15 @@ import java.util.ArrayList;
  *
  * @author hp
  */
-public class HospitalDirectory {
-    private ArrayList<HospitalClass>hospitalDir;
+public class PatientDirectory {
+    private ArrayList<PatientClass>patientDir;
 
-    public HospitalDirectory(ArrayList<HospitalClass> hospitaldir) {
-        this.hospitalDir = hospitaldir;
+    public PatientDirectory(ArrayList<PatientClass> patientDir) {
+        this.patientDir = patientDir;
     }
 
-    public ArrayList<HospitalClass> getHospitaldir() {
-        return hospitalDir;
+    public ArrayList<PatientClass> getPatientDir() {
+        return patientDir;
     }
     
 }
