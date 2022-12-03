@@ -184,14 +184,10 @@
         <Property name="text" type="java.lang.String" value="Date"/>
       </Properties>
     </Component>
-<<<<<<< HEAD
-    <Component class="org.netbeans.modules.form.InvalidComponent" name="jDateChooser1">
-=======
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
->>>>>>> f48b8c8a9f72df70822b830234ae91fd400b5b95
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>

@@ -34,7 +34,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser1 = new org.netbeans.modules.form.InvalidComponent();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();

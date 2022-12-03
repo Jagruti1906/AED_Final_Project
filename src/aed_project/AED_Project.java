@@ -6,6 +6,8 @@ package aed_project;
 
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,8 +22,9 @@ public class AED_Project {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DoctorClass doc = new DoctorClass(1,"Physician","C","ABC",12,22222,1234567890,"jhkdsj","jhdsk",new Date());
-        DoctorDirectory.getInstance().createDoctor(doc);
-        System.out.println(DoctorDirectory.getInstance().getDoctorDir().get(0).getName());
+//        DoctorClass doc = new DoctorClass(1,"Physician","C","ABC",12,22222,1234567890,"jhkdsj","jhdsk",new Date());
+//        DoctorDirectory.getInstance().createDoctor(doc);
+//        System.out.println(DoctorDirectory.getInstance().getDoctorDir().get(0).getName());
+        DatabaseConnectionClass.getInstance().getCon();
     }
 }

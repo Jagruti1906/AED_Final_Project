@@ -12,13 +12,25 @@ import java.util.ArrayList;
  */
 public class AppointmentDetailsDirectory {
     private static ArrayList<AppointmentDetailsClass> appointmentDetailsDir;
+    private static AppointmentDetailsDirectory mInstance;
 
-    public AppointmentDetailsDirectory() {
+    private AppointmentDetailsDirectory() {
         this.appointmentDetailsDir = new ArrayList();
     }
 
     public ArrayList<AppointmentDetailsClass> getAppointmentDetailsDir() {
         return appointmentDetailsDir;
+    }
+    
+    public void createDoctor(AppointmentDetailsClass appointment){
+        appointmentDetailsDir.add(appointment);
+    }
+    
+    public static AppointmentDetailsDirectory getInstance() {
+        if(mInstance == null)
+            mInstance = new AppointmentDetailsDirectory();
+
+        return mInstance;
     }
     
     public int getCount(int id, String role) {

@@ -113,10 +113,10 @@ public class DoctorMainFrame extends javax.swing.JFrame {
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"ID","Name", "Hospital Name", "Community", "City"};
-        AppointmentDetailsDirectory appointmentDir = new AppointmentDetailsDirectory();
-        String[][] rows = new String[appointmentDir.getCount(WIDTH, "Doctor")][5];
-        int i=0;
-//        for (HashMap.Entry<String, DoctorClass> set : doctors.entrySet()) {
+//        AppointmentDetailsDirectory.getInstance().getCount(, "Doctor");
+//        String[][] rows = new String[appointmentDir.getCount(WIDTH, "Doctor")][5];
+//        int i=0;
+//        for (int j=0;j<) {
 //            int id = set.getValue().getDoctorID();
 //            rows[i][0] = Integer.toString(id);
 //            rows[i][1] = set.getValue().getName();
