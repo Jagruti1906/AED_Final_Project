@@ -6,6 +6,7 @@ package aed_project;
 
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
+import Resident.RegisterResident;
 import UI.RegisterDoctor;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,5 +32,7 @@ public class AED_Project {
 //        DatabaseConnectionClass.getInstance().getCon();
 //        RegisterDoctor doc = new RegisterDoctor();
 //        doc.show();
+        RegisterResident res = new RegisterResident();
+        res.show();
     }
 }
