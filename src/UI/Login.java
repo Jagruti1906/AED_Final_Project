@@ -4,6 +4,8 @@
  */
 package UI;
 
+import UI_Medical_Department.DoctorMainFrame;
+import UI_Medical_Department.PatientMainFrame;
 import java.sql.ResultSet;
 
 import java.sql.Connection;
@@ -122,6 +124,17 @@ public class Login extends javax.swing.JFrame {
             ResidentPage resview = new ResidentPage();
             resview.show();
         }
+         else if (username.equals("doc") && password.equals("doc"))
+        {
+            DoctorMainFrame docview = new DoctorMainFrame();
+            docview.show();
+        }
+        else if (username.equals("patient") && password.equals("patient"))
+        {
+            PatientMainFrame patview = new PatientMainFrame();
+            patview.show();
+        }
+       
         
         else{
                JOptionPane.showMessageDialog(this, "Incorrent Username or Password");
