@@ -5,6 +5,8 @@
 package UI_Medical_Department;
 
 import Medical_Department.AppointmentDetailsDirectory;
+import Medical_Department.DoctorClass;
+import static aed_project.AED_Project.doctor;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,8 +20,14 @@ public class DoctorMainFrame extends javax.swing.JFrame {
      */
     public DoctorMainFrame() {
         initComponents();
+        docName.setText(doctor.getName());
     }
 
+    
+    public void getDoc(DoctorClass doc) {
+        docName.setText(doctor.getName());
+        doctor = doc;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

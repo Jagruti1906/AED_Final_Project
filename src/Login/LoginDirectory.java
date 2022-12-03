@@ -23,7 +23,7 @@ public class LoginDirectory {
         this.loginDir = new ArrayList();
     }
 
-    public static ArrayList<LoginClass> getLoginDir() {
+    public ArrayList<LoginClass> getLoginDir() {
         return loginDir;
     }
     
