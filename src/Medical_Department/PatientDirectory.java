@@ -11,14 +11,27 @@ import java.util.ArrayList;
  * @author hp
  */
 public class PatientDirectory {
-    private ArrayList<PatientClass>patientDir;
-
-    public PatientDirectory(ArrayList<PatientClass> patientDir) {
-        this.patientDir = patientDir;
+    private static ArrayList<PatientClass>patientDir = null;
+    private static PatientDirectory mInstance;
+    
+        private PatientDirectory() {
+        this.patientDir = new ArrayList();
+    }
+    
+    public void addPatient(PatientClass pat){
+        patientDir.add(pat);
     }
 
     public ArrayList<PatientClass> getPatientDir() {
         return patientDir;
     }
-    
+    public static PatientDirectory getInstance() {
+        if(mInstance == null)
+            mInstance = new PatientDirectory();
+        return mInstance;
+        }
 }
+
+
+
+

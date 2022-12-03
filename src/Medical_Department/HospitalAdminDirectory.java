@@ -11,14 +11,24 @@ import java.util.ArrayList;
  * @author jagru
  */
 public class HospitalAdminDirectory {
-    private ArrayList<HospitalAdminClass> hospitalAdminDir;
-
-    public HospitalAdminDirectory(ArrayList<HospitalAdminClass> hospitalAdminDir) {
-        this.hospitalAdminDir = hospitalAdminDir;
+    private static ArrayList<HospitalAdminClass> hospitalAdminDir=null;
+    private static HospitalAdminDirectory mInstance;
+    
+        private HospitalAdminDirectory() {
+        this.hospitalAdminDir = new ArrayList();
     }
 
     public ArrayList<HospitalAdminClass> getHospitalAdminDir() {
         return hospitalAdminDir;
+    }
+    public void addHospitalAdmin(HospitalAdminClass had){
+        hospitalAdminDir.add(had);
+    }
+    public static HospitalAdminDirectory getInstance() {
+        if(mInstance == null)
+            mInstance = new HospitalAdminDirectory();
+
+        return mInstance;
     }
     
 }
