@@ -22,7 +22,7 @@ public class AppointmentDetailsDirectory {
         return appointmentDetailsDir;
     }
     
-    public void createDoctor(AppointmentDetailsClass appointment){
+    public void addAppointment(AppointmentDetailsClass appointment){
         appointmentDetailsDir.add(appointment);
     }
     
