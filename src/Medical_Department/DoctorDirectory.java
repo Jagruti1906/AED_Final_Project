@@ -55,7 +55,6 @@ public class DoctorDirectory {
                 JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(RegisterDoctor.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
