@@ -13,6 +13,7 @@ import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import Medical_Department.HospitalDirectory;
 import Resident.RegisterResident;
+import Resident.ResidentClass;
 import UI.Login;
 import UI.RegisterDoctor;
 import UI.RegisterHospitalAdmin;
@@ -35,6 +36,7 @@ public class AED_Project {
      */
     public static DoctorClass doctor;
     public static HospitalAdminClass hospAdmin;
+    public static ResidentClass rc;
     
     public static void main(String[] args) {
         // TODO code application logic here
