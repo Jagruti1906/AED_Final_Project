@@ -4,11 +4,14 @@
  */
 package Medical_Department;
 
+import Login.LoginDirectory;
 import UI.RegisterDoctor;
+import UI_Medical_Department.DoctorMainFrame;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -58,6 +61,31 @@ public class DoctorDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
+    
+    public void getDoctorData() {
+        Statement stmt;
+        try{
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String str = "Select * from doctor";
+            ResultSet rs = stmt.executeQuery(str);
+            while(rs.next()) {
+                DoctorClass doc = new DoctorClass(rs.getInt("stateID"), rs.getString("name"), rs.getInt("age"),rs.getInt("doctorID"),rs.getString("gender"),rs.getString("email"),rs.getInt("phoneNumber"),rs.getDate("date_of_birth"),rs.getString("specialist"),rs.getString("hospital_name"));
+                doctorDir.add(doc);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+    }
+    
+//    public void docData(int stateID) {
+//        for(int j=0;j<doctorDir.size();j++) {
+//            System.out.println("sdj");
+//            DoctorMainFrame doc = new DoctorMainFrame();
+//            if(LoginDirectory.getInstance().getLoginDir().get(j).getStateID() == DoctorDirectory.getInstance().getDoctorDir().get(j).getStateID()) {
+//                doc.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
+//            }
+//        }
+//    }
     
     public static DoctorDirectory getInstance() {
         if(mInstance == null)

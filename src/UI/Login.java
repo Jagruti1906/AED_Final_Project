@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Login.LoginDirectory;
+import Medical_Department.DoctorDirectory;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.PatientMainFrame;
 import java.sql.ResultSet;
@@ -108,37 +110,63 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         // get username
         
-        String username = txtUser.getText();
+        int stateID = Integer.parseInt(txtUser.getText());
         // get password
-        
+
         String password = txtPass.getText();
-        
-        if(username.equals("admin") && password.equals("admin"))
-        {
-            AdminPage adminview = new AdminPage();
-            adminview.show();
+        boolean checkStateID, checkPassword;
+        for(int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++) {
+            checkPassword = password.equals(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            System.out.println(checkPassword);
+            if((stateID == (LoginDirectory.getInstance().getLoginDir().get(i).getStateID())) && checkPassword) {
+                try{
+                    if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Doctor Admin")) {
+                    this.hide();
+                    int size = DoctorDirectory.getInstance().getDoctorDir().size();
+                    DoctorMainFrame docFrame = new DoctorMainFrame();
+                    for(int j=0;j<size;j++) {
+                        if(stateID == DoctorDirectory.getInstance().getDoctorDir().get(j).getStateID()) {
+                            docFrame.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
+                            break;
+                        }
+                    }
+                    docFrame.show();
+                    break;
+                }
+                } catch(Exception e) {
+                    System.out.println(e);
+                }
+            }
+//            if( && ) {
+//                
+//            }
         }
-        
-        else if (username.equals("resident") && password.equals("resident"))
-        {
-            ResidentPage resview = new ResidentPage();
-            resview.show();
-        }
-         else if (username.equals("doc") && password.equals("doc"))
-        {
-            DoctorMainFrame docview = new DoctorMainFrame();
-            docview.show();
-        }
-        else if (username.equals("patient") && password.equals("patient"))
-        {
-            PatientMainFrame patview = new PatientMainFrame();
-            patview.show();
-        }
-       
-        
-        else{
-               JOptionPane.showMessageDialog(this, "Incorrent Username or Password");
-        }
+//        if(username.equals("admin") && password.equals("admin"))
+//        {
+//            AdminPage adminview = new AdminPage();
+//            adminview.show();
+//        }
+//        
+//        else if (username.equals("resident") && password.equals("resident"))
+//        {
+//            ResidentPage resview = new ResidentPage();
+//            resview.show();
+//        }
+//         else if (username.equals("doc") && password.equals("doc"))
+//        {
+//            DoctorMainFrame docview = new DoctorMainFrame();
+//            docview.show();
+//        }
+//        else if (username.equals("patient") && password.equals("patient"))
+//        {
+//            PatientMainFrame patview = new PatientMainFrame();
+//            patview.show();
+//        }
+//       
+//        
+//        else{
+//               JOptionPane.showMessageDialog(this, "Incorrent Username or Password");
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

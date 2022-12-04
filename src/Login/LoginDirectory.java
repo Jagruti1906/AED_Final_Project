@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +23,7 @@ public class LoginDirectory {
         this.loginDir = new ArrayList();
     }
 
-    public static ArrayList<LoginClass> getLoginDir() {
+    public ArrayList<LoginClass> getLoginDir() {
         return loginDir;
     }
     
@@ -44,6 +44,21 @@ public class LoginDirectory {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+    
+    public void getUsers() {
+        Statement stmt;
+        try{
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String str = "Select * from user_credentials";
+            ResultSet rs = stmt.executeQuery(str);
+            while(rs.next()) {
+                LoginClass users = new LoginClass(rs.getInt("state_id"), rs.getString("password"),rs.getString("role"));
+                loginDir.add(users);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
     
