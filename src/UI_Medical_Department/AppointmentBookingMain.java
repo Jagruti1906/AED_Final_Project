@@ -4,7 +4,10 @@
  */
 package UI_Medical_Department;
 
+import Medical_Department.AppointmentSlotsDirectory;
 import Medical_Department.DoctorDirectory;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -15,6 +18,9 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
     /**
      * Creates new form AppointmentBookingMain
      */
+    
+    public static int stateID=0;
+    
     public AppointmentBookingMain() {
         initComponents();
     }
@@ -36,7 +42,6 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -44,6 +49,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jComboBox5 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +104,12 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,9 +137,9 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(291, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -147,10 +159,13 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -171,10 +186,27 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+        jComboBox5.removeAllItems();
+        for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
+            if(jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
+                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
+                    jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
+                stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
+            }
+        }
+        for (int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
+//            String hosp = set.getValue().getHospitalName();
+            if(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID() == stateID) {
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate());
+                jComboBox5.addItem(s);
+            }
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -198,6 +230,18 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+        jComboBox3.removeAllItems();
+        for(int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String s = formatter.format(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate());
+            if(jComboBox5.getSelectedItem().toString().equals(s) && stateID == AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID()) {
+                jComboBox3.addItem(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getSlotTime());
+            }
+        }
+    }//GEN-LAST:event_jComboBox5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,7 +285,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> jComboBox2;
     public javax.swing.JComboBox<String> jComboBox3;
     public javax.swing.JComboBox<String> jComboBox4;
-    public com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

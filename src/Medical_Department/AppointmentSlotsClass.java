@@ -14,11 +14,23 @@ public class AppointmentSlotsClass {
     private Date date;
     private String slotTime;
     private String status;
+    private int stateID;
 
-    public AppointmentSlotsClass(Date date, String slotTime, String status) {
+
+
+    public AppointmentSlotsClass(Date date, String slotTime, String status,int stateID) {
         this.date = date;
         this.slotTime = slotTime;
         this.status = status;
+        this.stateID = stateID;
+        
+    }
+        public int getStateID() {
+        return stateID;
+    }
+
+    public void setStateID(int stateID) {
+        this.stateID = stateID;
     }
 
     public Date getDate() {

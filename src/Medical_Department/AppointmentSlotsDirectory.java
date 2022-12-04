@@ -56,7 +56,7 @@ public class AppointmentSlotsDirectory {
                 String str = "Select * from appointment_slot";
                 ResultSet rs = stmt.executeQuery(str);
                 while(rs.next()) {
-                    AppointmentSlotsClass appsc = new AppointmentSlotsClass(rs.getDate("date"),rs.getString("time"),rs.getString("status"));
+                    AppointmentSlotsClass appsc = new AppointmentSlotsClass(rs.getDate("date"),rs.getString("time"),rs.getString("status"),rs.getInt("stateID"));
                     appointmentSlotsDir.add(appsc);
             }
         

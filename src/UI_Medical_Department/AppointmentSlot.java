@@ -6,6 +6,7 @@ package UI_Medical_Department;
 
 import Medical_Department.AppointmentSlotsClass;
 import Medical_Department.AppointmentSlotsDirectory;
+import static aed_project.AED_Project.doctor;
 
 /**
  *
@@ -103,7 +104,7 @@ public class AppointmentSlot extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AppointmentSlotsClass apps= new AppointmentSlotsClass(jDateChooser1.getDate(),jComboBox1.getSelectedItem().toString(),"Available");
+        AppointmentSlotsClass apps= new AppointmentSlotsClass(jDateChooser1.getDate(),jComboBox1.getSelectedItem().toString(),"Available",doctor.getStateID());
         AppointmentSlotsDirectory.getInstance().addslots(apps);
     }//GEN-LAST:event_jButton1ActionPerformed
 
