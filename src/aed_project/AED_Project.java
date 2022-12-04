@@ -7,6 +7,7 @@ package aed_project;
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
 import UI.RegisterDoctor;
+import UI_Medical_Department.DoctorMainFrame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ public class AED_Project {
 //        DoctorDirectory.getInstance().createDoctor(doc);
 //        System.out.println(DoctorDirectory.getInstance().getDoctorDir().get(0).getName());
 //        DatabaseConnectionClass.getInstance().getCon();
-        RegisterDoctor doc = new RegisterDoctor();
+//        RegisterDoctor doc = new RegisterDoctor();
+          DoctorMainFrame doc=new DoctorMainFrame();
         doc.show();
     }
 }
