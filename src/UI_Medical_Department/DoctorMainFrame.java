@@ -58,6 +58,11 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         viewProfile.setText("View Profile");
 
         addAvailability.setText("Add Availability");
+        addAvailability.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAvailabilityActionPerformed(evt);
+            }
+        });
 
         logout.setText("Logout");
 
@@ -137,6 +142,13 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 //        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
 //        view.jTable1.setModel(model);
     }//GEN-LAST:event_appointmentListActionPerformed
+
+    private void addAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAvailabilityActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        AppointmentSlot as = new AppointmentSlot();
+        as.show();
+    }//GEN-LAST:event_addAvailabilityActionPerformed
 
     /**
      * @param args the command line arguments

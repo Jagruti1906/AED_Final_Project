@@ -111,7 +111,7 @@ public class AppointmentSlot extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         DoctorMainFrame docf = new DoctorMainFrame();
-        this.show();
+        docf.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
