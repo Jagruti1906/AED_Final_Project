@@ -20,6 +20,7 @@ public class AppointmentSlotsDirectory {
     private static ArrayList<AppointmentSlotsClass> appointmentSlotsDir = null;
      private static AppointmentSlotsDirectory mInstance;
 
+     
     private AppointmentSlotsDirectory() {
         this.appointmentSlotsDir = new ArrayList();
     }
