@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/DoctorClass.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/RegisterDoctor.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/aed_project/DatabaseConnectionClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/HospitalAdminDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/HospitalAdminClass.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/DoctorMainFrame.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Login/LoginDirectory.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/AppointmentDetailsDirectory.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/aed_project/AED_Project.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/Login.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Login/LoginClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/AppointmentDetailsClass.java</file>
         </group>
     </open-files>
 </project-private>

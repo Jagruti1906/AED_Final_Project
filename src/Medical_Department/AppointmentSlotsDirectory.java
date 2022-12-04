@@ -31,17 +31,19 @@ public class AppointmentSlotsDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO Slots" + " VALUES(?,?,?)";
+            String query1 = "INSERT INTO appointment_slot (date,time,status)" + " VALUES(?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(appsc.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setDate(1, sqlDate);
             pst.setString(2, appsc.getSlotTime());
+            pst.setString(3, appsc.getStatus());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
                 JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
         

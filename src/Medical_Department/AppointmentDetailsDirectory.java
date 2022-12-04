@@ -44,7 +44,7 @@ public class AppointmentDetailsDirectory {
         }
         else {
             for(int i=0;i<appointmentDetailsDir.size();i++) {
-                if(appointmentDetailsDir.get(i).getPatientID()== id) {
+                if(appointmentDetailsDir.get(i).getPatientStateID()== id) {
                     count++;
                 }
             }

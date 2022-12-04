@@ -14,7 +14,7 @@ public class HospitalAdminDirectory {
     private static ArrayList<HospitalAdminClass> hospitalAdminDir=null;
     private static HospitalAdminDirectory mInstance;
     
-        private HospitalAdminDirectory() {
+    private HospitalAdminDirectory() {
         this.hospitalAdminDir = new ArrayList();
     }
 

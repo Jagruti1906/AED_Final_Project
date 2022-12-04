@@ -14,7 +14,7 @@ public class AppointmentDetailsClass {
     private Date date;
     private String patientName;
     private String doctorName;
-    private int patientID;
+    private int patientStateID;
     private int doctorID;
     private String status;
     private String hospitalName;
@@ -22,11 +22,11 @@ public class AppointmentDetailsClass {
 
 
 
-    public AppointmentDetailsClass(Date date, String patientName, String doctorName, int patientID, int doctorID, String hospitalName, String status,String desc) {
+    public AppointmentDetailsClass(Date date, String patientName, String doctorName, int patientStateID, int doctorID, String hospitalName, String status,String desc) {
         this.date = date;
         this.patientName = patientName;
         this.doctorName = doctorName;
-        this.patientID = patientID;
+        this.patientStateID = patientStateID;
         this.doctorID = doctorID;
         this.hospitalName = hospitalName;
         this.status = status;
@@ -57,12 +57,12 @@ public class AppointmentDetailsClass {
         this.doctorName = doctorName;
     }
 
-    public int getPatientID() {
-        return patientID;
+    public int getPatientStateID() {
+        return patientStateID;
     }
 
-    public void setPatientID(int patientID) {
-        this.patientID = patientID;
+    public void setPatientStateID(int patientStateID) {
+        this.patientStateID = patientStateID;
     }
 
     public int getDoctorID() {
