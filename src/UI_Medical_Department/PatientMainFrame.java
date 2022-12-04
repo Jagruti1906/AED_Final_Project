@@ -4,6 +4,12 @@
  */
 package UI_Medical_Department;
 
+import Medical_Department.AppointmentDetailsDirectory;
+import Resident.ResidentClass;
+import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
+import static aed_project.AED_Project.rc;
+
 /**
  *
  * @author hp
@@ -15,6 +21,9 @@ public class PatientMainFrame extends javax.swing.JFrame {
      */
     public PatientMainFrame() {
         initComponents();
+    }
+    public void getPat(ResidentClass res){
+        rc = res;
     }
 
     /**
@@ -48,6 +57,11 @@ public class PatientMainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("View Appointment");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Edit Profile");
 
@@ -56,6 +70,11 @@ public class PatientMainFrame extends javax.swing.JFrame {
         jLabel2.setText("Patient Name");
 
         jButton5.setText("View History");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,15 +136,51 @@ public class PatientMainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                this.hide();
-         AppointmentBookingMain appo= new AppointmentBookingMain();
-        for (HashMap.Entry<String, classHospital> set : hospitals.entrySet()) 
-            {
-          
-                appo.jComboBox1.addItem(set.getValue().getHospitalName());
-            }
-        appo.show();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Doctor Name","Hospital Name", "Date Of Encounter", "Purpose","Status"};
+        int count= AppointmentDetailsDirectory.getInstance().getCount(rc.getStateID(),"Patient");
+        String[][] rows = new String[count][5];
+        int j=0;
+        for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() ==(rc.getStateID()) && (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved") || AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
+                rows[j][0] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorName();
+                rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getHospitalName();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
+                rows[j][2] = s;
+                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
+                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);                                              
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Doctor Name","Hospital Name", "Date Of Encounter", "Purpose","Status"};
+        int count= AppointmentDetailsDirectory.getInstance().getCount(rc.getStateID(),"Patient");
+        String[][] rows = new String[count][5];
+        int j=0;
+        for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() ==(rc.getStateID()) && (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Completed"))) {
+                rows[j][0] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorName();
+                rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getHospitalName();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
+                rows[j][2] = s;
+                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
+                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);  
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

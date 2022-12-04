@@ -8,6 +8,7 @@ import Login.LoginClass;
 import Login.LoginDirectory;
 import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
+import static aed_project.AED_Project.hospAdmin;
 
 /**
  *
@@ -179,9 +180,23 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         HospitalAdminClass hosp = new HospitalAdminClass(txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
-        HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
         LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
-        LoginDirectory.getInstance().addUser(login);
+        int flag=0,k=0;
+        for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
+            if(HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(i).getStateID() == hospAdmin.getStateID()) {
+                flag=1;
+                k=i;
+                break;
+            }
+        }
+        if(flag==1) {
+            HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
+            LoginDirectory.getInstance().updateUser(login.getStateID(), login);
+        }
+        else {
+            HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
+            LoginDirectory.getInstance().addUser(login);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -220,25 +235,25 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtAdmin;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtHospName;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPass;
-    private javax.swing.JTextField txtPhoneNo;
-    private javax.swing.JTextField txtSSN;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public com.toedter.calendar.JDateChooser jDateChooser;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel11;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabel9;
+    public javax.swing.JTextField txtAdmin;
+    public javax.swing.JTextField txtEmail;
+    public javax.swing.JTextField txtHospName;
+    public javax.swing.JTextField txtName;
+    public javax.swing.JTextField txtPass;
+    public javax.swing.JTextField txtPhoneNo;
+    public javax.swing.JTextField txtSSN;
     // End of variables declaration//GEN-END:variables
 }

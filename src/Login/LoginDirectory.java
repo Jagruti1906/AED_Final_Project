@@ -48,6 +48,30 @@ public class LoginDirectory {
         }
     }
     
+    public void updateUser(int stateID, LoginClass login) {
+        for(int j=0;j<loginDir.size();j++) {
+            if(stateID == loginDir.get(j).getStateID()) {
+                loginDir.set(j,login);
+            }
+        }
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update user_credentials" + " set password=? where state_id=?";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, login.getPassword());
+            pst.setInt(2, stateID);
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+    
     public void getUsers() {
         Statement stmt;
         try{

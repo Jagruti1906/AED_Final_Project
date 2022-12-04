@@ -4,6 +4,9 @@
  */
 package Medical_Department;
 
+import Login.LoginClass;
+import Login.LoginDirectory;
+import UI.RegisterHospitalAdmin;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,6 +69,51 @@ public class HospitalAdminDirectory {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+    }
+    
+    public void viewHospAdminData(HospitalAdminClass hosp, RegisterHospitalAdmin hosAdmin) {
+        hosAdmin.txtHospName.setText(hosp.getHospitalName());
+        hosAdmin.txtEmail.setText(hosp.getEmail());
+        hosAdmin.txtAdmin.setText(Integer.toString(hosp.getAdminID()));
+        hosAdmin.txtAdmin.setEnabled(false);
+        hosAdmin.txtName.setText(hosp.getName());
+        hosAdmin.txtPhoneNo.setText(Integer.toString(hosp.getPhoneNumber()));
+        hosAdmin.txtSSN.setText(Integer.toString(hosp.getStateID()));
+        hosAdmin.txtSSN.setEnabled(false);
+        hosAdmin.jDateChooser.setDate((hosp.getDob()));
+        hosAdmin.jComboBox1.setSelectedItem(hosp.getGender());
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==hosp.getStateID()){
+                hosAdmin.txtPass.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+    }
+    
+    public void updateHospAdminData(HospitalAdminClass had,int i) {
+        hospitalAdminDir.set(i,had);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update hospitaladmins" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,hospital_name=? where stateID=?";
+            java.sql.Date sqlDate = new java.sql.Date(had.getDob().getTime());
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, had.getName());
+            pst.setString(2, had.getGender());
+            pst.setString(3, had.getEmail());
+            pst.setInt(4, had.getPhoneNumber());
+            pst.setDate(5, sqlDate);
+            pst.setString(6, had.getHospitalName());
+            pst.setInt(7, had.getStateID());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
     

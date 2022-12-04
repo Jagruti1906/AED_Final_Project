@@ -9,10 +9,12 @@ import Medical_Department.AmbulanceDirectory;
 import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminClass;
+import Medical_Department.HospitalAdminDirectory;
 import UI.AddAmbulanceForm;
 import static aed_project.AED_Project.hospAdmin;
 import UI.Login;
 import UI.RegisterDoctor;
+import UI.RegisterHospitalAdmin;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,6 +66,11 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         });
 
         viewProfile.setText("View Profile");
+        viewProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProfileActionPerformed(evt);
+            }
+        });
 
         doctorRecord.setText("Doctor Record");
         doctorRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +271,14 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         doc.show();
     }//GEN-LAST:event_addDocActionPerformed
 
+    private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterHospitalAdmin hosp = new RegisterHospitalAdmin();
+        HospitalAdminDirectory.getInstance().viewHospAdminData(hospAdmin,hosp);
+        hosp.show();
+    }//GEN-LAST:event_viewProfileActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,15 +315,15 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addAmbulance;
-    private javax.swing.JButton addDoc;
-    private javax.swing.JButton ambulanceList;
-    private javax.swing.JButton appointmentList;
-    private javax.swing.JButton doctorRecord;
+    public javax.swing.JButton addAmbulance;
+    public javax.swing.JButton addDoc;
+    public javax.swing.JButton ambulanceList;
+    public javax.swing.JButton appointmentList;
+    public javax.swing.JButton doctorRecord;
     private javax.swing.JLabel jLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton logout;
-    private javax.swing.JTable table;
-    private javax.swing.JButton viewProfile;
+    public javax.swing.JButton logout;
+    public javax.swing.JTable table;
+    public javax.swing.JButton viewProfile;
     // End of variables declaration//GEN-END:variables
 }

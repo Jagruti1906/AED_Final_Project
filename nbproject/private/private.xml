@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/DoctorClass.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/AmbulanceClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/HospitalAdminDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/DoctorDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/HospitalAdminClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/DoctorMainFrame.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Login/LoginDirectory.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/HospitalDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/RegisterHospitalAdmin.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/aed_project/AED_Project.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/AmbulanceDirectory.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/AddAmbulanceForm.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/Login.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/HospAdminMainFrame.java</file>
         </group>
     </open-files>
