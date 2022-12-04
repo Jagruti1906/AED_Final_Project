@@ -4,9 +4,11 @@
  */
 package UI_Medical_Department;
 
+import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminClass;
 import static aed_project.AED_Project.hospAdmin;
 import UI.Login;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,11 +39,11 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
         appointmentList = new javax.swing.JButton();
         viewProfile = new javax.swing.JButton();
-        addAvailability = new javax.swing.JButton();
+        doctorRecord = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        appListTable = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -56,7 +58,12 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
         viewProfile.setText("View Profile");
 
-        addAvailability.setText("Doctor Record");
+        doctorRecord.setText("Doctor Record");
+        doctorRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorRecordActionPerformed(evt);
+            }
+        });
 
         logout.setText("Logout");
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +74,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
         jLabel.setText("Welcome");
 
-        appListTable.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -78,7 +85,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(appListTable);
+        jScrollPane1.setViewportView(table);
 
         jButton1.setText("Ambulance List");
 
@@ -96,7 +103,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout)
-                    .addComponent(addAvailability)
+                    .addComponent(doctorRecord)
                     .addComponent(viewProfile)
                     .addComponent(appointmentList)
                     .addComponent(jButton1)
@@ -119,7 +126,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(viewProfile)
                         .addGap(12, 12, 12)
-                        .addComponent(addAvailability)
+                        .addComponent(doctorRecord)
                         .addGap(12, 12, 12)
                         .addComponent(jButton2)
                         .addGap(10, 10, 10)
@@ -159,6 +166,32 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         login.show();
     }//GEN-LAST:event_logoutActionPerformed
 
+    private void doctorRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorRecordActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"ID","Name", "Gender", "Specialist", "Email ID"};
+        int count=0;
+        for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
+            if(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName().equals(hospAdmin.getHospitalName())) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][5];
+        int j=0;
+        for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
+            if(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName().equals(hospAdmin.getHospitalName())) {
+                int id = DoctorDirectory.getInstance().getDoctorDir().get(i).getdoctorId();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = DoctorDirectory.getInstance().getDoctorDir().get(i).getName();
+                rows[j][2] = DoctorDirectory.getInstance().getDoctorDir().get(i).getGender();
+                rows[j][3] = DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation();
+                rows[j][4] = DoctorDirectory.getInstance().getDoctorDir().get(i).getEmail();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        table.setModel(model);
+    }//GEN-LAST:event_doctorRecordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,14 +228,14 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addAvailability;
-    private javax.swing.JTable appListTable;
     private javax.swing.JButton appointmentList;
+    private javax.swing.JButton doctorRecord;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;
+    private javax.swing.JTable table;
     private javax.swing.JButton viewProfile;
     // End of variables declaration//GEN-END:variables
 }

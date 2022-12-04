@@ -9,22 +9,22 @@ package Medical_Department;
  * @author hp
  */
 public class HospitalClass {
-    private String naem;
+    private String name;
     private String address;
     private int zip;
 
-    public HospitalClass(String naem, String address, int zip) {
-        this.naem = naem;
+    public HospitalClass(String name, String address, int zip) {
+        this.name = name;
         this.address = address;
         this.zip = zip;
     }
 
-    public String getNaem() {
-        return naem;
+    public String getName() {
+        return name;
     }
 
-    public void setNaem(String naem) {
-        this.naem = naem;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
