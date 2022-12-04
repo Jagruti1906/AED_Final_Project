@@ -20,12 +20,13 @@ public class DoctorMainFrame extends javax.swing.JFrame {
      */
     public DoctorMainFrame() {
         initComponents();
-        docName.setText(doctor.getName());
+//        docName.setText(doctor.getName());
     }
 
     
     public void getDoc(DoctorClass doc) {
-        docName.setText(doctor.getName());
+        System.out.println(doc.getName());
+        docName.setText(doc.getName());
         doctor = doc;
     }
     /**

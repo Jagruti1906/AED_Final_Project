@@ -112,22 +112,29 @@ public class Login extends javax.swing.JFrame {
         
         int stateID = Integer.parseInt(txtUser.getText());
         // get password
-        
+
         String password = txtPass.getText();
         boolean checkStateID, checkPassword;
         for(int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++) {
-            checkStateID = stateID == (LoginDirectory.getInstance().getLoginDir().get(i).getStateID());
             checkPassword = password.equals(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
-            if(checkStateID && checkPassword) {
-                if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus() == "Doctor Admin") {
+            System.out.println(checkPassword);
+            if((stateID == (LoginDirectory.getInstance().getLoginDir().get(i).getStateID())) && checkPassword) {
+                try{
+                    if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Doctor Admin")) {
                     this.hide();
-                    DoctorMainFrame doc = new DoctorMainFrame();
-                    for(int j=0;j<DoctorDirectory.getInstance().getDoctorDir().size();j++) {
-                        if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID() == DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID()) {
-                            doc.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
+                    int size = DoctorDirectory.getInstance().getDoctorDir().size();
+                    DoctorMainFrame docFrame = new DoctorMainFrame();
+                    for(int j=0;j<size;j++) {
+                        if(stateID == DoctorDirectory.getInstance().getDoctorDir().get(j).getStateID()) {
+                            docFrame.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
+                            break;
                         }
                     }
-                    doc.show();
+                    docFrame.show();
+                    break;
+                }
+                } catch(Exception e) {
+                    System.out.println(e);
                 }
             }
 //            if( && ) {
