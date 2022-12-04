@@ -145,6 +145,12 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
     private void addAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAvailabilityActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+=======
+        this.hide();
+        AppointmentSlot as = new AppointmentSlot();
+        as.show();
+>>>>>>> 71b801b57377786806a3972af3c2d48993730084
     }//GEN-LAST:event_addAvailabilityActionPerformed
 
     /**
