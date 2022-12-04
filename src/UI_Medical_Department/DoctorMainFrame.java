@@ -4,8 +4,12 @@
  */
 package UI_Medical_Department;
 
+import Login.LoginDirectory;
 import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.DoctorClass;
+import Medical_Department.DoctorDirectory;
+import UI.Login;
+import UI.RegisterDoctor;
 import static aed_project.AED_Project.doctor;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,6 +60,11 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         });
 
         viewProfile.setText("View Profile");
+        viewProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProfileActionPerformed(evt);
+            }
+        });
 
         addAvailability.setText("Add Availability");
         addAvailability.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +74,11 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         });
 
         logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         docName.setText("Doctor Name");
 
@@ -149,6 +163,22 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         AppointmentSlot as = new AppointmentSlot();
         as.show();
     }//GEN-LAST:event_addAvailabilityActionPerformed
+
+    private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterDoctor rd = new RegisterDoctor();
+        DoctorDirectory.getInstance().viewDoctor(doctor);
+        LoginDirectory.getInstance().viewUser(doctor.getStateID());
+        rd.show();
+    }//GEN-LAST:event_viewProfileActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        Login log = new Login();
+        log.show();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments

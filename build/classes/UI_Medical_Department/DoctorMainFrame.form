@@ -81,6 +81,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View Profile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewProfileActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addAvailability">
       <Properties>
@@ -94,6 +97,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="docName">
       <Properties>

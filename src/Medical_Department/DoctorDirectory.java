@@ -77,6 +77,23 @@ public class DoctorDirectory {
         }
     }
     
+    public void viewDoctor(DoctorClass doc){
+        RegisterDoctor doctor = new RegisterDoctor();
+        doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
+        doctor.jTextField1.setEnabled(false);
+        doctor.jTextField2.setText(doc.getName());
+        doctor.jTextField4.setText(Integer.toString(doc.getdoctorId()));
+        doctor.jTextField4.setEnabled(false);
+        doctor.jComboBox1.setSelectedItem(doc.getGender());
+        doctor.jTextField6.setText(doc.getEmail());
+        doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
+        doctor.jDateChooser1.setDate((doc.getDob()));
+        doctor.jTextField9.setText(doc.getSpecialisation());
+        doctor.jTextField10.setText(doc.getHospitalName());
+        doctor.jTextField9.setEnabled(false);
+        
+    }
+    
 //    public void docData(int stateID) {
 //        for(int j=0;j<doctorDir.size();j++) {
 //            System.out.println("sdj");
