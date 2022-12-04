@@ -5,6 +5,7 @@
 package UI_Medical_Department;
 
 import Medical_Department.AmbulanceClass;
+import Medical_Department.AmbulanceDirectory;
 import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminClass;
@@ -48,7 +49,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         jLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        ambulanceList = new javax.swing.JButton();
         addAmbulance = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,7 +92,12 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        jButton1.setText("Ambulance List");
+        ambulanceList.setText("Ambulance List");
+        ambulanceList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ambulanceListActionPerformed(evt);
+            }
+        });
 
         addAmbulance.setText("Add Ambulance");
         addAmbulance.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +121,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                     .addComponent(doctorRecord)
                     .addComponent(viewProfile)
                     .addComponent(appointmentList)
-                    .addComponent(jButton1)
+                    .addComponent(ambulanceList)
                     .addComponent(addAmbulance))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,7 +135,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jButton1)
+                        .addComponent(ambulanceList)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(appointmentList)
                         .addGap(18, 18, 18)
@@ -215,6 +221,30 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         ambulance.show();
     }//GEN-LAST:event_addAmbulanceActionPerformed
 
+    private void ambulanceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ambulanceListActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Ambulance Type", "Ambulance Number", "Status"};
+        int count=0;
+        for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
+            if(AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getHospName().equals(hospAdmin.getHospitalName())) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][3];
+        int j=0;
+        for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
+            if(AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getHospName().equals(hospAdmin.getHospitalName())) {
+                int number = AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getAmbulanceNumber();
+                rows[j][0] = AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getType();
+                rows[j][1] = Integer.toString(number);
+                rows[j][2] = AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        table.setModel(model);
+    }//GEN-LAST:event_ambulanceListActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,9 +282,9 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAmbulance;
+    private javax.swing.JButton ambulanceList;
     private javax.swing.JButton appointmentList;
     private javax.swing.JButton doctorRecord;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;

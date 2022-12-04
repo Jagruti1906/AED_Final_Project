@@ -49,7 +49,7 @@ public class AED_Project {
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();
-        System.out.println(AmbulanceDirectory.getInstance().getAmbulanceDir().size());
+//        System.out.println(AmbulanceDirectory.getInstance().getAmbulanceDir().size());
 //        AppointmentSlot app = new AppointmentSlot();
 //        app.show();
 //        System.out.println(HospitalAdminDirectory.getInstance().getHospitalAdminDir().size());

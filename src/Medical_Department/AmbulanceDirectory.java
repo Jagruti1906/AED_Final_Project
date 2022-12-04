@@ -33,11 +33,12 @@ public class AmbulanceDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO ambulances(type,ambulance_number,status)" + " VALUES(?,?,?)";
+            String query1 = "INSERT INTO ambulances(type,ambulance_number,status,hospital_name)" + " VALUES(?,?,?,?)";
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setString(1, ambulance.getType());
             pst.setInt(2, ambulance.getAmbulanceNumber());
             pst.setString(3, ambulance.getStatus());
+            pst.setString(4, ambulance.getHospName());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -55,7 +56,7 @@ public class AmbulanceDirectory {
             String str = "Select * from ambulances";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                AmbulanceClass ambulance = new AmbulanceClass(rs.getString("type"), rs.getInt("ambulance_number"),rs.getString("status"));
+                AmbulanceClass ambulance = new AmbulanceClass(rs.getString("type"), rs.getInt("ambulance_number"),rs.getString("status"),rs.getString("hospital_name"));
                 ambulanceDir.add(ambulance);
             }
         } catch (SQLException ex) {

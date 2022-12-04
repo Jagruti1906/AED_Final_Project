@@ -12,11 +12,13 @@ public class AmbulanceClass {
     private String type;
     private int ambulanceNumber;
     private String status;
+    private String hospName;
 
-    public AmbulanceClass(String type, int ambulanceNumber, String status) {
+    public AmbulanceClass(String type, int ambulanceNumber, String status, String hospName) {
         this.type = type;
         this.ambulanceNumber = ambulanceNumber;
         this.status = status;
+        this.hospName = hospName;
     }
 
     public String getType() {
@@ -41,5 +43,13 @@ public class AmbulanceClass {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public String getHospName() {
+        return hospName;
+    }
+
+    public void setHospName(String hospName) {
+        this.hospName = hospName;
     }
 }

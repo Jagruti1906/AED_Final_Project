@@ -7,6 +7,7 @@ package UI;
 import Medical_Department.AmbulanceClass;
 import Medical_Department.AmbulanceDirectory;
 import UI_Medical_Department.HospAdminMainFrame;
+import static aed_project.AED_Project.hospAdmin;
 
 /**
  *
@@ -77,7 +78,7 @@ public class AddAmbulanceForm extends javax.swing.JFrame {
     private void addAmbulanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAmbulanceActionPerformed
         // TODO add your handling code here:
         this.hide();
-        AmbulanceClass ambulance = new AmbulanceClass(jTextField1.getText(),Integer.parseInt(jTextField2.getText()),"Available");
+        AmbulanceClass ambulance = new AmbulanceClass(jTextField1.getText(),Integer.parseInt(jTextField2.getText()),"Available",hospAdmin.getHospitalName());
         AmbulanceDirectory.getInstance().addAmbulance(ambulance);
         HospAdminMainFrame hosp = new HospAdminMainFrame();
         hosp.show();
