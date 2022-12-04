@@ -8,6 +8,7 @@ import aed_project.DatabaseConnectionClass;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -46,8 +47,25 @@ public class AppointmentSlotsDirectory {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
-        
     }
+        public void getslotsData() {
+            Statement stmt;
+            try{
+                stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+                String str = "Select * from doctor";
+                ResultSet rs = stmt.executeQuery(str);
+                while(rs.next()) {
+                    AppointmentSlotsClass appsc = new AppointmentSlotsClass(rs.getDate("date"),rs.getString("time"),rs.getString("status"));
+                    appointmentSlotsDir.add(appsc);
+            }
+        
+            } 
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+        }
+
+        
         public static AppointmentSlotsDirectory getInstance() {
         if(mInstance == null)
             mInstance = new AppointmentSlotsDirectory();
