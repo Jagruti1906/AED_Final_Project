@@ -4,7 +4,13 @@
  */
 package Medical_Department;
 
+import aed_project.DatabaseConnectionClass;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +30,38 @@ public class AppointmentDetailsDirectory {
     
     public void addAppointment(AppointmentDetailsClass appointment){
         appointmentDetailsDir.add(appointment);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "INSERT INTO docappage" + " VALUES(?,?,?,?,?,?,?)";
+            java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setInt(1, appointment.getDoctorID());
+            pst.setInt(2, appointment.getPatientStateID());
+            pst.setString(3, appointment.getDoctorName());
+            pst.setString(4, appointment.getPatientName());
+            pst.setString(5, appointment.getHospitalName());
+            pst.setString(6, appointment.getStatus());
+            pst.setString(7, appointment.getDesc());
+        
+    }         catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+    
+        public void getappdata() {
+        Statement stmt;
+        try{
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String str = "Select * from docappage";
+            ResultSet rs = stmt.executeQuery(str);
+            while(rs.next()) {
+                AppointmentDetailsClass app = new AppointmentDetailsClass(rs.getDate("date"), rs.getString("patientName"), rs.getString("doctorName"),rs.getInt("patientStateID"),rs.getInt("doctorID"),rs.getString("status"),rs.getString("hospitalName"),rs.getString("desc"));
+                appointmentDetailsDir.add(app);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
     }
     
     public static AppointmentDetailsDirectory getInstance() {
