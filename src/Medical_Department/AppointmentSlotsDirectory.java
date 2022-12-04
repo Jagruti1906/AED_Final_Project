@@ -52,7 +52,7 @@ public class AppointmentSlotsDirectory {
             Statement stmt;
             try{
                 stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-                String str = "Select * from doctor";
+                String str = "Select * from appointment_slot";
                 ResultSet rs = stmt.executeQuery(str);
                 while(rs.next()) {
                     AppointmentSlotsClass appsc = new AppointmentSlotsClass(rs.getDate("date"),rs.getString("time"),rs.getString("status"));
