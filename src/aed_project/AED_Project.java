@@ -31,8 +31,8 @@ public class AED_Project {
         // TODO code application logic here
 //        DoctorClass doc = new DoctorClass(1,"Physician","C","ABC",12,22222,1234567890,"jhkdsj","jhdsk",new Date());
 //        DoctorDirectory.getInstance().createDoctor(doc);
-        DoctorDirectory.getInstance().getDoctorData();
-        LoginDirectory.getInstance().getUsers();
+//        DoctorDirectory.getInstance().getDoctorData();
+//        LoginDirectory.getInstance().getUsers();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();
