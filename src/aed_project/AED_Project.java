@@ -5,6 +5,7 @@
 package aed_project;
 
 import Login.LoginDirectory;
+import Medical_Department.AmbulanceDirectory;
 import Medical_Department.AppointmentSlotsDirectory;
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
@@ -44,9 +45,11 @@ public class AED_Project {
         AppointmentSlotsDirectory.getInstance().getslotsData();
         HospitalAdminDirectory.getInstance().getHospAdminData();
         HospitalDirectory.getInstance().getHospitalData();
+        AmbulanceDirectory.getInstance().getAmbulance();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();
+        System.out.println(AmbulanceDirectory.getInstance().getAmbulanceDir().size());
 //        AppointmentSlot app = new AppointmentSlot();
 //        app.show();
 //        System.out.println(HospitalAdminDirectory.getInstance().getHospitalAdminDir().size());

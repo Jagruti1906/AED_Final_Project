@@ -4,20 +4,69 @@
  */
 package Medical_Department;
 
+import aed_project.DatabaseConnectionClass;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jagru
  */
 public class AmbulanceDirectory {
-    private ArrayList<AmbulanceClass> ambulanceDir;
+    private static ArrayList<AmbulanceClass> ambulanceDir;
+    private static AmbulanceDirectory mInstance;
 
-    public AmbulanceDirectory(ArrayList<AmbulanceClass> ambulanceDir) {
-        this.ambulanceDir = ambulanceDir;
+    private AmbulanceDirectory() {
+        this.ambulanceDir = new ArrayList();
     }
 
     public ArrayList<AmbulanceClass> getAmbulanceDir() {
         return ambulanceDir;
+    }
+    
+    public void addAmbulance(AmbulanceClass ambulance){
+        ambulanceDir.add(ambulance);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "INSERT INTO ambulances(type,ambulance_number,status)" + " VALUES(?,?,?)";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, ambulance.getType());
+            pst.setInt(2, ambulance.getAmbulanceNumber());
+            pst.setString(3, ambulance.getStatus());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+    
+    public void getAmbulance() {
+        Statement stmt;
+        try{
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String str = "Select * from ambulances";
+            ResultSet rs = stmt.executeQuery(str);
+            while(rs.next()) {
+                AmbulanceClass ambulance = new AmbulanceClass(rs.getString("type"), rs.getInt("ambulance_number"),rs.getString("status"));
+                ambulanceDir.add(ambulance);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+    }
+    
+    public static AmbulanceDirectory getInstance() {
+        if(mInstance == null)
+            mInstance = new AmbulanceDirectory();
+
+        return mInstance;
     }
 }

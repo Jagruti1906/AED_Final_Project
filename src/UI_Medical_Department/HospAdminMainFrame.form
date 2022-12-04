@@ -36,7 +36,7 @@
                   <Component id="viewProfile" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="appointmentList" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="addAmbulance" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
@@ -59,8 +59,8 @@
                       <Component id="viewProfile" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="doctorRecord" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="addAmbulance" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="logout" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -135,10 +135,13 @@
         <Property name="text" type="java.lang.String" value="Ambulance List"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="addAmbulance">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Patient Record"/>
+        <Property name="text" type="java.lang.String" value="Add Ambulance"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addAmbulanceActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
