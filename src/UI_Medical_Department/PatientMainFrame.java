@@ -5,6 +5,7 @@
 package UI_Medical_Department;
 
 import Medical_Department.AppointmentDetailsDirectory;
+import Medical_Department.HospitalDirectory;
 import Resident.ResidentClass;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
@@ -38,7 +39,6 @@ public class PatientMainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -63,9 +63,7 @@ public class PatientMainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Edit Profile");
-
-        jButton4.setText("Logout");
+        jButton4.setText("Back");
 
         jLabel2.setText("Patient Name");
 
@@ -101,8 +99,7 @@ public class PatientMainFrame extends javax.swing.JFrame {
                             .addComponent(jButton5)
                             .addComponent(jButton1)
                             .addComponent(jButton4)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(jButton2))
                         .addGap(138, 138, 138)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -124,8 +121,6 @@ public class PatientMainFrame extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(20, 20, 20)
                         .addComponent(jButton4))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -136,6 +131,12 @@ public class PatientMainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.hide();
+        AppointmentBookingMain abm = new AppointmentBookingMain();
+        for(int i=0;i<HospitalDirectory.getInstance().getHospitaldir().size();i++){
+            abm.jComboBox1.addItem(HospitalDirectory.getInstance().getHospitaldir().get(i).getName());
+        }
+        abm.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -220,7 +221,6 @@ public class PatientMainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
