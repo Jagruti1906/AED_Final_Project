@@ -8,6 +8,7 @@ import Login.LoginDirectory;
 import Medical_Department.AppointmentSlotsDirectory;
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
+import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import Resident.RegisterResident;
 import UI.Login;
@@ -30,6 +31,7 @@ public class AED_Project {
      * @param args the command line arguments
      */
     public static DoctorClass doctor;
+    public static HospitalAdminClass hospAdmin;
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -40,8 +42,8 @@ public class AED_Project {
         AppointmentSlotsDirectory.getInstance().getslotsData();
         HospitalAdminDirectory.getInstance().getHospAdminData();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
-//        Login login = new Login();
-//        login.show();
+        Login login = new Login();
+        login.show();
 //        AppointmentSlot app = new AppointmentSlot();
 //        app.show();
         System.out.println(HospitalAdminDirectory.getInstance().getHospitalAdminDir().size());

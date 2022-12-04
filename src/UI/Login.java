@@ -6,7 +6,9 @@ package UI;
 
 import Login.LoginDirectory;
 import Medical_Department.DoctorDirectory;
+import Medical_Department.HospitalAdminDirectory;
 import UI_Medical_Department.DoctorMainFrame;
+import UI_Medical_Department.HospAdminMainFrame;
 import UI_Medical_Department.PatientMainFrame;
 import java.sql.ResultSet;
 
@@ -121,18 +123,31 @@ public class Login extends javax.swing.JFrame {
             if((stateID == (LoginDirectory.getInstance().getLoginDir().get(i).getStateID())) && checkPassword) {
                 try{
                     if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Doctor Admin")) {
-                    this.hide();
-                    int size = DoctorDirectory.getInstance().getDoctorDir().size();
-                    DoctorMainFrame docFrame = new DoctorMainFrame();
-                    for(int j=0;j<size;j++) {
-                        if(stateID == DoctorDirectory.getInstance().getDoctorDir().get(j).getStateID()) {
-                            docFrame.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
-                            break;
+                        this.hide();
+                        int size = DoctorDirectory.getInstance().getDoctorDir().size();
+                        DoctorMainFrame docFrame = new DoctorMainFrame();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == DoctorDirectory.getInstance().getDoctorDir().get(j).getStateID()) {
+                                docFrame.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
+                                break;
+                            }
                         }
+                        docFrame.show();
+                        break;
                     }
-                    docFrame.show();
-                    break;
-                }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Hospital Admin")) {
+                        this.hide();
+                        int size = HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();
+                        HospAdminMainFrame hospFrame = new HospAdminMainFrame();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(j).getStateID()) {
+                                hospFrame.getHospAdmin(HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(j));
+                                break;
+                            }
+                        }
+                        hospFrame.show();
+                        break;
+                    }
                 } catch(Exception e) {
                     System.out.println(e);
                 }

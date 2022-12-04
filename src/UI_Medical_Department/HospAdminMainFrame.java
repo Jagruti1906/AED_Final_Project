@@ -4,31 +4,28 @@
  */
 package UI_Medical_Department;
 
-import Medical_Department.AppointmentDetailsDirectory;
-import Medical_Department.DoctorClass;
-import static aed_project.AED_Project.doctor;
-import javax.swing.table.DefaultTableModel;
+import Medical_Department.HospitalAdminClass;
+import static aed_project.AED_Project.hospAdmin;
+import UI.Login;
 
 /**
  *
  * @author jagru
  */
-public class DoctorMainFrame extends javax.swing.JFrame {
+public class HospAdminMainFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form DoctorMainFrame
+     * Creates new form HospAdminMainFrame
      */
-    public DoctorMainFrame() {
+    public HospAdminMainFrame() {
         initComponents();
-//        docName.setText(doctor.getName());
+    }
+    
+    public void getHospAdmin(HospitalAdminClass hosp) {
+        System.out.println(hosp.getName());
+        hospAdmin = hosp;
     }
 
-    
-    public void getDoc(DoctorClass doc) {
-        System.out.println(doc.getName());
-        docName.setText(doc.getName());
-        doctor = doc;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,13 +39,15 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         viewProfile = new javax.swing.JButton();
         addAvailability = new javax.swing.JButton();
         logout = new javax.swing.JButton();
-        docName = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         appListTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        appointmentList.setText("Appointment List");
+        appointmentList.setText("Appointment History");
         appointmentList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appointmentListActionPerformed(evt);
@@ -57,16 +56,16 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
         viewProfile.setText("View Profile");
 
-        addAvailability.setText("Add Availability");
-        addAvailability.addActionListener(new java.awt.event.ActionListener() {
+        addAvailability.setText("Doctor Record");
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAvailabilityActionPerformed(evt);
+                logoutActionPerformed(evt);
             }
         });
 
-        logout.setText("Logout");
-
-        docName.setText("Doctor Name");
+        jLabel.setText("Welcome");
 
         appListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,13 +80,17 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(appListTable);
 
+        jButton1.setText("Ambulance List");
+
+        jButton2.setText("Patient Record");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(309, 309, 309)
-                .addComponent(docName, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
@@ -95,30 +98,36 @@ public class DoctorMainFrame extends javax.swing.JFrame {
                     .addComponent(logout)
                     .addComponent(addAvailability)
                     .addComponent(viewProfile)
-                    .addComponent(appointmentList))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                    .addComponent(appointmentList)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(docName)
+                .addComponent(jLabel)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(appointmentList)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(viewProfile)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(addAvailability)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton2)
+                        .addGap(10, 10, 10)
                         .addComponent(logout))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,25 +136,28 @@ public class DoctorMainFrame extends javax.swing.JFrame {
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"ID","Name", "Hospital Name", "Community", "City"};
-//        AppointmentDetailsDirectory.getInstance().getCount(, "Doctor");
-//        String[][] rows = new String[appointmentDir.getCount(WIDTH, "Doctor")][5];
-//        int i=0;
-//        for (int j=0;j<) {
-//            int id = set.getValue().getDoctorID();
-//            rows[i][0] = Integer.toString(id);
-//            rows[i][1] = set.getValue().getName();
-//            rows[i][2] = set.getValue().getHospitalName();
-//            rows[i][3] = set.getValue().getCommunityName();
-//            rows[i][4] = set.getValue().getCity();
-//            i++;
-//        }
-//        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-//        view.jTable1.setModel(model);
+        //        AppointmentDetailsDirectory.getInstance().getCount(, "Doctor");
+        //        String[][] rows = new String[appointmentDir.getCount(WIDTH, "Doctor")][5];
+        //        int i=0;
+        //        for (int j=0;j<) {
+            //            int id = set.getValue().getDoctorID();
+            //            rows[i][0] = Integer.toString(id);
+            //            rows[i][1] = set.getValue().getName();
+            //            rows[i][2] = set.getValue().getHospitalName();
+            //            rows[i][3] = set.getValue().getCommunityName();
+            //            rows[i][4] = set.getValue().getCity();
+            //            i++;
+            //        }
+        //        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        //        view.jTable1.setModel(model);
     }//GEN-LAST:event_appointmentListActionPerformed
 
-    private void addAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAvailabilityActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addAvailabilityActionPerformed
+        this.hide();
+        Login login = new Login();
+        login.show();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,20 +176,20 @@ public class DoctorMainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DoctorMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospAdminMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DoctorMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospAdminMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DoctorMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospAdminMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DoctorMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospAdminMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoctorMainFrame().setVisible(true);
+                new HospAdminMainFrame().setVisible(true);
             }
         });
     }
@@ -186,7 +198,9 @@ public class DoctorMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton addAvailability;
     private javax.swing.JTable appListTable;
     private javax.swing.JButton appointmentList;
-    private javax.swing.JLabel docName;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;
     private javax.swing.JButton viewProfile;
