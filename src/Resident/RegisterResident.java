@@ -73,7 +73,7 @@ public class RegisterResident extends javax.swing.JFrame {
 
         jTextField2.setText("jTextField2");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
 
         jTextField4.setText("jTextField4");
 

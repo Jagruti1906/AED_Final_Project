@@ -57,7 +57,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 
         jLabel8.setText("Email");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
 
         jLabel9.setText("Gender");
 
