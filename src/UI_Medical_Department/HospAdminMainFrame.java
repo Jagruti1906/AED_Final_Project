@@ -12,6 +12,7 @@ import Medical_Department.HospitalAdminClass;
 import UI.AddAmbulanceForm;
 import static aed_project.AED_Project.hospAdmin;
 import UI.Login;
+import UI.RegisterDoctor;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,6 +52,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         ambulanceList = new javax.swing.JButton();
         addAmbulance = new javax.swing.JButton();
+        addDoc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +108,13 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        addDoc.setText("Add Doctor");
+        addDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDocActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +131,8 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                     .addComponent(viewProfile)
                     .addComponent(appointmentList)
                     .addComponent(ambulanceList)
-                    .addComponent(addAmbulance))
+                    .addComponent(addAmbulance)
+                    .addComponent(addDoc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
@@ -144,7 +154,9 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                         .addComponent(doctorRecord)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addAmbulance)
-                        .addGap(10, 10, 10)
+                        .addGap(9, 9, 9)
+                        .addComponent(addDoc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(logout))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -245,6 +257,13 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         table.setModel(model);
     }//GEN-LAST:event_ambulanceListActionPerformed
 
+    private void addDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterDoctor doc = new RegisterDoctor();
+        doc.show();
+    }//GEN-LAST:event_addDocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,6 +301,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAmbulance;
+    private javax.swing.JButton addDoc;
     private javax.swing.JButton ambulanceList;
     private javax.swing.JButton appointmentList;
     private javax.swing.JButton doctorRecord;

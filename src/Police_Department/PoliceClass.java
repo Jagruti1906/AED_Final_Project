@@ -15,8 +15,8 @@ public class PoliceClass extends PersonClass {
     private String role;
     private String branch;
 
-    public PoliceClass(String role, String branch, String name, int age, int stateID, int phoneNumber, String email, String gender, Date dob) {
-        super(name, age, stateID, phoneNumber, email, gender, dob);
+    public PoliceClass(String role, String branch, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+        super(name, stateID, phoneNumber, email, gender, dob);
         this.role = role;
         this.branch = branch;
     }

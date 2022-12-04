@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class PersonClass {
     private String name;
-    private int age;
     private int stateID;
     private int phoneNumber;
     private String email;
@@ -26,14 +25,6 @@ public class PersonClass {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public int getStateID() {
@@ -76,9 +67,8 @@ public class PersonClass {
         this.dob = dob;
     }
 
-    public PersonClass(String name, int age, int stateID, int phoneNumber, String email, String gender, Date dob) {
+    public PersonClass(String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
         this.name = name;
-        this.age = age;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
         this.email = email;

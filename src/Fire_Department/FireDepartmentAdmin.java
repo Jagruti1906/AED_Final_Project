@@ -14,8 +14,8 @@ import java.util.Date;
 public class FireDepartmentAdmin extends PersonClass{
     private String role;
 
-    public FireDepartmentAdmin(String role, String name, int age, int stateID, int phoneNumber, String email, String gender, Date dob) {
-        super(name, age, stateID, phoneNumber, email, gender, dob);
+    public FireDepartmentAdmin(String role, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+        super(name, stateID, phoneNumber, email, gender, dob);
         this.role = role;
     }
 

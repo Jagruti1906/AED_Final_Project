@@ -168,8 +168,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterDoctor rd = new RegisterDoctor();
-        DoctorDirectory.getInstance().viewDoctor(doctor);
-        LoginDirectory.getInstance().viewUser(doctor.getStateID());
+        DoctorDirectory.getInstance().viewDoctor(doctor, rd);
         rd.show();
     }//GEN-LAST:event_viewProfileActionPerformed
 

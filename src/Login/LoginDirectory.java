@@ -62,16 +62,6 @@ public class LoginDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
-    public void viewUser(int stateID){
-        for (int i=0;i<loginDir.size();i++){
-            if(loginDir.get(i).getStateID()==stateID){
-                if(loginDir.get(i).getStatus().equals("Doctor Admin")) {
-                    RegisterDoctor doctor = new RegisterDoctor();
-                    doctor.jTextField8.setText(loginDir.get(i).getPassword());
-                }
-            }
-        }
-    }
     
     public static LoginDirectory getInstance() {
         if(mInstance == null)

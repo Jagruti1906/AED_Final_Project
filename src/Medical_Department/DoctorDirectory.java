@@ -39,19 +39,18 @@ public class DoctorDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO doctor" + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO doctor" + " VALUES(?,?,?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(doc.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1, doc.getStateID());
             pst.setString(2, doc.getName());
-            pst.setInt(3, doc.getAge());
-            pst.setInt(4, doc.getdoctorId());
-            pst.setString(5, doc.getGender());
-            pst.setString(6, doc.getEmail());
-            pst.setInt(7, doc.getPhoneNumber());
-            pst.setDate(8, sqlDate);
-            pst.setString(9, doc.getSpecialisation());
-            pst.setString(10, doc.getHospitalName());
+            pst.setInt(3, doc.getdoctorId());
+            pst.setString(4, doc.getGender());
+            pst.setString(5, doc.getEmail());
+            pst.setInt(6, doc.getPhoneNumber());
+            pst.setDate(7, sqlDate);
+            pst.setString(8, doc.getSpecialisation());
+            pst.setString(9, doc.getHospitalName());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -69,7 +68,7 @@ public class DoctorDirectory {
             String str = "Select * from doctor";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                DoctorClass doc = new DoctorClass(rs.getInt("stateID"), rs.getString("name"), rs.getInt("age"),rs.getInt("doctorID"),rs.getString("gender"),rs.getString("email"),rs.getInt("phoneNumber"),rs.getDate("date_of_birth"),rs.getString("specialist"),rs.getString("hospital_name"));
+                DoctorClass doc = new DoctorClass(rs.getInt("stateID"), rs.getString("name"),rs.getInt("doctorID"),rs.getString("gender"),rs.getString("email"),rs.getInt("phoneNumber"),rs.getDate("date_of_birth"),rs.getString("specialist"),rs.getString("hospital_name"));
                 doctorDir.add(doc);
             }
         } catch (SQLException ex) {
@@ -77,8 +76,7 @@ public class DoctorDirectory {
         }
     }
     
-    public void viewDoctor(DoctorClass doc){
-        RegisterDoctor doctor = new RegisterDoctor();
+    public void viewDoctor(DoctorClass doc, RegisterDoctor doctor){
         doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
         doctor.jTextField1.setEnabled(false);
         doctor.jTextField2.setText(doc.getName());
@@ -88,10 +86,15 @@ public class DoctorDirectory {
         doctor.jTextField6.setText(doc.getEmail());
         doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
         doctor.jDateChooser1.setDate((doc.getDob()));
-        doctor.jTextField9.setText(doc.getSpecialisation());
+        doctor.jComboBox2.setSelectedItem(doc.getSpecialisation());
         doctor.jTextField10.setText(doc.getHospitalName());
-        doctor.jTextField9.setEnabled(false);
+        doctor.jComboBox2.setEnabled(false);
         
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==doc.getStateID()){
+                doctor.jTextField8.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
     }
     
 //    public void docData(int stateID) {

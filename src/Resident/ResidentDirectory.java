@@ -34,18 +34,17 @@ public class ResidentDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO resident" + " VALUES(?,?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO resident" + " VALUES(?,?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(res.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1, res.getStateID());
             pst.setString(2, res.getName());
-            pst.setInt(3, res.getAge());
-            pst.setString(4, res.getGender());
-            pst.setString(5, res.getEmail());
-            pst.setInt(6, res.getPhoneNumber());
-            pst.setDate(7, sqlDate);
-            pst.setString(8, res.getAddress());
-            pst.setInt(9, res.getZip());
+            pst.setString(3, res.getGender());
+            pst.setString(4, res.getEmail());
+            pst.setInt(5, res.getPhoneNumber());
+            pst.setDate(6, sqlDate);
+            pst.setString(7, res.getAddress());
+            pst.setInt(8, res.getZip());
             int rs = pst.executeUpdate();
             if(rs>0)
             {

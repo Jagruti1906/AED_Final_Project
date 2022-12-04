@@ -33,18 +33,17 @@ public class HospitalAdminDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO hospitalAdmins" + " VALUES(?,?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO hospitalAdmins" + " VALUES(?,?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(had.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1, had.getStateID());
             pst.setInt(2, had.getAdminID());
             pst.setString(3, had.getName());
-            pst.setInt(4, had.getAge());
-            pst.setString(5, had.getGender());
-            pst.setString(6, had.getEmail());
-            pst.setInt(7, had.getPhoneNumber());
-            pst.setDate(8, sqlDate);
-            pst.setString(9, had.getHospitalName());
+            pst.setString(4, had.getGender());
+            pst.setString(5, had.getEmail());
+            pst.setInt(6, had.getPhoneNumber());
+            pst.setDate(7, sqlDate);
+            pst.setString(8, had.getHospitalName());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -62,7 +61,7 @@ public class HospitalAdminDirectory {
             String str = "Select * from hospitalAdmins";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                HospitalAdminClass hosp = new HospitalAdminClass(rs.getString("hospital_name"), rs.getInt("admin_id"), rs.getString("name"), rs.getInt("age"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
+                HospitalAdminClass hosp = new HospitalAdminClass(rs.getString("hospital_name"), rs.getInt("admin_id"), rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
                 hospitalAdminDir.add(hosp);
             }
         } catch (SQLException ex) {

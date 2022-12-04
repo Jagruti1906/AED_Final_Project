@@ -37,7 +37,6 @@ public class PatientDirectory {
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1, pat.getStateID());
             pst.setString(2, pat.getName());
-            pst.setInt(3, pat.getAge());
             pst.setInt(4, pat.getdoctorId());
             pst.setString(5, pat.getGender());
             pst.setString(6, pat.getEmail());
