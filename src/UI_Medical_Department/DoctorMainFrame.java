@@ -6,6 +6,8 @@ package UI_Medical_Department;
 
 import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.DoctorClass;
+import Medical_Department.DoctorDirectory;
+import UI.RegisterDoctor;
 import static aed_project.AED_Project.doctor;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,6 +58,11 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         });
 
         viewProfile.setText("View Profile");
+        viewProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProfileActionPerformed(evt);
+            }
+        });
 
         addAvailability.setText("Add Availability");
         addAvailability.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +156,15 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         AppointmentSlot as = new AppointmentSlot();
         as.show();
     }//GEN-LAST:event_addAvailabilityActionPerformed
+
+    private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterDoctor rd = new RegisterDoctor();
+        DoctorDirectory.getInstance().viewDoctor(doctor);
+        Login.LoginDirectory.getInstance().viewUser(doctor.getStateID());
+        rd.show();
+    }//GEN-LAST:event_viewProfileActionPerformed
 
     /**
      * @param args the command line arguments

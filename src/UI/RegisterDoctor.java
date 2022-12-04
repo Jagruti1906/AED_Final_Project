@@ -180,17 +180,17 @@ public class RegisterDoctor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JButton registerBtn;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField10;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField6;
+    public javax.swing.JTextField jTextField7;
+    public javax.swing.JTextField jTextField8;
+    public javax.swing.JTextField jTextField9;
+    public javax.swing.JButton registerBtn;
     // End of variables declaration//GEN-END:variables
 }
