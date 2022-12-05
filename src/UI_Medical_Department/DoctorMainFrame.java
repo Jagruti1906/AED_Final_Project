@@ -143,11 +143,11 @@ public class DoctorMainFrame extends javax.swing.JFrame {
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"Patient Name","Date Of Encounter", "Purpose","Status"};
-        int count= AppointmentDetailsDirectory.getInstance().getCount(rc.getStateID(),"Patient");
+        int count= AppointmentDetailsDirectory.getInstance().getCount(doctor.getdoctorId(),"Doctor");
         String[][] rows = new String[count][3];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() ==(rc.getStateID()) && (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved") || AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved") || AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
                 rows[j][0] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
@@ -158,7 +158,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
             }
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        jTable1.setModel(model); 
+        appListTable.setModel(model); 
     }//GEN-LAST:event_appointmentListActionPerformed
 
     private void addAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAvailabilityActionPerformed

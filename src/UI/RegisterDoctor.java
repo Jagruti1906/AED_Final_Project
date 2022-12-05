@@ -8,6 +8,7 @@ import Login.LoginClass;
 import Login.LoginDirectory;
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
+import static aed_project.AED_Project.doctor;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -138,9 +139,26 @@ public class RegisterDoctor extends javax.swing.JFrame {
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
         DoctorClass doc = new DoctorClass(Integer.parseInt(jTextField1.getText()),jTextField2.getText(),Integer.parseInt(jTextField4.getText()),jComboBox1.getSelectedItem().toString(),jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jDateChooser1.getDate(),jComboBox2.getSelectedItem().toString(),jTextField10.getText());
-        DoctorDirectory.getInstance().addDoctor(doc);
-        LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Doctor Admin");
-        LoginDirectory.getInstance().addUser(login);
+        LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Doctor");
+        int flag=0,k=0;
+        for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
+            if(DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID() == doctor.getStateID()) {
+                flag=1;
+                k=i;
+                break;
+            }
+        }
+        
+        if(flag==1) {
+            DoctorDirectory.getInstance().updateDoctor(doc, k);
+            LoginDirectory.getInstance().updateUser(login.getStateID(), login);
+        }
+        else {
+            DoctorDirectory.getInstance().addDoctor(doc);
+            LoginDirectory.getInstance().addUser(login);
+        }
+
+        
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

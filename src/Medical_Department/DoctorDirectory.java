@@ -97,6 +97,34 @@ public class DoctorDirectory {
         }
     }
     
+    
+    public void updateDoctor(DoctorClass dc,int i) {
+        doctorDir.set(i,dc);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update doctor" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,specialist=?,hospital_name=? where stateID=?";
+            java.sql.Date sqlDate = new java.sql.Date(dc.getDob().getTime());
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setInt(8, dc.getStateID());
+            pst.setString(1, dc.getName());
+            pst.setString(2, dc.getGender());
+            pst.setString(3, dc.getEmail());
+            pst.setInt(4, dc.getPhoneNumber());
+            pst.setDate(5, sqlDate);
+            pst.setString(6, dc.getSpecialisation());
+            pst.setString(7, dc.getHospitalName());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+    
 //    public void docData(int stateID) {
 //        for(int j=0;j<doctorDir.size();j++) {
 //            System.out.println("sdj");
