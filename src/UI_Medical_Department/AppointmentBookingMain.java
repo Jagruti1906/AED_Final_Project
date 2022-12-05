@@ -4,10 +4,19 @@
  */
 package UI_Medical_Department;
 
+import Medical_Department.AppointmentDetailsClass;
+import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.AppointmentSlotsDirectory;
 import Medical_Department.DoctorDirectory;
+import static aed_project.AED_Project.rc;
+import java.text.DateFormat;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -223,6 +232,28 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.hide();
+        int id = 0;
+        for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
+            if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
+                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
+                    jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
+                id = DoctorDirectory.getInstance().getDoctorDir().get(i).getdoctorId();
+            }
+        }
+        JOptionPane.showMessageDialog(null,"Appointment Request Sent");
+        PatientMainFrame back = new PatientMainFrame ();
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        try {
+            date = formatter.parse(jComboBox5.getSelectedItem().toString());
+            AppointmentDetailsClass app = new AppointmentDetailsClass(date,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
+            AppointmentDetailsDirectory.getInstance().addAppointment(app);
+            back.show();
+        } catch (ParseException ex) {
+            Logger.getLogger(AppointmentBookingMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
