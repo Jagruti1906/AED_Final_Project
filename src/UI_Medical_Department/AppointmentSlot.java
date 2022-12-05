@@ -41,7 +41,7 @@ public class AppointmentSlot extends javax.swing.JFrame {
 
         jLabel1.setText("Date");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
 
         jLabel2.setText("Time");
 
@@ -104,8 +104,11 @@ public class AppointmentSlot extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.hide();
         AppointmentSlotsClass apps= new AppointmentSlotsClass(jDateChooser1.getDate(),jComboBox1.getSelectedItem().toString(),"Available",doctor.getStateID());
         AppointmentSlotsDirectory.getInstance().addslots(apps);
+        DoctorMainFrame doc = new DoctorMainFrame();
+        doc.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

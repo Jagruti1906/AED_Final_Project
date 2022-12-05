@@ -19,8 +19,6 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
      * Creates new form AppointmentBookingMain
      */
     
-    public static int stateID=0;
-    
     public AppointmentBookingMain() {
         initComponents();
     }
@@ -192,19 +190,26 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
         jComboBox5.removeAllItems();
+        int stateID=0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
-            if(jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
+            if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
                     jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
                     jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
                 stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
             }
         }
         for (int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
-//            String hosp = set.getValue().getHospitalName();
-            if(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID() == stateID) {
+            try{
+                if(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID() == stateID) {
+                    System.out.println(stateID);
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String s = formatter.format(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate());
                 jComboBox5.addItem(s);
+                System.out.println("skhs");
+                System.out.println(s);
+            }
+            } catch(Exception e){
+                System.out.println(e);
             }
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -234,6 +239,14 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
         // TODO add your handling code here:
         jComboBox3.removeAllItems();
+        int stateID = 0;
+        for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
+            if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
+                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
+                    jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
+                stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
+            }
+        }
         for(int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
             Format formatter = new SimpleDateFormat("yyyy-MM-dd");
             String s = formatter.format(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate());
