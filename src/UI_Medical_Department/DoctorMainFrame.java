@@ -11,6 +11,8 @@ import Medical_Department.DoctorDirectory;
 import UI.Login;
 import UI.RegisterDoctor;
 import static aed_project.AED_Project.doctor;
+import static aed_project.AED_Project.rc;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -140,21 +142,23 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"ID","Name", "Hospital Name", "Community", "City"};
-//        AppointmentDetailsDirectory.getInstance().getCount(, "Doctor");
-//        String[][] rows = new String[appointmentDir.getCount(WIDTH, "Doctor")][5];
-//        int i=0;
-//        for (int j=0;j<) {
-//            int id = set.getValue().getDoctorID();
-//            rows[i][0] = Integer.toString(id);
-//            rows[i][1] = set.getValue().getName();
-//            rows[i][2] = set.getValue().getHospitalName();
-//            rows[i][3] = set.getValue().getCommunityName();
-//            rows[i][4] = set.getValue().getCity();
-//            i++;
-//        }
-//        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-//        view.jTable1.setModel(model);
+        String[] columnNames = {"Patient Name","Date Of Encounter", "Purpose","Status"};
+        int count= AppointmentDetailsDirectory.getInstance().getCount(rc.getStateID(),"Patient");
+        String[][] rows = new String[count][3];
+        int j=0;
+        for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() ==(rc.getStateID()) && (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved") || AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
+                rows[j][0] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
+                rows[j][1] = s;
+                rows[j][2] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
+                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model); 
     }//GEN-LAST:event_appointmentListActionPerformed
 
     private void addAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAvailabilityActionPerformed
