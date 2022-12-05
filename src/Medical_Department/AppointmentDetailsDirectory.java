@@ -70,6 +70,29 @@ public class AppointmentDetailsDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
+        
+    public void updateAppointment(AppointmentDetailsClass appointment,int i) {
+        appointmentDetailsDir.set(i,appointment);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update appointment_details" + " set status=? where patient_state_id=? and doctor_name=? and date=?";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setInt(2, appointment.getPatientStateID());
+            java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
+            pst.setString(1, appointment.getStatus());
+            pst.setString(3, appointment.getDoctorName());
+            pst.setDate(4, sqlDate);
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
     
     public static AppointmentDetailsDirectory getInstance() {
         if(mInstance == null)

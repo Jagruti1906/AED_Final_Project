@@ -243,7 +243,6 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         try {
             Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(jComboBox5.getSelectedItem().toString());  
             AppointmentDetailsClass app = new AppointmentDetailsClass(date1,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
-            System.out.println("He");
             AppointmentDetailsDirectory.getInstance().addAppointment(app);
         } catch (Exception ex) {
             System.out.println(ex);

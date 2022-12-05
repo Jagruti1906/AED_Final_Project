@@ -5,6 +5,7 @@
 package UI_Medical_Department;
 
 import Login.LoginDirectory;
+import Medical_Department.AppointmentDetailsClass;
 import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
@@ -13,7 +14,11 @@ import UI.RegisterDoctor;
 import static aed_project.AED_Project.doctor;
 import static aed_project.AED_Project.rc;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -95,6 +100,11 @@ public class DoctorMainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        appListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appListTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(appListTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,18 +152,20 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"Patient Name","Date Of Encounter", "Purpose","Status"};
+        String[] columnNames = {"Patient ID","Patient Name","Date Of Encounter", "Purpose","Status"};
         int count= AppointmentDetailsDirectory.getInstance().getCount(doctor.getdoctorId(),"Doctor");
-        String[][] rows = new String[count][3];
+        String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
             if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved") || AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
-                rows[j][0] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
+                int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
-                rows[j][1] = s;
-                rows[j][2] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
-                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
+                rows[j][2] = s;
+                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
+                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
                 j++;
             }
         }
@@ -182,6 +194,42 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         Login log = new Login();
         log.show();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void appListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appListTableMouseClicked
+        // TODO add your handling code here:
+        int index = appListTable.getSelectedRow();
+        TableModel model = appListTable.getModel();
+        String status[] = {"Approved","Completed"};
+        JComboBox cb = new JComboBox(status);
+        
+        int input;
+        input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+        
+//        if(input == JOptionPane.OK_OPTION) {
+//            String str = (String)cb.getSelectedItem();
+//        }
+        try{
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());  
+            String patientName = model.getValueAt(index, 1).toString();
+            String purpose = model.getValueAt(index, 3).toString();
+            String s = model.getValueAt(index, 0).toString();
+            int id = Integer.parseInt(s);
+    //        String s = model.getValueAt(index, 3).toString();
+    //        s = (String)cb.getSelectedItem();;
+            AppointmentDetailsClass appointment = new AppointmentDetailsClass(date1, patientName, doctor.getName(), id, doctor.getdoctorId(), doctor.getHospitalName(), (String)cb.getSelectedItem(), purpose);
+            for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
+                if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() == id && 
+                        AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate().compareTo(date1)==0 &&
+                        AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorName().equals(doctor.getName())) {
+                    AppointmentDetailsDirectory.getInstance().updateAppointment(appointment, i);
+                    break;
+                }
+            }
+            model.setValueAt((String)cb.getSelectedItem(), index, 4);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_appListTableMouseClicked
 
     /**
      * @param args the command line arguments
