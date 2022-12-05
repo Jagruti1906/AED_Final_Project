@@ -23,9 +23,6 @@ public class PatientMainFrame extends javax.swing.JFrame {
     public PatientMainFrame() {
         initComponents();
     }
-    public void getPat(ResidentClass res){
-        rc = res;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.

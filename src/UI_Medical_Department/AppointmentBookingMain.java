@@ -210,12 +210,9 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         for (int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
             try{
                 if(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID() == stateID) {
-                    System.out.println(stateID);
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String s = formatter.format(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate());
                 jComboBox5.addItem(s);
-                System.out.println("skhs");
-                System.out.println(s);
             }
             } catch(Exception e){
                 System.out.println(e);
@@ -242,18 +239,16 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
             }
         }
         JOptionPane.showMessageDialog(null,"Appointment Request Sent");
-        PatientMainFrame back = new PatientMainFrame ();
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date;
+        PatientMainFrame back = new PatientMainFrame();
         try {
-            date = formatter.parse(jComboBox5.getSelectedItem().toString());
-            AppointmentDetailsClass app = new AppointmentDetailsClass(date,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(jComboBox5.getSelectedItem().toString());  
+            AppointmentDetailsClass app = new AppointmentDetailsClass(date1,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
+            System.out.println("He");
             AppointmentDetailsDirectory.getInstance().addAppointment(app);
-            back.show();
-        } catch (ParseException ex) {
-            Logger.getLogger(AppointmentBookingMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-
+        back.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed

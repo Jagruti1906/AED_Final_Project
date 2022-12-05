@@ -7,6 +7,7 @@ package UI;
 import Login.LoginDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminDirectory;
+import Resident.ResidentDirectory;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
 import UI_Medical_Department.PatientMainFrame;
@@ -146,6 +147,19 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         hospFrame.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Resident")) {
+                        this.hide();
+                        int size = ResidentDirectory.getInstance().getResidentDir().size();
+                        ResidentPage resident = new ResidentPage();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == ResidentDirectory.getInstance().getResidentDir().get(j).getStateID()) {
+                                resident.getResident(ResidentDirectory.getInstance().getResidentDir().get(j));
+                                break;
+                            }
+                        }
+                        resident.show();
                         break;
                     }
                 } catch(Exception e) {

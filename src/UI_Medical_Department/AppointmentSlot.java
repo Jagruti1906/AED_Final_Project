@@ -107,6 +107,7 @@ public class AppointmentSlot extends javax.swing.JFrame {
         this.hide();
         AppointmentSlotsClass apps= new AppointmentSlotsClass(jDateChooser1.getDate(),jComboBox1.getSelectedItem().toString(),"Available",doctor.getStateID());
         AppointmentSlotsDirectory.getInstance().addslots(apps);
+        System.out.println(jDateChooser1.getDate());
         DoctorMainFrame doc = new DoctorMainFrame();
         doc.show();
     }//GEN-LAST:event_jButton1ActionPerformed

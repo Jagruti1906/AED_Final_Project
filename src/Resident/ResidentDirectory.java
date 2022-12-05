@@ -5,7 +5,7 @@
 package Resident;
 import UI.RegisterDoctor;
 import aed_project.DatabaseConnectionClass;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -54,6 +54,22 @@ public class ResidentDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
+    
+    public void getResidentData() {
+        Statement stmt;
+        try{
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String str = "Select * from resident";
+            ResultSet rs = stmt.executeQuery(str);
+            while(rs.next()) {
+                ResidentClass resident = new ResidentClass(rs.getString("address"),rs.getInt("zip"), rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
+                residentDir.add(resident);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+    }
+    
         public static ResidentDirectory getInstance() {
         if(mInstance == null)
             mInstance = new ResidentDirectory();

@@ -33,18 +33,25 @@ public class AppointmentDetailsDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO docappage" + " VALUES(?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO appointment_details(date,patient_name,doctor_name,patient_state_id,doctor_id,hospital_name,status,description)" + " VALUES(?,?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-            pst.setInt(1, appointment.getDoctorID());
-            pst.setInt(2, appointment.getPatientStateID());
+            pst.setInt(5, appointment.getDoctorID());
+            pst.setInt(4, appointment.getPatientStateID());
             pst.setString(3, appointment.getDoctorName());
-            pst.setString(4, appointment.getPatientName());
-            pst.setString(5, appointment.getHospitalName());
-            pst.setString(6, appointment.getStatus());
-            pst.setString(7, appointment.getDesc());
+            pst.setString(2, appointment.getPatientName());
+            pst.setString(6, appointment.getHospitalName());
+            pst.setString(7, appointment.getStatus());
+            pst.setString(8, appointment.getDesc());
+            pst.setDate(1, sqlDate);
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
         
     }         catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
@@ -53,10 +60,10 @@ public class AppointmentDetailsDirectory {
         Statement stmt;
         try{
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String str = "Select * from docappage";
+            String str = "Select * from appointment_details";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                AppointmentDetailsClass app = new AppointmentDetailsClass(rs.getDate("date"), rs.getString("patientName"), rs.getString("doctorName"),rs.getInt("patientStateID"),rs.getInt("doctorID"),rs.getString("status"),rs.getString("hospitalName"),rs.getString("desc"));
+                AppointmentDetailsClass app = new AppointmentDetailsClass(rs.getDate("date"), rs.getString("patient_name"), rs.getString("doctor_name"),rs.getInt("patient_state_id"),rs.getInt("doctor_id"),rs.getString("hospital_name"),rs.getString("status"),rs.getString("description"));
                 appointmentDetailsDir.add(app);
             }
         } catch (SQLException ex) {
