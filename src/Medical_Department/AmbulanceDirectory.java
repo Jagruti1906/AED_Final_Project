@@ -64,6 +64,27 @@ public class AmbulanceDirectory {
         }
     }
     
+    public void updateAmbulance(AmbulanceClass amb,int i) {
+        ambulanceDir.set(i,amb);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update ambulances" + " set status=? where hospital_name=? and ambulance_number=?";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, amb.getStatus());
+            pst.setString(2, amb.getHospName());
+            pst.setInt(3, amb.getAmbulanceNumber());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+    
     public static AmbulanceDirectory getInstance() {
         if(mInstance == null)
             mInstance = new AmbulanceDirectory();

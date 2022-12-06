@@ -157,7 +157,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved") || AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (!AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Completed"))) {
                 int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
                 rows[j][0] = Integer.toString(id);
                 rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
@@ -202,22 +202,17 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         TableModel model = appListTable.getModel();
         String status[] = {"Approved","Completed"};
         JComboBox cb = new JComboBox(status);
-        
+
         int input;
         input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
-        
-//        if(input == JOptionPane.OK_OPTION) {
-//            String str = (String)cb.getSelectedItem();
-//        }
         try{
-            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());  
             String patientName = model.getValueAt(index, 1).toString();
-            String purpose = model.getValueAt(index, 3).toString();
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());  
             String s = model.getValueAt(index, 0).toString();
             int id = Integer.parseInt(s);
-    //        String s = model.getValueAt(index, 3).toString();
-    //        s = (String)cb.getSelectedItem();;
-            AppointmentDetailsClass appointment = new AppointmentDetailsClass(date1, patientName, doctor.getName(), id, doctor.getdoctorId(), doctor.getHospitalName(), (String)cb.getSelectedItem(), purpose);
+            String purpose = model.getValueAt(index, 3).toString();
+            
+            AppointmentDetailsClass appointment = new AppointmentDetailsClass(date1, patientName, doctor.getName(), id, doctor.getdoctorId(), doctor.getHospitalName(),(String)cb.getSelectedItem(), purpose);
             for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
                 if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() == id && 
                         AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate().compareTo(date1)==0 &&

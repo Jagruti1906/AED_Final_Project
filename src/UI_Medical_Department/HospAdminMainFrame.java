@@ -16,7 +16,10 @@ import UI.Login;
 import UI.RegisterDoctor;
 import UI.RegisterHospitalAdmin;
 import java.text.SimpleDateFormat;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -27,6 +30,9 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
     /**
      * Creates new form HospAdminMainFrame
      */
+    
+    private static int check=0;
+    
     public HospAdminMainFrame() {
         initComponents();
     }
@@ -98,7 +104,21 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table.getTableHeader().setReorderingAllowed(false);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         ambulanceList.setText("Ambulance List");
@@ -176,14 +196,15 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"Patient Name","Doctor Name", "Date Of Encounter", "Purpose"};
+        String[] columnNames = {"Patient Name","Doctor Name", "Date Of Encounter", "Purpose","Status"};
         int count=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
             if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getHospitalName().equals(hospAdmin.getHospitalName())) {
                 count++;
             }
         }
-        String[][] rows = new String[count][4];
+        check=0;
+        String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
             if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getHospitalName().equals(hospAdmin.getHospitalName())) {
@@ -193,6 +214,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                 String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
                 rows[j][2] = s;
                 rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
+                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
                 j++;
             }
         }
@@ -211,6 +233,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String[] columnNames = {"ID","Name", "Gender", "Specialist", "Email ID"};
         int count=0;
+        check=0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
             if(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName().equals(hospAdmin.getHospitalName())) {
                 count++;
@@ -243,6 +266,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
     private void ambulanceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ambulanceListActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"Ambulance Type", "Ambulance Number", "Status"};
+        check=1;
         int count=0;
         for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
             if(AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getHospName().equals(hospAdmin.getHospitalName())) {
@@ -279,6 +303,35 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         HospitalAdminDirectory.getInstance().viewHospAdminData(hospAdmin,hosp);
         hosp.show();
     }//GEN-LAST:event_viewProfileActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+        if(check==1) {
+            int index = table.getSelectedRow();
+            TableModel model = table.getModel();
+            String status[] = {"Available","Unavailable"};
+            JComboBox cb = new JComboBox(status);
+
+            int input;
+            input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+            try{
+                String type = model.getValueAt(index, 0).toString();
+                String no = model.getValueAt(index, 1).toString();
+                int id = Integer.parseInt(no);
+                AmbulanceClass amb = new AmbulanceClass(type, id, (String)cb.getSelectedItem(), hospAdmin.getHospitalName());
+                for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
+                    if(AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getAmbulanceNumber()==id) {
+                        System.out.println("In hereeeeeeee");
+                        AmbulanceDirectory.getInstance().updateAmbulance(amb, i);
+                        break;
+                    }
+                }
+                model.setValueAt((String)cb.getSelectedItem(), index, 2);
+            } catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_tableMouseClicked
 
     /**
      * @param args the command line arguments

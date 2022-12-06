@@ -252,13 +252,16 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
         // TODO add your handling code here:
-                jComboBox2.removeAllItems();
+       try{
+                    jComboBox2.removeAllItems();
         for (int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
 //            String hosp = set.getValue().getHospitalName();
             if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation())) {
                 jComboBox2.addItem(DoctorDirectory.getInstance().getDoctorDir().get(i).getName());
             }
         }
+       } catch(Exception e) {
+       }
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed

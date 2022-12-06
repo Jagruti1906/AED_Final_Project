@@ -73,6 +73,7 @@ public class AppointmentDetailsDirectory {
         
     public void updateAppointment(AppointmentDetailsClass appointment,int i) {
         appointmentDetailsDir.set(i,appointment);
+        System.out.println(appointmentDetailsDir.get(i).getStatus());
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
