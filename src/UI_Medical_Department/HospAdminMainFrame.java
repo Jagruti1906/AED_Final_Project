@@ -268,6 +268,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterDoctor doc = new RegisterDoctor();
+        doc.getRole("Hospital Admin");
         doc.show();
     }//GEN-LAST:event_addDocActionPerformed
 

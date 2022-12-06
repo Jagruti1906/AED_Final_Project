@@ -184,6 +184,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterDoctor rd = new RegisterDoctor();
+        rd.getRole("Doctor");
         DoctorDirectory.getInstance().viewDoctor(doctor, rd);
         rd.show();
     }//GEN-LAST:event_viewProfileActionPerformed

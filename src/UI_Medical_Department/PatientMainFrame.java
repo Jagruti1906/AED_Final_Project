@@ -7,6 +7,7 @@ package UI_Medical_Department;
 import Medical_Department.AppointmentDetailsDirectory;
 import Medical_Department.HospitalDirectory;
 import Resident.ResidentClass;
+import UI.ResidentPage;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import static aed_project.AED_Project.rc;
@@ -61,6 +62,11 @@ public class PatientMainFrame extends javax.swing.JFrame {
         });
 
         jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Patient Name");
 
@@ -179,6 +185,13 @@ public class PatientMainFrame extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
         jTable1.setModel(model);  
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        ResidentPage resident = new ResidentPage();
+        resident.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

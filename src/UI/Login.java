@@ -123,7 +123,7 @@ public class Login extends javax.swing.JFrame {
             System.out.println(checkPassword);
             if((stateID == (LoginDirectory.getInstance().getLoginDir().get(i).getStateID())) && checkPassword) {
                 try{
-                    if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Doctor Admin")) {
+                    if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Doctor")) {
                         this.hide();
                         int size = DoctorDirectory.getInstance().getDoctorDir().size();
                         DoctorMainFrame docFrame = new DoctorMainFrame();
