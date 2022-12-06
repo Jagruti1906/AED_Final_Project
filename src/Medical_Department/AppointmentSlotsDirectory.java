@@ -67,6 +67,28 @@ public class AppointmentSlotsDirectory {
         }
         }
 
+        public void updateSlots(AppointmentSlotsClass slot,int i) {
+        appointmentSlotsDir.set(i,slot);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            java.sql.Date sqlDate = new java.sql.Date(slot.getDate().getTime());
+            String query1 = "Update appointment_slot" + " set status=? where date=? and time=? and stateID=?";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, slot.getStatus());
+            pst.setDate(2, sqlDate);
+            pst.setString(3, slot.getSlotTime());
+            pst.setInt(4, slot.getStateID());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
         
         public static AppointmentSlotsDirectory getInstance() {
         if(mInstance == null)

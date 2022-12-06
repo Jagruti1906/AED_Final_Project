@@ -6,6 +6,7 @@ package UI_Medical_Department;
 
 import Medical_Department.AppointmentDetailsClass;
 import Medical_Department.AppointmentDetailsDirectory;
+import Medical_Department.AppointmentSlotsClass;
 import Medical_Department.AppointmentSlotsDirectory;
 import Medical_Department.DoctorDirectory;
 import static aed_project.AED_Project.rc;
@@ -231,17 +232,27 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         int id = 0;
+        int stateID = 0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
             if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
                     jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
                     jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
                 id = DoctorDirectory.getInstance().getDoctorDir().get(i).getdoctorId();
+                stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
             }
         }
         JOptionPane.showMessageDialog(null,"Appointment Request Sent");
         PatientMainFrame back = new PatientMainFrame();
         try {
-            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(jComboBox5.getSelectedItem().toString());  
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(jComboBox5.getSelectedItem().toString()); 
+            AppointmentSlotsClass slot = new AppointmentSlotsClass(date1,jComboBox3.getSelectedItem().toString(),"Unavailable",stateID);
+            for(int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
+                if(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate().compareTo(date1)==0 
+                        && AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID() == stateID 
+                        && AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getSlotTime() == jComboBox3.getSelectedItem()) {
+                    AppointmentSlotsDirectory.getInstance().updateSlots(slot, i);
+                }
+            }
             AppointmentDetailsClass app = new AppointmentDetailsClass(date1,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
             AppointmentDetailsDirectory.getInstance().addAppointment(app);
         } catch (Exception ex) {
@@ -278,7 +289,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         for(int i=0;i<AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().size();i++) {
             Format formatter = new SimpleDateFormat("yyyy-MM-dd");
             String s = formatter.format(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getDate());
-            if(jComboBox5.getSelectedItem().toString().equals(s) && stateID == AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID()) {
+            if(jComboBox5.getSelectedItem().toString().equals(s) && stateID == AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStateID() && AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getStatus().equals("Available") ) {
                 jComboBox3.addItem(AppointmentSlotsDirectory.getInstance().getAppointmentSlotsDir().get(i).getSlotTime());
             }
         }

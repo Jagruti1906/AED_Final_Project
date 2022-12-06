@@ -168,7 +168,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved"))) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
                 int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
                 rows[j][0] = Integer.toString(id);
                 rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
