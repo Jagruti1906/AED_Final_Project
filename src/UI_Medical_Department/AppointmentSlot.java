@@ -41,7 +41,12 @@ public class AppointmentSlot extends javax.swing.JFrame {
 
         jLabel1.setText("Date");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9am-10am", "10am-11am", "11am-12 pm", "12 pm-1pm", "1pm-2 pm", "2 pm-3 pm", "3 pm-4 pm", "4 pm-5 pm", "5 pm-6 pm", "6 pm-7 pm", "7 pm-8 pm", "8 pm-9 pm" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Time");
 
@@ -118,6 +123,10 @@ public class AppointmentSlot extends javax.swing.JFrame {
         DoctorMainFrame docf = new DoctorMainFrame();
         docf.show();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
