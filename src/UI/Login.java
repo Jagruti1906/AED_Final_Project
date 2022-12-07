@@ -7,6 +7,8 @@ package UI;
 import Login.LoginDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminDirectory;
+import Police_Department.PoliceDirectory;
+import Police_Department.policeAdminMain;
 import Resident.ResidentDirectory;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
@@ -160,6 +162,19 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         resident.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Police Admin")) {
+                        this.hide();
+                        int size = PoliceDirectory.getInstance().getPoliceDir().size();
+                        policeAdminMain police = new policeAdminMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == PoliceDirectory.getInstance().getPoliceDir().get(j).getStateID()) {
+                                police.getPoliceAdmin(PoliceDirectory.getInstance().getPoliceDir().get(j));
+                                break;
+                            }
+                        }
+                        police.show();
                         break;
                     }
                 } catch(Exception e) {

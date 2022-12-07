@@ -36,12 +36,12 @@ public class PoliceDirectory {
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1, pol.getStateID());
             pst.setString(2, pol.getName());
-            pst.setString(3, pol.getGender());
+            pst.setString(5, pol.getGender());
             pst.setString(4, pol.getEmail());
-            pst.setInt(5, pol.getPhoneNumber());
+            pst.setInt(3, pol.getPhoneNumber());
             pst.setDate(6, sqlDate);
-            pst.setString(7,pol.getBranch());
-            pst.setString(8,pol.getRole());
+            pst.setString(8,pol.getBranch());
+            pst.setString(7,pol.getRole());
             int rs = pst.executeUpdate();
             if(rs>0)
             {

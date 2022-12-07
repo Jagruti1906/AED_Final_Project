@@ -56,11 +56,10 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         docName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         appListTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        appointmentList.setText("Pending Appoitments");
+        appointmentList.setText("Appointment Lists");
         appointmentList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appointmentListActionPerformed(evt);
@@ -108,13 +107,6 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(appListTable);
 
-        jButton1.setText("Upcoming Appointments");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,9 +121,8 @@ public class DoctorMainFrame extends javax.swing.JFrame {
                     .addComponent(logout)
                     .addComponent(addAvailability)
                     .addComponent(viewProfile)
-                    .addComponent(appointmentList)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                    .addComponent(appointmentList))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
@@ -149,9 +140,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addAvailability)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(logout)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(logout))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -168,7 +157,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Pending"))) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (!AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Completed"))) {
                 int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
                 rows[j][0] = Integer.toString(id);
                 rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
@@ -238,29 +227,6 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_appListTableMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String[] columnNames = {"Patient ID","Patient Name","Date Of Encounter", "Purpose","Status"};
-        int count= AppointmentDetailsDirectory.getInstance().getCount(doctor.getdoctorId(),"Doctor");
-        String[][] rows = new String[count][5];
-        int j=0;
-        for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Approved"))) {
-                int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
-                rows[j][0] = Integer.toString(id);
-                rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
-                rows[j][2] = s;
-                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
-                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
-                j++;
-            }
-        }
-        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        appListTable.setModel(model); 
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -301,7 +267,6 @@ public class DoctorMainFrame extends javax.swing.JFrame {
     private javax.swing.JTable appListTable;
     private javax.swing.JButton appointmentList;
     private javax.swing.JLabel docName;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;
     private javax.swing.JButton viewProfile;
