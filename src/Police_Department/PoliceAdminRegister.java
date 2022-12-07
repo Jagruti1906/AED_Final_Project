@@ -53,7 +53,7 @@ private static String r = "";
         txtPass = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,11 +88,7 @@ private static String r = "";
 
         jLabel2.setText("Branch");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Huntington", "Tremont", "Fenway" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,17 +118,18 @@ private static String r = "";
                                 .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtName)
-                                    .addComponent(txtPhoneNo)
-                                    .addComponent(txtSSN)
-                                    .addComponent(txtEmail)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                                    .addComponent(jTextField1)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtName)
+                                        .addComponent(txtPhoneNo)
+                                        .addComponent(txtSSN)
+                                        .addComponent(txtEmail)
+                                        .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addComponent(jButton1)))
@@ -152,10 +149,10 @@ private static String r = "";
                     .addComponent(jLabel4)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,7 +189,7 @@ private static String r = "";
         PoliceClass pc;
         LoginClass login;
         if(r.equals("Police Admin")) {
-            pc = new PoliceClass("Police Officer",jTextField1.getText(),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            pc = new PoliceClass("Police Officer",jComboBox2.getSelectedItem().toString(),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
             login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Officer");
         }
         else {
@@ -207,19 +204,15 @@ private static String r = "";
                 break;
             }
         }
-//        if(flag==1) {
-//            PoliceDirectory.getInstance().updateHospAdminData(pc,k);
-//            LoginDirectory.getInstance().updateUser(login.getStateID(), login);
-//        }
-        if(flag!=1) {
+        if(flag==1) {
+            PoliceDirectory.getInstance().updatePolice(pc,k);
+            LoginDirectory.getInstance().updateUser(login.getStateID(), login);
+        }
+        else {
             PoliceDirectory.getInstance().addPolice(pc);
             LoginDirectory.getInstance().addUser(login);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +252,7 @@ private static String r = "";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
     public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
     public com.toedter.calendar.JDateChooser jDateChooser;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
@@ -270,7 +264,6 @@ private static String r = "";
     public javax.swing.JLabel jLabel7;
     public javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField txtAdmin;
     public javax.swing.JTextField txtEmail;
     public javax.swing.JTextField txtName;

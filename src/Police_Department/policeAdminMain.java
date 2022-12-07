@@ -70,6 +70,11 @@ public class policeAdminMain extends javax.swing.JFrame {
         jButton3.setText("Cases List");
 
         jButton4.setText("View Profile");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Logout");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +151,15 @@ public class policeAdminMain extends javax.swing.JFrame {
         par.show();
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        PoliceAdminRegister pol = new PoliceAdminRegister();
+        PoliceDirectory.getInstance().viewpoliceData(policeAdmin, pol);
+        pol.getRole("Police Admin");
+        pol.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

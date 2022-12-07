@@ -66,7 +66,7 @@ public class PoliceDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
-            public void viewpoliceData(PoliceClass pc, PoliceAdminRegister polAdmin) {
+        public void viewpoliceData(PoliceClass pc, PoliceAdminRegister polAdmin) {
         polAdmin.txtEmail.setText(pc.getEmail());
         polAdmin.txtName.setText(pc.getName());
         polAdmin.txtPhoneNo.setText(Integer.toString(pc.getPhoneNumber()));
@@ -74,6 +74,7 @@ public class PoliceDirectory {
         polAdmin.txtSSN.setEnabled(false);
         polAdmin.jDateChooser.setDate((pc.getDob()));
         polAdmin.jComboBox1.setSelectedItem(pc.getGender());
+        polAdmin.jComboBox2.setEnabled(false);
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
             if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==pc.getStateID()){
@@ -81,6 +82,32 @@ public class PoliceDirectory {
             }
         }
             }
+        
+    public void updatePolice(PoliceClass pol,int i) {
+        policeDir.set(i,pol);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update police" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,branch=? where stateID=?";
+            java.sql.Date sqlDate = new java.sql.Date(pol.getDob().getTime());
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, pol.getName());
+            pst.setString(2, pol.getGender());
+            pst.setString(3, pol.getEmail());
+            pst.setInt(4, pol.getPhoneNumber());
+            pst.setDate(5, sqlDate);
+            pst.setString(6, pol.getBranch());
+            pst.setInt(7, pol.getStateID());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
         
     public static PoliceDirectory getInstance() {
         if(mInstance == null)
