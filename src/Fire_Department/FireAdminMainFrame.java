@@ -6,6 +6,7 @@ package Fire_Department;
 
 import Medical_Department.AlertsDirectory;
 import UI.Login;
+import UI.RegisterFireAdmin;
 import User.PersonClass;
 import static aed_project.AED_Project.fireAdmin;
 import javax.swing.table.DefaultTableModel;
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jagru
  */
+
 public class FireAdminMainFrame extends javax.swing.JFrame {
 
     /**
@@ -26,6 +28,8 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
     public void getFireAdmin(PersonClass fire) {
         fireAdmin = fire;
     }
+    
+    private static int check=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,6 +82,11 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         jLabel1.setText("Welcome");
 
         jButton4.setText("Edit Profile");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,6 +146,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
                 count++;
             }
         }
+        check=1;
         String[][] rows = new String[count][6];
         int j=0;
         for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
@@ -155,6 +165,16 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
         jTable1.setModel(model);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        check=0;
+        this.hide();
+        RegisterFireAdmin fa = new RegisterFireAdmin();
+        fa.getRole("Fire Admin");
+        AdminsDirectory.getInstance().viewFireAdmin(fireAdmin,fa);
+        fa.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -229,8 +229,14 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        SystemAdminFrame sys = new SystemAdminFrame();
-        sys.show();
+        if(r.equals("Fire Admin")) {
+            FireAdminMainFrame fire = new FireAdminMainFrame();
+            fire.show();
+        }
+        else {
+            SystemAdminFrame sys = new SystemAdminFrame();
+            sys.show();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

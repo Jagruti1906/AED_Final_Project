@@ -57,13 +57,14 @@ public class AdminsDirectory {
         Statement stmt;
         try{
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String str = "Select * from doctor";
+            String str = "Select * from admins";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                PersonClass person = new PersonClass(rs.getString("role"),rs.getString("name"), rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"), rs.getString("gender"),rs.getDate("date_of_birth"));
+                PersonClass person = new PersonClass(rs.getString("role"),rs.getString("name"), rs.getInt("state_id"),rs.getInt("phone_number"),rs.getString("email"), rs.getString("gender"),rs.getDate("date_of_birth"));
                 adminsDir.add(person);
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
@@ -90,7 +91,7 @@ public class AdminsDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "Update doctor" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=? where stateID=?";
+            String query1 = "Update admins" + " set name=?,gender=?,email=?,phone_number=?,date_of_birth=? where state_id=?";
             java.sql.Date sqlDate = new java.sql.Date(person.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setString(1, person.getName());
@@ -98,8 +99,7 @@ public class AdminsDirectory {
             pst.setString(3, person.getEmail());
             pst.setInt(4, person.getPhoneNumber());
             pst.setDate(5, sqlDate);
-            pst.setString(6, person.getRole());
-            pst.setInt(7, person.getStateID());
+            pst.setInt(6, person.getStateID());
             int rs = pst.executeUpdate();
             if(rs>0)
             {

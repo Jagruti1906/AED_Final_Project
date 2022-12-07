@@ -124,7 +124,6 @@ public class Login extends javax.swing.JFrame {
         boolean checkStateID, checkPassword;
         for(int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++) {
             checkPassword = password.equals(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
-            System.out.println(checkPassword);
             if((stateID == (LoginDirectory.getInstance().getLoginDir().get(i).getStateID())) && checkPassword) {
                 try{
                     if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Doctor")) {
@@ -185,6 +184,7 @@ public class Login extends javax.swing.JFrame {
                         FireAdminMainFrame fire = new FireAdminMainFrame();
                         for(int j=0;j<size;j++) {
                             if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
                                 fire.getFireAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
                                 break;
                             }
