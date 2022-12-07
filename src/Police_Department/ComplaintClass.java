@@ -12,11 +12,12 @@ import java.util.Date;
  */
 public class ComplaintClass {
 
-    public ComplaintClass(String name, int stateID, int phoneNumber, String incidentPlace, Date incidentDate, String complaintType, String incidentTime, String status) {
+    public ComplaintClass(String name, int stateID, int phoneNumber, String incidentPlace,int zip, Date incidentDate, String complaintType, String incidentTime, String status) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
         this.incidentPlace = incidentPlace;
+        this.zip = zip;
         this.incidentDate = incidentDate;
         this.complaintType = complaintType;
         this.incidentTime = incidentTime;
@@ -86,13 +87,20 @@ public class ComplaintClass {
     private String complaintType;
     private String incidentTime;
     private String status;
-
+    private int zip;
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
     }
     
 }

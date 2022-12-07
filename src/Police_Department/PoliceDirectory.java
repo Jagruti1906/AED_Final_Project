@@ -80,7 +80,7 @@ public class PoliceDirectory {
                 polAdmin.txtPass.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
             }
         }
-            }
+    }
         
        public void viewpoliceOfficerData(PoliceClass pc, PoliceOfficerRegister polAdmin) {
         polAdmin.txtEmail.setText(pc.getEmail());
