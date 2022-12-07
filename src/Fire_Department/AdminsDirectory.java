@@ -4,8 +4,13 @@
  */
 package Fire_Department;
 
+import Login.LoginDirectory;
+import UI.RegisterFireAdmin;
 import User.PersonClass;
+import aed_project.DatabaseConnectionClass;
 import java.util.ArrayList;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,30 +21,28 @@ public class AdminsDirectory {
     private static AdminsDirectory mInstance;
     
     private AdminsDirectory() {
-        adminsDir = new ArrayList();
+        this.adminsDir = new ArrayList();
     }
 
-    public static ArrayList<PersonClass> getAdminsDir() {
+    public ArrayList<PersonClass> getAdminsDir() {
         return adminsDir;
     }
     
-    public void addDoctor(DoctorClass doc){
-        doctorDir.add(doc);
+    public void addAdmin(PersonClass person){
+        adminsDir.add(person);
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO doctor" + " VALUES(?,?,?,?,?,?,?,?,?)";
-            java.sql.Date sqlDate = new java.sql.Date(doc.getDob().getTime());
+            String query1 = "INSERT INTO admins" + " VALUES(?,?,?,?,?,?,?)";
+            java.sql.Date sqlDate = new java.sql.Date(person.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-            pst.setInt(1, doc.getStateID());
-            pst.setString(2, doc.getName());
-            pst.setInt(3, doc.getdoctorId());
-            pst.setString(4, doc.getGender());
-            pst.setString(5, doc.getEmail());
-            pst.setInt(6, doc.getPhoneNumber());
-            pst.setDate(7, sqlDate);
-            pst.setString(8, doc.getRole());
-            pst.setString(9, doc.getHospitalName());
+            pst.setInt(1, person.getStateID());
+            pst.setString(2, person.getName());
+            pst.setString(3, person.getEmail());
+            pst.setString(5, person.getGender());
+            pst.setInt(4, person.getPhoneNumber());
+            pst.setDate(6, sqlDate);
+            pst.setString(7, person.getRole());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -50,59 +53,53 @@ public class AdminsDirectory {
         }
     }
     
-    public void getDoctorData() {
+    public void getAdminData() {
         Statement stmt;
         try{
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
             String str = "Select * from doctor";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                DoctorClass doc = new DoctorClass(rs.getInt("stateID"), rs.getString("name"),rs.getInt("doctorID"),rs.getString("gender"),rs.getString("email"),rs.getInt("phoneNumber"),rs.getDate("date_of_birth"),rs.getString("specialist"),rs.getString("hospital_name"));
-                doctorDir.add(doc);
+                PersonClass person = new PersonClass(rs.getString("role"),rs.getString("name"), rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"), rs.getString("gender"),rs.getDate("date_of_birth"));
+                adminsDir.add(person);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
     
-    public void viewDoctor(DoctorClass doc, RegisterDoctor doctor){
-        doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
-        doctor.jTextField1.setEnabled(false);
-        doctor.jTextField2.setText(doc.getName());
-        doctor.jTextField4.setText(Integer.toString(doc.getdoctorId()));
-        doctor.jTextField4.setEnabled(false);
-        doctor.jComboBox1.setSelectedItem(doc.getGender());
-        doctor.jTextField6.setText(doc.getEmail());
-        doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
-        doctor.jDateChooser1.setDate((doc.getDob()));
-        doctor.jComboBox2.setSelectedItem(doc.getRole());
-        doctor.jTextField10.setText(doc.getHospitalName());
-        doctor.jComboBox2.setEnabled(false);
+    public void viewFireAdmin(PersonClass person, RegisterFireAdmin fire){
+        fire.jTextField1.setText(Integer.toString(person.getStateID()));
+        fire.jTextField1.setEnabled(false);
+        fire.jTextField2.setText(person.getName());
+        fire.jTextField3.setText(person.getEmail());
+        fire.jComboBox1.setSelectedItem(person.getGender());
+        fire.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        fire.jDateChooser1.setDate((person.getDob()));
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
-            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==doc.getStateID()){
-                doctor.jTextField8.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
+                fire.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
             }
         }
     }
     
     
-    public void updateDoctor(DoctorClass dc,int i) {
-        doctorDir.set(i,dc);
+    public void updateAdmin(PersonClass person,int i) {
+        adminsDir.set(i,person);
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "Update doctor" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,specialist=?,hospital_name=? where stateID=?";
-            java.sql.Date sqlDate = new java.sql.Date(dc.getDob().getTime());
+            String query1 = "Update doctor" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=? where stateID=?";
+            java.sql.Date sqlDate = new java.sql.Date(person.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-            pst.setInt(8, dc.getStateID());
-            pst.setString(1, dc.getName());
-            pst.setString(2, dc.getGender());
-            pst.setString(3, dc.getEmail());
-            pst.setInt(4, dc.getPhoneNumber());
+            pst.setString(1, person.getName());
+            pst.setString(2, person.getGender());
+            pst.setString(3, person.getEmail());
+            pst.setInt(4, person.getPhoneNumber());
             pst.setDate(5, sqlDate);
-            pst.setString(6, dc.getRole());
-            pst.setString(7, dc.getHospitalName());
+            pst.setString(6, person.getRole());
+            pst.setInt(7, person.getStateID());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
