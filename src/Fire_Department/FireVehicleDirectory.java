@@ -65,7 +65,7 @@ public class FireVehicleDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "Update fire_vehicle" + " set status=? where ambulance_number=?";
+            String query1 = "Update fire_vehicle" + " set status=? where vehicle_number=?";
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setString(1, fire.getStatus());
             pst.setInt(2, fire.getVehicleNumber());

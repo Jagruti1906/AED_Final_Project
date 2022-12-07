@@ -4,13 +4,17 @@
  */
 package Fire_Department;
 
+import Medical_Department.AlertsClass;
 import Medical_Department.AlertsDirectory;
 import UI.AddFireVehicle;
 import UI.Login;
 import UI.RegisterFireAdmin;
 import User.PersonClass;
 import static aed_project.AED_Project.fireAdmin;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -42,7 +46,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -52,7 +56,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,7 +67,12 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table);
 
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +189,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        jTable1.setModel(model);
+        table.setModel(model);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -196,7 +205,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"Vehicle Type", "Vehicle Number", "Status"};
-        check=1;
+        check=2;
         String[][] rows = new String[FireVehicleDirectory.getInstance().getFireVehicleDir().size()][3];
         int j=0;
         for(int i=0;i<FireVehicleDirectory.getInstance().getFireVehicleDir().size();i++) {
@@ -207,7 +216,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             j++;
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        jTable1.setModel(model);
+        table.setModel(model);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -216,6 +225,62 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         AddFireVehicle fv = new AddFireVehicle();
         fv.show();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+        JComboBox cb = null;
+        int index = table.getSelectedRow();
+        TableModel model = table.getModel();
+        int input;
+        if(check!=0) {
+            if(check==2) {
+                String status[] = {"Available","Unavailable"};
+                cb = new JComboBox(status);
+                input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+                try{
+                    String type = model.getValueAt(index, 0).toString();
+                    String no = model.getValueAt(index, 1).toString();
+                    int id = Integer.parseInt(no);
+                    FireVehicleClass amb = new FireVehicleClass(type, id, (String)cb.getSelectedItem());
+                    for(int i=0;i<FireVehicleDirectory.getInstance().getFireVehicleDir().size();i++) {
+                        if(FireVehicleDirectory.getInstance().getFireVehicleDir().get(i).getVehicleNumber()==id) {
+                            FireVehicleDirectory.getInstance().updateVehicle(amb, i);
+                            break;
+                        }
+                    }
+                    model.setValueAt((String)cb.getSelectedItem(), index, 2);
+                } catch(Exception e) {
+                    System.out.println(e);
+                }
+            }
+            else{
+                String status[] = {"Fire Vehicle is on it's way","Emergency is taken care of"};
+                cb = new JComboBox(status);
+                input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+                try{
+                    String desc = model.getValueAt(index, 4).toString();
+                    String name = model.getValueAt(index, 1).toString();
+                    String address = model.getValueAt(index, 2).toString();
+                    String zip = model.getValueAt(index, 3).toString();
+                    int zip_code = Integer.parseInt(zip);
+                    String stateID = model.getValueAt(index, 0).toString();
+                    int id = Integer.parseInt(stateID);
+                    AlertsClass alert = new AlertsClass(id, name, address, zip_code, "Fire", desc, (String)cb.getSelectedItem());
+                    for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+                        if(AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID()==id 
+                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire") 
+                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc().equals(desc)) {
+                            AlertsDirectory.getInstance().updateAlert(alert, i);
+                            break;
+                        }
+                    }
+                    model.setValueAt((String)cb.getSelectedItem(), index, 5);
+                } catch(Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }//GEN-LAST:event_tableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -260,6 +325,6 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
