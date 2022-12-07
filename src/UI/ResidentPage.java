@@ -146,10 +146,12 @@ public class ResidentPage extends javax.swing.JFrame {
         String[] columnNames = {"Reason","Department","Status"};
         String[][] rows = new String[AlertsDirectory.getInstance().getAlertsDir().size()][3];
         int j=0;
+        System.out.println(AlertsDirectory.getInstance().getAlertsDir().size());
         for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
             rows[j][0] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
             rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDept();
             rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
+            j++;
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
         emergency.jTable1.setModel(model); 

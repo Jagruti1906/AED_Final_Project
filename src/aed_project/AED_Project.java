@@ -14,6 +14,7 @@ import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import Medical_Department.HospitalDirectory;
+import Police_Department.PoliceClass;
 import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
@@ -41,6 +42,9 @@ public class AED_Project {
     public static DoctorClass doctor;
     public static HospitalAdminClass hospAdmin;
     public static ResidentClass rc;
+    public static PoliceClass police;
+    public static PoliceClass policeAdmin;
+    
     
     public static void main(String[] args) {
         // TODO code application logic here

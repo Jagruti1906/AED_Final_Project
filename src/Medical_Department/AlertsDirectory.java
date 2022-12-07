@@ -66,6 +66,29 @@ public class AlertsDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
+        
+    public void updateAlert(AlertsClass alert, int i) {
+        alertsDir.set(i,alert);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update alerts" + " set status=? where state_id=? and department=? and Description=?";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setString(1, alert.getStatus());
+            pst.setString(4, alert.getDesc());
+            pst.setString(3, alert.getDept());
+            pst.setInt(2, alert.getStateID());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
+        }
+    }
+        
     public static AlertsDirectory getInstance() {
         if(mInstance == null)
             mInstance = new AlertsDirectory();

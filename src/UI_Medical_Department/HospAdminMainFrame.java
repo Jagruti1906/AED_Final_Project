@@ -4,6 +4,8 @@
  */
 package UI_Medical_Department;
 
+import Medical_Department.AlertsClass;
+import Medical_Department.AlertsDirectory;
 import Medical_Department.AmbulanceClass;
 import Medical_Department.AmbulanceDirectory;
 import Medical_Department.AppointmentDetailsDirectory;
@@ -61,6 +63,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         ambulanceList = new javax.swing.JButton();
         addAmbulance = new javax.swing.JButton();
         addDoc = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +145,13 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Alerts");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,7 +169,10 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                     .addComponent(appointmentList)
                     .addComponent(ambulanceList)
                     .addComponent(addAmbulance)
-                    .addComponent(addDoc))
+                    .addComponent(addDoc)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
@@ -184,7 +197,9 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(addDoc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(logout))
+                        .addComponent(logout)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -303,35 +318,92 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         HospitalAdminDirectory.getInstance().viewHospAdminData(hospAdmin,hosp);
         hosp.show();
     }//GEN-LAST:event_viewProfileActionPerformed
-
+    
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-        if(check==1) {
-            int index = table.getSelectedRow();
-            TableModel model = table.getModel();
-            String status[] = {"Available","Unavailable"};
-            JComboBox cb = new JComboBox(status);
-
-            int input;
-            input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
-            try{
-                String type = model.getValueAt(index, 0).toString();
-                String no = model.getValueAt(index, 1).toString();
-                int id = Integer.parseInt(no);
-                AmbulanceClass amb = new AmbulanceClass(type, id, (String)cb.getSelectedItem(), hospAdmin.getHospitalName());
-                for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
-                    if(AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getAmbulanceNumber()==id) {
-                        System.out.println("In hereeeeeeee");
-                        AmbulanceDirectory.getInstance().updateAmbulance(amb, i);
-                        break;
+        JComboBox cb = null;
+        int index = table.getSelectedRow();
+        TableModel model = table.getModel();
+        int input;
+        if(check!=0) {
+            if(check==1) {
+                String status[] = {"Available","Unavailable"};
+                cb = new JComboBox(status);
+                input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+                try{
+                    String type = model.getValueAt(index, 0).toString();
+                    String no = model.getValueAt(index, 1).toString();
+                    int id = Integer.parseInt(no);
+                    AmbulanceClass amb = new AmbulanceClass(type, id, (String)cb.getSelectedItem(), hospAdmin.getHospitalName());
+                    for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
+                        if(AmbulanceDirectory.getInstance().getAmbulanceDir().get(i).getAmbulanceNumber()==id) {
+                            AmbulanceDirectory.getInstance().updateAmbulance(amb, i);
+                            break;
+                        }
                     }
+                    model.setValueAt((String)cb.getSelectedItem(), index, 2);
+                } catch(Exception e) {
+                    System.out.println(e);
                 }
-                model.setValueAt((String)cb.getSelectedItem(), index, 2);
-            } catch(Exception e) {
-                System.out.println(e);
+            }
+            else{
+                String status[] = {"Ambulance is on it's way","Emergency is taken care of"};
+                cb = new JComboBox(status);
+                input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+                try{
+                    String desc = model.getValueAt(index, 4).toString();
+                    String name = model.getValueAt(index, 1).toString();
+                    String address = model.getValueAt(index, 2).toString();
+                    String zip = model.getValueAt(index, 3).toString();
+                    int zip_code = Integer.parseInt(zip);
+                    String stateID = model.getValueAt(index, 0).toString();
+                    int id = Integer.parseInt(stateID);
+                    String department = model.getValueAt(index, 1).toString();
+                    AlertsClass alert = new AlertsClass(id, name, address, zip_code, "Medical", desc, (String)cb.getSelectedItem());
+                    for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
+                        if(AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID()==id 
+                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDept()=="Medical" 
+                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc()==desc) {
+                            AlertsDirectory.getInstance().updateAlert(alert, i);
+                            break;
+                        }
+                    }
+                    model.setValueAt((String)cb.getSelectedItem(), index, 5);
+                } catch(Exception e) {
+                    System.out.println(e);
+                }
             }
         }
     }//GEN-LAST:event_tableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Patient ID", "Patient Name", "Address","Zip","Reason","Status"};
+        check=2;
+        int count=0;
+        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Medical")) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][6];
+        int j=0;
+        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Medical")) {
+                int zip = AlertsDirectory.getInstance().getAlertsDir().get(i).getZip();
+                int id = AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getName();
+                rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getAddress();
+                rows[j][3] = Integer.toString(zip);
+                rows[j][4] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
+                rows[j][5] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        table.setModel(model);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,6 +446,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
     public javax.swing.JButton ambulanceList;
     public javax.swing.JButton appointmentList;
     public javax.swing.JButton doctorRecord;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton logout;
