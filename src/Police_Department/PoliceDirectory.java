@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Police_Department;
+import Login.LoginDirectory;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -65,6 +66,21 @@ public class PoliceDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
+            public void viewpoliceData(PoliceClass pc, PoliceAdminRegister polAdmin) {
+        polAdmin.txtEmail.setText(pc.getEmail());
+        polAdmin.txtName.setText(pc.getName());
+        polAdmin.txtPhoneNo.setText(Integer.toString(pc.getPhoneNumber()));
+        polAdmin.txtSSN.setText(Integer.toString(pc.getStateID()));
+        polAdmin.txtSSN.setEnabled(false);
+        polAdmin.jDateChooser.setDate((pc.getDob()));
+        polAdmin.jComboBox1.setSelectedItem(pc.getGender());
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==pc.getStateID()){
+                polAdmin.txtPass.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+            }
         
     public static PoliceDirectory getInstance() {
         if(mInstance == null)

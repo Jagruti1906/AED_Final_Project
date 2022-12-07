@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Police_Department;
+import UI.Login;
 import static aed_project.AED_Project.policeAdmin;
 /**
  *
@@ -60,12 +61,22 @@ public class policeAdminMain extends javax.swing.JFrame {
         });
 
         jButton2.setText("Register Police");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cases List");
 
         jButton4.setText("View Profile");
 
         jButton5.setText("Logout");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Patrolling Duty");
 
@@ -115,7 +126,26 @@ public class policeAdminMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.hide();
+        PoliceAdminRegister polAdmin = new PoliceAdminRegister();
+        PoliceDirectory.getInstance().viewpoliceData(policeAdmin,polAdmin);
+        polAdmin.show();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        Login log = new Login();
+        log.show();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        PoliceAdminRegister par = new PoliceAdminRegister();
+        par.show();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
