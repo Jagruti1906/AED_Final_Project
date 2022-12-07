@@ -358,12 +358,12 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                     int zip_code = Integer.parseInt(zip);
                     String stateID = model.getValueAt(index, 0).toString();
                     int id = Integer.parseInt(stateID);
-                    String department = model.getValueAt(index, 1).toString();
                     AlertsClass alert = new AlertsClass(id, name, address, zip_code, "Medical", desc, (String)cb.getSelectedItem());
-                    for(int i=0;i<AmbulanceDirectory.getInstance().getAmbulanceDir().size();i++) {
+                    for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
                         if(AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID()==id 
-                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDept()=="Medical" 
-                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc()==desc) {
+                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Medical") 
+                                && AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc().equals(desc)) {
+                            System.out.println("UI_Medical_Department.HospAdminMainFrame.tableMouseClicked()");
                             AlertsDirectory.getInstance().updateAlert(alert, i);
                             break;
                         }

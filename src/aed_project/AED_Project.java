@@ -4,6 +4,7 @@
  */
 package aed_project;
 
+import Login.LoginClass;
 import Login.LoginDirectory;
 import Medical_Department.AlertsDirectory;
 import Medical_Department.AmbulanceDirectory;
@@ -15,6 +16,7 @@ import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import Medical_Department.HospitalDirectory;
 import Police_Department.PoliceClass;
+import Police_Department.PoliceDirectory;
 import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
@@ -59,6 +61,11 @@ public class AED_Project {
         ResidentDirectory.getInstance().getResidentData();
         AppointmentDetailsDirectory.getInstance().getappdata();
         AlertsDirectory.getInstance().getalertsdata();
+        PoliceDirectory.getInstance().getpoliceData();
+        PoliceClass police = new PoliceClass("Police Admin","Head","jhd",56,46876,"sjg","Male",new Date());
+        PoliceDirectory.getInstance().getPoliceDir().add(police);
+        LoginClass log = new LoginClass(56,"s","Police Admin");
+        LoginDirectory.getInstance().getLoginDir().add(log);
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();
