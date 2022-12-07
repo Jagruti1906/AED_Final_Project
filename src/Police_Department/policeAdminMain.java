@@ -96,9 +96,8 @@ public class policeAdminMain extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton6)
-                        .addComponent(jButton4)))
+                    .addComponent(jButton6)
+                    .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -114,9 +113,9 @@ public class policeAdminMain extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
                         .addComponent(jButton6))
@@ -131,10 +130,7 @@ public class policeAdminMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.hide();
-        PoliceAdminRegister polAdmin = new PoliceAdminRegister();
-        PoliceDirectory.getInstance().viewpoliceData(policeAdmin,polAdmin);
-        polAdmin.show();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -147,17 +143,16 @@ public class policeAdminMain extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        PoliceAdminRegister par = new PoliceAdminRegister();
+        PoliceOfficerRegister par = new PoliceOfficerRegister();
         par.show();
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.hide();
         PoliceAdminRegister pol = new PoliceAdminRegister();
-        PoliceDirectory.getInstance().viewpoliceData(policeAdmin, pol);
         pol.getRole("Police Admin");
+        PoliceDirectory.getInstance().viewpoliceAdminData(policeAdmin, pol);
         pol.show();
     }//GEN-LAST:event_jButton4ActionPerformed
 

@@ -157,8 +157,10 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())&& (!AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Completed"))) {
+            if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())
+               && (!AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Completed"))) {
                 int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
+                System.out.println(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus());
                 rows[j][0] = Integer.toString(id);
                 rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

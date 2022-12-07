@@ -191,6 +191,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         }
         if(flag==1) {
             HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
+            hospAdmin = HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(k);
             LoginDirectory.getInstance().updateUser(login.getStateID(), login);
         }
         else {

@@ -89,32 +89,6 @@ public class AlertsDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
-    
-//    public void updateHospAdminData(HospitalAdminClass had,int i) {
-//        hospitalAdminDir.set(i,had);
-//        Statement stmt;
-//        try {
-//            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-//            String query1 = "Update hospitaladmins" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,hospital_name=? where stateID=?";
-//            java.sql.Date sqlDate = new java.sql.Date(had.getDob().getTime());
-//            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-//            pst.setString(1, had.getName());
-//            pst.setString(2, had.getGender());
-//            pst.setString(3, had.getEmail());
-//            pst.setInt(4, had.getPhoneNumber());
-//            pst.setDate(5, sqlDate);
-//            pst.setString(6, had.getHospitalName());
-//            pst.setInt(7, had.getStateID());
-//            int rs = pst.executeUpdate();
-//            if(rs>0)
-//            {
-//                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
-//        }
-//    }
         
     public static AlertsDirectory getInstance() {
         if(mInstance == null)
