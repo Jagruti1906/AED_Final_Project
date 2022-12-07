@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Police_Department;
+import UI.ResidentPage;
 import static aed_project.AED_Project.rc;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
@@ -56,6 +57,11 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
         jButton3.setText("Patrolling Chart");
 
         jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,6 +172,13 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
         jTable1.setModel(model);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        ResidentPage res = new ResidentPage();
+        res.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,9 +4,11 @@
  */
 package Fire_Department;
 
+import Medical_Department.AlertsDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.fireAdmin;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -67,6 +69,11 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         jButton2.setText("Vehicles List");
 
         jButton3.setText("Alerts");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Welcome");
 
@@ -121,6 +128,34 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         login.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Patient ID", "Patient Name", "Address","Zip","Reason","Status"};
+        int count=0;
+        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][6];
+        int j=0;
+        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
+                int zip = AlertsDirectory.getInstance().getAlertsDir().get(i).getZip();
+                int id = AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getName();
+                rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getAddress();
+                rows[j][3] = Integer.toString(zip);
+                rows[j][4] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
+                rows[j][5] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -163,6 +198,6 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
