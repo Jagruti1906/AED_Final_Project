@@ -4,6 +4,7 @@
  */
 package aed_project;
 
+import Fire_Department.AdminsDirectory;
 import Login.LoginClass;
 import Login.LoginDirectory;
 import Medical_Department.AlertsDirectory;
@@ -23,10 +24,12 @@ import Resident.ResidentDirectory;
 import UI.Login;
 import UI.RegisterDoctor;
 import UI.RegisterHospitalAdmin;
+import UI.SystemAdminFrame;
 import UI_Medical_Department.AppointmentSlot;
 import UI_Medical_Department.CreateHospital;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.PatientMainFrame;
+import User.PersonClass;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class AED_Project {
     public static ResidentClass rc;
     public static PoliceClass police;
     public static PoliceClass policeAdmin;
+    public static PersonClass fireAdmin;
     
     
     public static void main(String[] args) {
@@ -62,9 +66,12 @@ public class AED_Project {
         AppointmentDetailsDirectory.getInstance().getappdata();
         AlertsDirectory.getInstance().getalertsdata();
         PoliceDirectory.getInstance().getpoliceData();
+        AdminsDirectory.getInstance().getAdminData();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();
+//        SystemAdminFrame sys = new SystemAdminFrame();
+//        sys.show();
 //        PatientMainFrame pat = new PatientMainFrame();
 //        pat.show();
 //        System.out.println(AmbulanceDirectory.getInstance().getAmbulanceDir().size());

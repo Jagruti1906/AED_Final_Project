@@ -18,6 +18,15 @@ public class PersonClass {
     private String email;
     private String gender;
     private Date dob;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getName() {
         return name;
@@ -67,12 +76,13 @@ public class PersonClass {
         this.dob = dob;
     }
 
-    public PersonClass(String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+    public PersonClass(String role, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.gender = gender;
         this.dob = dob;
+        this.role = role;
     }
 }

@@ -13,13 +13,11 @@ import java.util.Date;
  */
 public class DoctorClass extends PersonClass {
     private int doctorId;
-    private String specialisation;
     private String hospitalName;
 
     public DoctorClass(int stateID, String name, int doctorId, String gender, String email, int phoneNumber,  Date dob, String specialisation, String hospitalName) {
-        super(name, stateID, phoneNumber, email, gender, dob);
+        super(specialisation, name, stateID, phoneNumber, email, gender, dob);
         this.doctorId = doctorId;
-        this.specialisation = specialisation;
         this.hospitalName = hospitalName;
     }
 
@@ -29,14 +27,6 @@ public class DoctorClass extends PersonClass {
 
     public void setdoctorId(int DdoctorId) {
         this.doctorId = DdoctorId;
-    }
-
-    public String getSpecialisation() {
-        return specialisation;
-    }
-
-    public void setSpecialisation(String specialisation) {
-        this.specialisation = specialisation;
     }
 
     public String getHospitalName() {

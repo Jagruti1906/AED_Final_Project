@@ -262,7 +262,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                 rows[j][0] = Integer.toString(id);
                 rows[j][1] = DoctorDirectory.getInstance().getDoctorDir().get(i).getName();
                 rows[j][2] = DoctorDirectory.getInstance().getDoctorDir().get(i).getGender();
-                rows[j][3] = DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation();
+                rows[j][3] = DoctorDirectory.getInstance().getDoctorDir().get(i).getRole();
                 rows[j][4] = DoctorDirectory.getInstance().getDoctorDir().get(i).getEmail();
                 j++;
             }

@@ -49,7 +49,7 @@ public class DoctorDirectory {
             pst.setString(5, doc.getEmail());
             pst.setInt(6, doc.getPhoneNumber());
             pst.setDate(7, sqlDate);
-            pst.setString(8, doc.getSpecialisation());
+            pst.setString(8, doc.getRole());
             pst.setString(9, doc.getHospitalName());
             int rs = pst.executeUpdate();
             if(rs>0)
@@ -86,7 +86,7 @@ public class DoctorDirectory {
         doctor.jTextField6.setText(doc.getEmail());
         doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
         doctor.jDateChooser1.setDate((doc.getDob()));
-        doctor.jComboBox2.setSelectedItem(doc.getSpecialisation());
+        doctor.jComboBox2.setSelectedItem(doc.getRole());
         doctor.jTextField10.setText(doc.getHospitalName());
         doctor.jComboBox2.setEnabled(false);
         
@@ -112,7 +112,7 @@ public class DoctorDirectory {
             pst.setString(3, dc.getEmail());
             pst.setInt(4, dc.getPhoneNumber());
             pst.setDate(5, sqlDate);
-            pst.setString(6, dc.getSpecialisation());
+            pst.setString(6, dc.getRole());
             pst.setString(7, dc.getHospitalName());
             int rs = pst.executeUpdate();
             if(rs>0)
@@ -124,16 +124,6 @@ public class DoctorDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
-    
-//    public void docData(int stateID) {
-//        for(int j=0;j<doctorDir.size();j++) {
-//            System.out.println("sdj");
-//            DoctorMainFrame doc = new DoctorMainFrame();
-//            if(LoginDirectory.getInstance().getLoginDir().get(j).getStateID() == DoctorDirectory.getInstance().getDoctorDir().get(j).getStateID()) {
-//                doc.getDoc(DoctorDirectory.getInstance().getDoctorDir().get(j));
-//            }
-//        }
-//    }
     
     public static DoctorDirectory getInstance() {
         if(mInstance == null)

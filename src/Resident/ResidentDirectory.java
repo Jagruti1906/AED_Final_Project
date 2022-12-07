@@ -34,7 +34,7 @@ public class ResidentDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO resident" + " VALUES(?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO resident" + " VALUES(?,?,?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(res.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1, res.getStateID());
@@ -62,7 +62,7 @@ public class ResidentDirectory {
             String str = "Select * from resident";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                ResidentClass resident = new ResidentClass(rs.getString("address"),rs.getInt("zip"), rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
+                ResidentClass resident = new ResidentClass(rs.getString("role"),rs.getString("address"),rs.getInt("zip"), rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
                 residentDir.add(resident);
             }
         } catch (SQLException ex) {

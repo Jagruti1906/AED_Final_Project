@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Fire_Department.AdminsDirectory;
+import Fire_Department.FireAdminMainFrame;
 import Login.LoginDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminDirectory;
@@ -175,6 +177,19 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         police.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Fire Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        FireAdminMainFrame fire = new FireAdminMainFrame();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                fire.getFireAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        fire.show();
                         break;
                     }
                 } catch(Exception e) {
