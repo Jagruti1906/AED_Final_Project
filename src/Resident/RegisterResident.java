@@ -190,7 +190,7 @@ public class RegisterResident extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ResidentClass resident = new ResidentClass(jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jTextField2.getText(),Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField5.getText()),jTextField4.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+        ResidentClass resident = new ResidentClass("Resident", jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jTextField2.getText(),Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField5.getText()),jTextField4.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
         ResidentDirectory.getInstance().addResident(resident);
         LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Resident");
         LoginDirectory.getInstance().addUser(login);

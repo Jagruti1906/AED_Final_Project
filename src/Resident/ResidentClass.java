@@ -15,8 +15,8 @@ public class ResidentClass extends PersonClass{
     private String address;
     private int zip;
 
-    public ResidentClass(String address, int zip, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
-        super(name, stateID, phoneNumber, email, gender, dob);
+    public ResidentClass(String role, String address, int zip, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+        super(role, name, stateID, phoneNumber, email, gender, dob);
         this.address = address;
         this.zip = zip;
     }

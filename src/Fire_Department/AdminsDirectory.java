@@ -2,36 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Medical_Department;
+package Fire_Department;
 
-import Login.LoginDirectory;
-import UI.RegisterDoctor;
-import UI_Medical_Department.DoctorMainFrame;
-import aed_project.DatabaseConnectionClass;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import User.PersonClass;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author hp
+ * @author jagru
  */
-public class DoctorDirectory {
-    private static ArrayList<DoctorClass> doctorDir = null;
-    private static DoctorDirectory mInstance;
-
-    private DoctorDirectory() {
-        this.doctorDir = new ArrayList();
+public class AdminsDirectory {
+    private static ArrayList<PersonClass> adminsDir;
+    private static AdminsDirectory mInstance;
+    
+    private AdminsDirectory() {
+        adminsDir = new ArrayList();
     }
 
-    public ArrayList<DoctorClass> getDoctorDir() {
-        return doctorDir;
+    public static ArrayList<PersonClass> getAdminsDir() {
+        return adminsDir;
     }
     
     public void addDoctor(DoctorClass doc){
@@ -125,11 +114,10 @@ public class DoctorDirectory {
         }
     }
     
-    public static DoctorDirectory getInstance() {
+    public static AdminsDirectory getInstance() {
         if(mInstance == null)
-            mInstance = new DoctorDirectory();
+            mInstance = new AdminsDirectory();
 
         return mInstance;
     }
-    
 }

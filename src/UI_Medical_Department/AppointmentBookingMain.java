@@ -203,7 +203,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         int stateID=0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
             if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
-                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
+                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getRole()) && 
                     jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
                 stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
             }
@@ -235,7 +235,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         int stateID = 0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
             if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
-                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
+                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getRole()) && 
                     jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
                 id = DoctorDirectory.getInstance().getDoctorDir().get(i).getdoctorId();
                 stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
@@ -267,7 +267,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
                     jComboBox2.removeAllItems();
         for (int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
 //            String hosp = set.getValue().getHospitalName();
-            if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation())) {
+            if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getRole())) {
                 jComboBox2.addItem(DoctorDirectory.getInstance().getDoctorDir().get(i).getName());
             }
         }
@@ -281,7 +281,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
         int stateID = 0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
             if(jComboBox1.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getHospitalName()) && 
-                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getSpecialisation()) && 
+                    jComboBox4.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getRole()) && 
                     jComboBox2.getSelectedItem().toString().equals(DoctorDirectory.getInstance().getDoctorDir().get(i).getName())) {
                 stateID = DoctorDirectory.getInstance().getDoctorDir().get(i).getStateID();
             }
