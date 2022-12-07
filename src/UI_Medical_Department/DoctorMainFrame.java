@@ -152,22 +152,23 @@ public class DoctorMainFrame extends javax.swing.JFrame {
 
     private void appointmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentListActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"Patient ID","Patient Name","Date Of Encounter", "Purpose","Status"};
+        String[] columnNames = {"Appointment ID","Patient ID","Patient Name","Date Of Encounter", "Purpose","Status"};
         int count= AppointmentDetailsDirectory.getInstance().getCount(doctor.getdoctorId(),"Doctor");
-        String[][] rows = new String[count][5];
+        String[][] rows = new String[count][6];
         int j=0;
         for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
             if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorID() ==(doctor.getdoctorId())
                && (!AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus().equals("Completed"))) {
                 int id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID();
-                System.out.println(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus());
-                rows[j][0] = Integer.toString(id);
-                rows[j][1] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
+                int app_id = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getId();
+                rows[j][0] = Integer.toString(app_id);
+                rows[j][1] = Integer.toString(id);
+                rows[j][2] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientName();
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String s = formatter.format(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate());
-                rows[j][2] = s;
-                rows[j][3] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
-                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
+                rows[j][3] = s;
+                rows[j][4] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDesc();
+                rows[j][5] = AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getStatus();
                 j++;
             }
         }
@@ -208,22 +209,22 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         int input;
         input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
         try{
-            String patientName = model.getValueAt(index, 1).toString();
-            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());  
-            String s = model.getValueAt(index, 0).toString();
+            String patientName = model.getValueAt(index, 2).toString();
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 3).toString());  
+            String s = model.getValueAt(index, 1).toString();
             int id = Integer.parseInt(s);
-            String purpose = model.getValueAt(index, 3).toString();
+            String purpose = model.getValueAt(index, 4).toString();
+            String aid = model.getValueAt(index, 0).toString();
+            int app_id = Integer.parseInt(aid);
             
-            AppointmentDetailsClass appointment = new AppointmentDetailsClass(date1, patientName, doctor.getName(), id, doctor.getdoctorId(), doctor.getHospitalName(),(String)cb.getSelectedItem(), purpose);
+            AppointmentDetailsClass appointment = new AppointmentDetailsClass(app_id,date1, patientName, doctor.getName(), id, doctor.getdoctorId(), doctor.getHospitalName(),(String)cb.getSelectedItem(), purpose);
             for(int i=0;i<AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size();i++) {
-                if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getPatientStateID() == id && 
-                        AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDate().compareTo(date1)==0 &&
-                        AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getDoctorName().equals(doctor.getName())) {
+                if(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().get(i).getId()== app_id) {
                     AppointmentDetailsDirectory.getInstance().updateAppointment(appointment, i);
                     break;
                 }
             }
-            model.setValueAt((String)cb.getSelectedItem(), index, 4);
+            model.setValueAt((String)cb.getSelectedItem(), index, 5);
         } catch(Exception e) {
             System.out.println(e);
         }

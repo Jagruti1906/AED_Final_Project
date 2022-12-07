@@ -5,6 +5,7 @@
 package Fire_Department;
 
 import Medical_Department.AlertsDirectory;
+import UI.AddFireVehicle;
 import UI.Login;
 import UI.RegisterFireAdmin;
 import User.PersonClass;
@@ -47,6 +48,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +73,11 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Vehicles List");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Alerts");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +95,13 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Add Vehicle");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +112,8 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton1)
                     .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
@@ -124,6 +139,8 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -176,6 +193,30 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         fa.show();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Vehicle Type", "Vehicle Number", "Status"};
+        check=1;
+        String[][] rows = new String[FireVehicleDirectory.getInstance().getFireVehicleDir().size()][3];
+        int j=0;
+        for(int i=0;i<FireVehicleDirectory.getInstance().getFireVehicleDir().size();i++) {
+            int number = FireVehicleDirectory.getInstance().getFireVehicleDir().get(i).getVehicleNumber();
+            rows[j][0] = FireVehicleDirectory.getInstance().getFireVehicleDir().get(i).getVehicleType();
+            rows[j][1] = Integer.toString(number);
+            rows[j][2] = FireVehicleDirectory.getInstance().getFireVehicleDir().get(i).getStatus();
+            j++;
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        AddFireVehicle fv = new AddFireVehicle();
+        fv.show();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +257,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;

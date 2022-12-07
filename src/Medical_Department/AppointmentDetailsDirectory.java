@@ -4,6 +4,7 @@
  */
 package Medical_Department;
 
+import UI_Medical_Department.AppointmentBookingMain;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,20 +31,22 @@ public class AppointmentDetailsDirectory {
     
     public void addAppointment(AppointmentDetailsClass appointment){
         appointmentDetailsDir.add(appointment);
+        AppointmentBookingMain app = new AppointmentBookingMain();
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO appointment_details(date,patient_name,doctor_name,patient_state_id,doctor_id,hospital_name,status,description)" + " VALUES(?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO appointment_details(app_id,date,patient_name,doctor_name,patient_state_id,doctor_id,hospital_name,status,description)" + " VALUES(?,?,?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-            pst.setInt(5, appointment.getDoctorID());
-            pst.setInt(4, appointment.getPatientStateID());
-            pst.setString(3, appointment.getDoctorName());
-            pst.setString(2, appointment.getPatientName());
-            pst.setString(6, appointment.getHospitalName());
-            pst.setString(7, appointment.getStatus());
-            pst.setString(8, appointment.getDesc());
-            pst.setDate(1, sqlDate);
+            pst.setInt(6, appointment.getDoctorID());
+            pst.setInt(5, appointment.getPatientStateID());
+            pst.setString(4, appointment.getDoctorName());
+            pst.setString(3, appointment.getPatientName());
+            pst.setString(7, appointment.getHospitalName());
+            pst.setString(8, appointment.getStatus());
+            pst.setString(9, appointment.getDesc());
+            pst.setDate(2, sqlDate);
+            pst.setInt(1, appointment.getId());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -63,7 +66,7 @@ public class AppointmentDetailsDirectory {
             String str = "Select * from appointment_details";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                AppointmentDetailsClass app = new AppointmentDetailsClass(rs.getDate("date"), rs.getString("patient_name"), rs.getString("doctor_name"),rs.getInt("patient_state_id"),rs.getInt("doctor_id"),rs.getString("hospital_name"),rs.getString("status"),rs.getString("description"));
+                AppointmentDetailsClass app = new AppointmentDetailsClass(rs.getInt("app_id"),rs.getDate("date"), rs.getString("patient_name"), rs.getString("doctor_name"),rs.getInt("patient_state_id"),rs.getInt("doctor_id"),rs.getString("hospital_name"),rs.getString("status"),rs.getString("description"));
                 appointmentDetailsDir.add(app);
             }
         } catch (SQLException ex) {
@@ -73,6 +76,10 @@ public class AppointmentDetailsDirectory {
         
     public void updateAppointment(AppointmentDetailsClass appointment,int i) {
         appointmentDetailsDir.set(i,appointment);
+        for(int j=0;j<appointmentDetailsDir.size();j++) {
+            System.out.println(appointmentDetailsDir.get(j).getDesc());
+            System.out.println(appointmentDetailsDir.get(j).getStatus());
+        }
         System.out.println(appointmentDetailsDir.get(i).getStatus());
         Statement stmt;
         try {

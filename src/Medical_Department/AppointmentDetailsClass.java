@@ -11,6 +11,7 @@ import java.util.Date;
  * @author jagru
  */
 public class AppointmentDetailsClass {
+    private int id;
     private Date date;
     private String patientName;
     private String doctorName;
@@ -22,7 +23,7 @@ public class AppointmentDetailsClass {
 
 
 
-    public AppointmentDetailsClass(Date date, String patientName, String doctorName, int patientStateID, int doctorID, String hospitalName, String status,String desc) {
+    public AppointmentDetailsClass(int id, Date date, String patientName, String doctorName, int patientStateID, int doctorID, String hospitalName, String status,String desc) {
         this.date = date;
         this.patientName = patientName;
         this.doctorName = doctorName;
@@ -31,6 +32,7 @@ public class AppointmentDetailsClass {
         this.hospitalName = hospitalName;
         this.status = status;
         this.desc=desc;
+        this.id = id;
     }
 
     public Date getDate() {
@@ -94,5 +96,13 @@ public class AppointmentDetailsClass {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

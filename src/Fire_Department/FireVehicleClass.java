@@ -10,10 +10,10 @@ package Fire_Department;
  */
 public class FireVehicleClass {
     private String vehicleType;
-    private String vehicleNumber;
+    private int vehicleNumber;
     private String status;
 
-    public FireVehicleClass(String vehicleType, String vehicleNumber, String status) {
+    public FireVehicleClass(String vehicleType, int vehicleNumber, String status) {
         this.vehicleType = vehicleType;
         this.vehicleNumber = vehicleNumber;
         this.status = status;
@@ -27,11 +27,11 @@ public class FireVehicleClass {
         this.vehicleType = vehicleType;
     }
 
-    public String getVehicleNumber() {
+    public int getVehicleNumber() {
         return vehicleNumber;
     }
 
-    public void setVehicleNumber(String vehicleNumber) {
+    public void setVehicleNumber(int vehicleNumber) {
         this.vehicleNumber = vehicleNumber;
     }
     

@@ -28,6 +28,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
     /**
      * Creates new form AppointmentBookingMain
      */
+    private static int key;
     
     public AppointmentBookingMain() {
         initComponents();
@@ -253,7 +254,7 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
                     AppointmentSlotsDirectory.getInstance().updateSlots(slot, i);
                 }
             }
-            AppointmentDetailsClass app = new AppointmentDetailsClass(date1,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
+            AppointmentDetailsClass app = new AppointmentDetailsClass(AppointmentDetailsDirectory.getInstance().getAppointmentDetailsDir().size()+1,date1,rc.getName(),jComboBox2.getSelectedItem().toString(),rc.getStateID(),id,jComboBox1.getSelectedItem().toString(),"Pending",jTextArea1.getText());
             AppointmentDetailsDirectory.getInstance().addAppointment(app);
         } catch (Exception ex) {
             System.out.println(ex);
