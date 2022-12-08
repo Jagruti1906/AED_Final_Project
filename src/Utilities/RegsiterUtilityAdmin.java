@@ -7,27 +7,28 @@ package Utilities;
 import Fire_Department.AdminsDirectory;
 import Login.LoginClass;
 import Login.LoginDirectory;
+import UI.SystemAdminFrame;
 import User.PersonClass;
-import static aed_project.AED_Project.supplier;
+import static aed_project.AED_Project.UtilityAdmin;
 
 /**
  *
  * @author hp
  */
-public class RegisterMainS extends javax.swing.JFrame {
-
-    /**
-     * Creates new form RegisterMainS
-     */
-    public RegisterMainS() {
-        initComponents();
-    }
-    
+public class RegsiterUtilityAdmin extends javax.swing.JFrame {
     private static String r="";
     
-    public void getRole(String role) {
+
+    /**
+     * Creates new form RegsiterUtilityAdmin
+     */
+    public RegsiterUtilityAdmin() {
+        initComponents();
+    }
+        public void getRole(String role) {
         r = role;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,10 +39,8 @@ public class RegisterMainS extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -49,15 +48,15 @@ public class RegisterMainS extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel5.setText("Phone Number");
 
         jLabel7.setText("Password");
 
@@ -82,6 +81,8 @@ public class RegisterMainS extends javax.swing.JFrame {
 
         jLabel2.setText("State ID");
 
+        jLabel5.setText("Phone Number");
+
         jLabel3.setText("Name");
 
         jLabel4.setText("Gender");
@@ -97,10 +98,13 @@ public class RegisterMainS extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(376, Short.MAX_VALUE)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
+                    .addGap(13, 13, 13)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -120,32 +124,32 @@ public class RegisterMainS extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(73, 73, 73)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(98, 98, 98)
                             .addComponent(jButton1)
                             .addGap(92, 92, 92)
                             .addComponent(jButton2)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(98, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(51, 51, 51)
+                    .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,22 +169,22 @@ public class RegisterMainS extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
                         .addComponent(jButton2))
-                    .addGap(52, 52, 52)))
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            // TODO add your handling code here:
+        // TODO add your handling code here:
         this.hide();
         try{
-            PersonClass person = new PersonClass("Supplier", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
-            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Supplier");
+            PersonClass person = new PersonClass("Utility Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Verifier");
             int flag=0,k=0;
             for(int i=0;i<AdminsDirectory.getInstance().getAdminsDir().size();i++) {
-                if(r.equals("Supplier")) {
-                    if(AdminsDirectory.getInstance().getAdminsDir().get(i).getStateID() == supplier.getStateID()) {
+                if(r.equals("Utility Admin")) {
+                    if(AdminsDirectory.getInstance().getAdminsDir().get(i).getStateID() == UtilityAdmin.getStateID()) {
                         flag=1;
                         k=i;
                         break;
@@ -193,20 +197,22 @@ public class RegisterMainS extends javax.swing.JFrame {
             }
             if(flag==1) {
                 AdminsDirectory.getInstance().updateAdmin(person, k);
-                supplier = AdminsDirectory.getInstance().getAdminsDir().get(k);
+                UtilityAdmin = AdminsDirectory.getInstance().getAdminsDir().get(k);
                 LoginDirectory.getInstance().updateUser(login.getStateID(), login);
             }
             else {
                 AdminsDirectory.getInstance().addAdmin(person);
                 LoginDirectory.getInstance().addUser(login);
             }
-            if(r.equals("Supplier")) {
-                SupplierMainFrame s = new SupplierMainFrame();
-                s.show();
-            }
-            else {
+            if(r.equals("Utility Admin")) {
                 UtilityAdminMain uam = new UtilityAdminMain();
                 uam.show();
+            }
+            else {
+                    SystemAdminFrame saf = new SystemAdminFrame();
+                    saf.show();
+                    
+                
             }
         } catch(Exception e) {
             System.out.println(e);
@@ -220,13 +226,13 @@ public class RegisterMainS extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        if(r.equals("Supplier")) {
-            SupplierMainFrame s = new SupplierMainFrame();
-            s.show();
-        }
-        else {
+        if(r.equals("Utility Admin")) {
             UtilityAdminMain uam = new UtilityAdminMain();
             uam.show();
+        }
+        else {
+            SystemAdminFrame saf = new SystemAdminFrame();
+            saf.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -247,20 +253,20 @@ public class RegisterMainS extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterMainS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegsiterUtilityAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterMainS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegsiterUtilityAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterMainS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegsiterUtilityAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterMainS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegsiterUtilityAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterMainS().setVisible(true);
+                new RegsiterUtilityAdmin().setVisible(true);
             }
         });
     }

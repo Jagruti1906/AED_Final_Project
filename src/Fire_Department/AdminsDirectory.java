@@ -9,6 +9,7 @@ import UI.RegisterFireAdmin;
 import User.PersonClass;
 import Utilities.RegisterMainS;
 import Utilities.RegisterMainV;
+import Utilities.RegsiterUtilityAdmin;
 import aed_project.DatabaseConnectionClass;
 import java.util.ArrayList;
 import java.sql.*;
@@ -115,6 +116,21 @@ public class AdminsDirectory {
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
             if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
                 s.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+    }
+        public void viewUtilityAdmin(PersonClass person, RegsiterUtilityAdmin rua){
+        rua.jTextField1.setText(Integer.toString(person.getStateID()));
+        rua.jTextField1.setEnabled(false);
+        rua.jTextField2.setText(person.getName());
+        rua.jTextField3.setText(person.getEmail());
+        rua.jComboBox1.setSelectedItem(person.getGender());
+        rua.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        rua.jDateChooser1.setDate((person.getDob()));
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
+                rua.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
             }
         }
     }
