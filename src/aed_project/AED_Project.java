@@ -5,6 +5,7 @@
 package aed_project;
 
 import Fire_Department.AdminsDirectory;
+import Fire_Department.FireVehicleDirectory;
 import Login.LoginClass;
 import Login.LoginDirectory;
 import Medical_Department.AlertsDirectory;
@@ -67,6 +68,7 @@ public class AED_Project {
         AlertsDirectory.getInstance().getalertsdata();
         PoliceDirectory.getInstance().getpoliceData();
         AdminsDirectory.getInstance().getAdminData();
+        FireVehicleDirectory.getInstance().getVehicle();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();

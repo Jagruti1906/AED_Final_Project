@@ -14,12 +14,17 @@ import static aed_project.AED_Project.policeAdmin;
  */
 
 public class PoliceOfficerRegister extends javax.swing.JFrame {
+    private static String r="";
     /**
      * Creates new form PoliceAdminRegister
      */
     public PoliceOfficerRegister() {
         initComponents();
     }
+        public void getRole(String role) {
+        r=role;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
