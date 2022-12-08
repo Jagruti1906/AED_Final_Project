@@ -16,6 +16,8 @@ import Resident.ResidentDirectory;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
 import UI_Medical_Department.PatientMainFrame;
+import Utilities.SupplierMainFrame;
+import Utilities.VerifierMainForm;
 import java.sql.ResultSet;
 
 import java.sql.Connection;
@@ -204,6 +206,34 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         fire.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Verifier")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        VerifierMainForm vmf = new VerifierMainForm();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                vmf.getV(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        vmf.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Supplier")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        SupplierMainFrame smf = new SupplierMainFrame();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                smf.getS(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        smf.show();
                         break;
                     }
                     else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("System Admin")) {

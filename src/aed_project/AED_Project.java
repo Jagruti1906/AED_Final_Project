@@ -54,6 +54,8 @@ public class AED_Project {
     public static PoliceClass police;
     public static PoliceClass policeAdmin;
     public static PersonClass fireAdmin;
+    public static PersonClass supplier;
+    public static PersonClass verifier;
     
     
     public static void main(String[] args) {

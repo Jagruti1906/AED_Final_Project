@@ -4,6 +4,12 @@
  */
 package Utilities;
 
+import Fire_Department.AdminsDirectory;
+import Login.LoginClass;
+import Login.LoginDirectory;
+import User.PersonClass;
+import static aed_project.AED_Project.supplier;
+
 /**
  *
  * @author hp
@@ -15,6 +21,12 @@ public class RegisterMainS extends javax.swing.JFrame {
      */
     public RegisterMainS() {
         initComponents();
+    }
+    
+    private static String r="";
+    
+    public void getRole(String role) {
+        r = role;
     }
 
     /**
@@ -163,12 +175,12 @@ public class RegisterMainS extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
-            PersonClass person = new PersonClass("Fire Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
-            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Fire Admin");
+            PersonClass person = new PersonClass("Supplier", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Supplier");
             int flag=0,k=0;
             for(int i=0;i<AdminsDirectory.getInstance().getAdminsDir().size();i++) {
-                if(r.equals("Fire Admin")) {
-                    if(AdminsDirectory.getInstance().getAdminsDir().get(i).getStateID() == fireAdmin.getStateID()) {
+                if(r.equals("Supplier")) {
+                    if(AdminsDirectory.getInstance().getAdminsDir().get(i).getStateID() == supplier.getStateID()) {
                         flag=1;
                         k=i;
                         break;
@@ -181,20 +193,20 @@ public class RegisterMainS extends javax.swing.JFrame {
             }
             if(flag==1) {
                 AdminsDirectory.getInstance().updateAdmin(person, k);
-                fireAdmin = AdminsDirectory.getInstance().getAdminsDir().get(k);
+                supplier = AdminsDirectory.getInstance().getAdminsDir().get(k);
                 LoginDirectory.getInstance().updateUser(login.getStateID(), login);
             }
             else {
                 AdminsDirectory.getInstance().addAdmin(person);
                 LoginDirectory.getInstance().addUser(login);
             }
-            if(r.equals("Fire Admin")) {
-                FireAdminMainFrame fire = new FireAdminMainFrame();
-                fire.show();
+            if(r.equals("Supplier")) {
+                SupplierMainFrame s = new SupplierMainFrame();
+                s.show();
             }
             else {
-                SystemAdminFrame sys = new SystemAdminFrame();
-                sys.show();
+                UtilityAdminMain uam = new UtilityAdminMain();
+                uam.show();
             }
         } catch(Exception e) {
             System.out.println(e);
@@ -208,13 +220,13 @@ public class RegisterMainS extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        if(r.equals("Fire Admin")) {
-            FireAdminMainFrame fire = new FireAdminMainFrame();
-            fire.show();
+        if(r.equals("Supplier")) {
+            SupplierMainFrame s = new SupplierMainFrame();
+            s.show();
         }
         else {
-            SystemAdminFrame sys = new SystemAdminFrame();
-            sys.show();
+            UtilityAdminMain uam = new UtilityAdminMain();
+            uam.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -4,6 +4,11 @@
  */
 package Utilities;
 
+import Fire_Department.AdminsDirectory;
+import UI.Login;
+import User.PersonClass;
+import static aed_project.AED_Project.supplier;
+
 /**
  *
  * @author hp
@@ -15,6 +20,10 @@ public class SupplierMainFrame extends javax.swing.JFrame {
      */
     public SupplierMainFrame() {
         initComponents();
+    }
+    
+    public void getS(PersonClass v) {
+        supplier = v;
     }
 
     /**
@@ -32,6 +41,7 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,7 +49,7 @@ public class SupplierMainFrame extends javax.swing.JFrame {
 
         jButton2.setText("Electricity Connection");
 
-        jButton3.setText("Gas Connection");
+        jButton3.setText("Water Connection");
 
         jButton4.setText("Logout");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +71,13 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton5.setText("Edit Profile");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,7 +88,8 @@ public class SupplierMainFrame extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -88,7 +106,9 @@ public class SupplierMainFrame extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(23, 23, 23)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton4)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
@@ -98,7 +118,19 @@ public class SupplierMainFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        this.hide();
+        Login log = new Login();
+        log.show();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterMainS v = new RegisterMainS();
+        v.getRole("Verifier");
+        AdminsDirectory.getInstance().viewSupplier(supplier,v);
+        v.show();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,6 +172,7 @@ public class SupplierMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

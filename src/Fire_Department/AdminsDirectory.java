@@ -7,6 +7,8 @@ package Fire_Department;
 import Login.LoginDirectory;
 import UI.RegisterFireAdmin;
 import User.PersonClass;
+import Utilities.RegisterMainS;
+import Utilities.RegisterMainV;
 import aed_project.DatabaseConnectionClass;
 import java.util.ArrayList;
 import java.sql.*;
@@ -81,6 +83,38 @@ public class AdminsDirectory {
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
             if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
                 fire.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+    }
+    
+    public void viewVerifier(PersonClass person, RegisterMainV v){
+        v.jTextField1.setText(Integer.toString(person.getStateID()));
+        v.jTextField1.setEnabled(false);
+        v.jTextField2.setText(person.getName());
+        v.jTextField3.setText(person.getEmail());
+        v.jComboBox1.setSelectedItem(person.getGender());
+        v.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        v.jDateChooser1.setDate((person.getDob()));
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
+                v.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+    }
+    
+    public void viewSupplier(PersonClass person, RegisterMainS s){
+        s.jTextField1.setText(Integer.toString(person.getStateID()));
+        s.jTextField1.setEnabled(false);
+        s.jTextField2.setText(person.getName());
+        s.jTextField3.setText(person.getEmail());
+        s.jComboBox1.setSelectedItem(person.getGender());
+        s.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        s.jDateChooser1.setDate((person.getDob()));
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
+                s.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
             }
         }
     }
