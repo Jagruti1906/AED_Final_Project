@@ -1,8 +1,11 @@
+package Utilities;
+
 
 import Utilities.ResidentUtilitiesMain;
 import aed_project.DatabaseConnectionClass;
 import java.util.ArrayList;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +29,7 @@ public class BillsDirectory {
     public ArrayList<BillsClass> getBillsDir() {
         return billsDir;
     }
+        private static int check=0;
     
     public void addBill(BillsClass bill){
         billsDir.add(bill);
@@ -119,33 +123,7 @@ public class BillsDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
-    public void populateBill(String type,ResidentUtilitiesMain rum){
-        String[] columnNames = {"ID", "Service From", "Service Till","Units Consumed","Unit Cost","Total","Status"};
-        int count=0;
-        for(int i=0;i<BillsDirectory.getInstance().getBillsDir().size();i++) {
-            if(BillsDirectory.getInstance().getBillsDir().get(i).getDept().equals("Fire")) {
-                count++;
-            }
-        }
-        check=1;
-        String[][] rows = new String[count][6];
-        int j=0;
-        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
-            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
-                int zip = AlertsDirectory.getInstance().getAlertsDir().get(i).getZip();
-                int id = AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID();
-                rows[j][0] = Integer.toString(id);
-                rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getName();
-                rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getAddress();
-                rows[j][3] = Integer.toString(zip);
-                rows[j][4] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
-                rows[j][5] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
-                j++;
-            }
-        }
-        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        rum.jTable2.setModel(model);
-    }
+
     
     public static BillsDirectory getInstance() {
         if(mInstance == null)
