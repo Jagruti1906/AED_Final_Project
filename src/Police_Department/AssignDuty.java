@@ -32,7 +32,7 @@ public class AssignDuty extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new org.netbeans.modules.form.InvalidComponent();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
@@ -173,7 +173,7 @@ public class AssignDuty extends javax.swing.JFrame {
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     public javax.swing.JComboBox<String> jComboBox1;
-    public com.toedter.calendar.JDateChooser jDateChooser1;
+    private org.netbeans.modules.form.InvalidComponent jDateChooser1;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
