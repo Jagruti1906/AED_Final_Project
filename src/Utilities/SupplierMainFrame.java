@@ -9,7 +9,9 @@ import Resident.ResidentDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.supplier;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -88,6 +90,11 @@ public class SupplierMainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("Edit Profile");
@@ -139,14 +146,14 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         String[] columnNames = {"ID", "Name", "Address","Phone Number"};
         int count=0;
         for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
-            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type)) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type)  && NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Approved")) {
                 count++;
             }
         }
         String[][] rows = new String[count][4];
         int j=0;
         for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
-            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type)) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type) && NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Approved")) {
                 for(int k=0;k<ResidentDirectory.getInstance().getResidentDir().size();k++) {
                     if(ResidentDirectory.getInstance().getResidentDir().get(i).getStateID() == NewConnDirectory.getInstance().getConnDir().get(i).getStateID()) {
                         int pn = ResidentDirectory.getInstance().getResidentDir().get(i).getPhoneNumber();
@@ -197,6 +204,53 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         check=3;
         populateConn("Water");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void populateForm(BillMain bill, String type) {
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        bill.jTextField1.setText(model.getValueAt(index, 1).toString());
+        bill.jTextField1.setEnabled(false);
+        bill.jTextField2.setText(model.getValueAt(index, 0).toString());
+        bill.jTextField2.setEnabled(false);
+        bill.jTextField3.setText(model.getValueAt(index, 2).toString());
+        bill.jTextField3.setEnabled(false);
+        bill.jTextField5.setEnabled(false);
+        if(type.equals("Gas")) {
+            bill.jTextField5.setText(Double.toString(2));
+            bill.getType("Gas");
+        }
+        else if(type.equals("Water")) {
+            bill.jTextField5.setText(Double.toString(0.003));
+            bill.getType("Water");
+        }
+        else {
+            bill.jTextField5.setText(Double.toString(0.3));
+            bill.getType("Electricity");
+        }
+        bill.show();
+    }
+    
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        JComboBox cb = null;
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        int input;
+        this.hide();
+        BillMain bill = new BillMain();
+        if(check!=0) {
+            if(check==1) {
+                populateForm(bill, "Gas");
+            }
+            else if(check == 2) {
+                populateForm(bill, "Electricity");
+            }
+            else{
+                populateForm(bill, "Water");
+            }
+        }
+        bill.show();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
