@@ -4,10 +4,12 @@
  */
 package Utilities;
 
+import Resident.ResidentDirectory;
 import aed_project.DatabaseConnectionClass;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +23,7 @@ public class NewConnDirectory {
         this.connDir = new ArrayList();
     }
 
-    public static ArrayList<NewConnectionClass> getConnDir() {
+    public ArrayList<NewConnectionClass> getConnDir() {
         return connDir;
     }
     

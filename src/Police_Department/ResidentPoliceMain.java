@@ -244,11 +244,10 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
                     rows[j][1] = s;
                     rows[j][2] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getReport();
                     j++;
-
-                    DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-                    jTable1.setModel(model);
                 }
             }
+            DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+            jTable1.setModel(model);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -21,8 +21,9 @@ public class BillsClass {
     private float total;
     private Date startDate;
     private Date endDate;
+    private String status;
 
-    public BillsClass(int billID, int stateID, String name, String address, String type, float units, float consumption, float total, Date startDate, Date endDate) {
+    public BillsClass(int billID, int stateID, String name, String address, String type, float units, float consumption, float total, Date startDate, Date endDate, String status) {
         this.billID = billID;
         this.stateID = stateID;
         this.name = name;
@@ -33,6 +34,16 @@ public class BillsClass {
         this.total = total;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.status= status;
+        
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getBillID() {

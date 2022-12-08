@@ -1,8 +1,10 @@
 
+import Utilities.ResidentUtilitiesMain;
 import aed_project.DatabaseConnectionClass;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,7 +32,7 @@ public class BillsDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO bills" + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO bills" + " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             java.sql.Date start = new java.sql.Date(bill.getStartDate().getTime());
             java.sql.Date end = new java.sql.Date(bill.getEndDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
@@ -44,6 +46,7 @@ public class BillsDirectory {
             pst.setFloat(8, bill.getTotal());
             pst.setDate(9, start);
             pst.setDate(10, end);
+            pst.setString(11,bill.getStatus());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -61,7 +64,7 @@ public class BillsDirectory {
             String str = "Select * from bills";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                BillsClass bill = new BillsClass(rs.getInt("billId"),rs.getInt("stateID"), rs.getString("name"),rs.getString("address"),rs.getString("type"),rs.getFloat("units"),rs.getFloat("comsumption"),rs.getFloat("total"),rs.getDate("startDate"),rs.getDate("endDate"));
+                BillsClass bill = new BillsClass(rs.getInt("billId"),rs.getInt("stateID"), rs.getString("name"),rs.getString("address"),rs.getString("type"),rs.getFloat("units"),rs.getFloat("comsumption"),rs.getFloat("total"),rs.getDate("startDate"),rs.getDate("endDate"),rs.getString("status"));
                 billsDir.add(bill);
             }
         } catch (SQLException ex) {
@@ -96,7 +99,7 @@ public class BillsDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "Update doctor" + " set consumption=?,total=?,startDate=?,endDate=? where billId=?";
+            String query1 = "Update bills" + " set consumption=?,total=?,startDate=?,endDate=?,status=? where billId=?";
             java.sql.Date start = new java.sql.Date(bill.getStartDate().getTime());
             java.sql.Date end = new java.sql.Date(bill.getEndDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
@@ -104,7 +107,8 @@ public class BillsDirectory {
             pst.setFloat(2, bill.getTotal());
             pst.setDate(3, start);
             pst.setDate(4, end);
-            pst.setInt(5, bill.getBillID());
+            pst.setString(5,bill.getStatus());
+            pst.setInt(6, bill.getBillID());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -114,6 +118,33 @@ public class BillsDirectory {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
+    }
+    public void populateBill(String type,ResidentUtilitiesMain rum){
+        String[] columnNames = {"ID", "Service From", "Service Till","Units Consumed","Unit Cost","Total","Status"};
+        int count=0;
+        for(int i=0;i<BillsDirectory.getInstance().getBillsDir().size();i++) {
+            if(BillsDirectory.getInstance().getBillsDir().get(i).getDept().equals("Fire")) {
+                count++;
+            }
+        }
+        check=1;
+        String[][] rows = new String[count][6];
+        int j=0;
+        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
+                int zip = AlertsDirectory.getInstance().getAlertsDir().get(i).getZip();
+                int id = AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getName();
+                rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getAddress();
+                rows[j][3] = Integer.toString(zip);
+                rows[j][4] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
+                rows[j][5] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        rum.jTable2.setModel(model);
     }
     
     public static BillsDirectory getInstance() {

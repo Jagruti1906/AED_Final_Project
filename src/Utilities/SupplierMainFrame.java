@@ -5,6 +5,7 @@
 package Utilities;
 
 import Fire_Department.AdminsDirectory;
+import Resident.ResidentDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.supplier;
@@ -26,6 +27,8 @@ public class SupplierMainFrame extends javax.swing.JFrame {
     public void getS(PersonClass v) {
         supplier = v;
     }
+    
+    private static int check=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,8 +57,18 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Electricity Connection");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Water Connection");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Logout");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +135,35 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        public void populateConn(String type) {
+        String[] columnNames = {"ID", "Name", "Address","Phone Number"};
+        int count=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type)) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][4];
+        int j=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type)) {
+                for(int k=0;k<ResidentDirectory.getInstance().getResidentDir().size();k++) {
+                    if(ResidentDirectory.getInstance().getResidentDir().get(i).getStateID() == NewConnDirectory.getInstance().getConnDir().get(i).getStateID()) {
+                        int pn = ResidentDirectory.getInstance().getResidentDir().get(i).getPhoneNumber();
+                        int id = ResidentDirectory.getInstance().getResidentDir().get(i).getStateID();
+                        rows[j][0] = Integer.toString(id);
+                        rows[j][1] = ResidentDirectory.getInstance().getResidentDir().get(i).getName();
+                        rows[j][2] = ResidentDirectory.getInstance().getResidentDir().get(i).getAddress();
+                        rows[j][3] = Integer.toString(pn);
+                        j++;
+                    }
+                }
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+    }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.hide();
@@ -140,32 +182,21 @@ public class SupplierMainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-//        String[] columnNames = {"ID", "Name", "Address","Zip","Reason","Status"};
-//        int count=0;
-//        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
-//            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
-//                count++;
-//            }
-//        }
-//        check=1;
-//        String[][] rows = new String[count][6];
-//        int j=0;
-//        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
-//            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
-//                int zip = AlertsDirectory.getInstance().getAlertsDir().get(i).getZip();
-//                int id = AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID();
-//                rows[j][0] = Integer.toString(id);
-//                rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getName();
-//                rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getAddress();
-//                rows[j][3] = Integer.toString(zip);
-//                rows[j][4] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
-//                rows[j][5] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
-//                j++;
-//            }
-//        }
-//        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-//        jTable1.setModel(model);
+        check=1;
+        populateConn("Gas");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        check=2;
+        populateConn("Electricity");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        check=3;
+        populateConn("Water");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +240,6 @@ public class SupplierMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

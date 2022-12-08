@@ -10,6 +10,7 @@ import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
 import UI_Medical_Department.PatientMainFrame;
+import Utilities.ResidentUtilitiesMain;
 import static aed_project.AED_Project.rc;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,6 +47,7 @@ public class ResidentPage extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +95,13 @@ public class ResidentPage extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("Utilities");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +118,8 @@ public class ResidentPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton4)
                             .addComponent(jButton3)
-                            .addComponent(jButton6)))
+                            .addComponent(jButton6)
+                            .addComponent(jButton7)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -130,7 +140,9 @@ public class ResidentPage extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addGap(30, 30, 30)
                 .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
@@ -200,6 +212,14 @@ public class ResidentPage extends javax.swing.JFrame {
         res.show();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        ResidentUtilitiesMain rum = new ResidentUtilitiesMain();
+        rum.show();
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +263,7 @@ public class ResidentPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
