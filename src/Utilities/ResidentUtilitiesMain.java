@@ -4,6 +4,9 @@
  */
 package Utilities;
 
+import UI.ResidentPage;
+import static aed_project.AED_Project.rc;
+
 /**
  *
  * @author hp
@@ -59,8 +62,18 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
         jButton3.setText("Water Bill");
 
         jButton4.setText("Connection Request");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Logout");
+        jButton5.setText("Back");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,6 +131,24 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        ResidentPage rp = new ResidentPage();
+        rp.show();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.show();
+        NewConnectionForm ncf = new  NewConnectionForm();
+        ncf.jTextField1.setText(rc.getName());
+        ncf.jTextField2.setText(Integer.toString(rc.getStateID()));
+        
+        ncf.show();
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
