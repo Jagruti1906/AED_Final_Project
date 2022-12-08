@@ -8,6 +8,7 @@ import Fire_Department.AdminsDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.supplier;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -46,6 +47,11 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Gas Connection");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Electricity Connection");
 
@@ -90,9 +96,9 @@ public class SupplierMainFrame extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +137,35 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         AdminsDirectory.getInstance().viewSupplier(supplier,v);
         v.show();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        String[] columnNames = {"ID", "Name", "Address","Zip","Reason","Status"};
+//        int count=0;
+//        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+//            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
+//                count++;
+//            }
+//        }
+//        check=1;
+//        String[][] rows = new String[count][6];
+//        int j=0;
+//        for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
+//            if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {
+//                int zip = AlertsDirectory.getInstance().getAlertsDir().get(i).getZip();
+//                int id = AlertsDirectory.getInstance().getAlertsDir().get(i).getStateID();
+//                rows[j][0] = Integer.toString(id);
+//                rows[j][1] = AlertsDirectory.getInstance().getAlertsDir().get(i).getName();
+//                rows[j][2] = AlertsDirectory.getInstance().getAlertsDir().get(i).getAddress();
+//                rows[j][3] = Integer.toString(zip);
+//                rows[j][4] = AlertsDirectory.getInstance().getAlertsDir().get(i).getDesc();
+//                rows[j][5] = AlertsDirectory.getInstance().getAlertsDir().get(i).getStatus();
+//                j++;
+//            }
+//        }
+//        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+//        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
