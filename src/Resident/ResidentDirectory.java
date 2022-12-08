@@ -73,7 +73,7 @@ public class ResidentDirectory {
         }
     }
     
-    public void viewDoctor(ResidentClass res, RegisterResident resident){
+    public void viewResident(ResidentClass res, RegisterResident resident){
         resident.jTextField1.setText(Integer.toString(res.getStateID()));
         resident.jTextField1.setEnabled(false);
         resident.jTextField2.setText(res.getName());
@@ -92,12 +92,12 @@ public class ResidentDirectory {
     }
     
     
-    public void updateDoctor(ResidentClass res,int i) {
+    public void updateResident(ResidentClass res,int i) {
         residentDir.set(i,res);
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "Update doctor" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,address=?,zip=? where stateID=?";
+            String query1 = "Update resident" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,address=?,zip=? where stateID=?";
             java.sql.Date sqlDate = new java.sql.Date(res.getDob().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(8, res.getStateID());

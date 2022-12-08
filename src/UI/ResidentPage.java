@@ -8,6 +8,7 @@ import Medical_Department.AlertsDirectory;
 import Police_Department.ResidentPoliceMain;
 import Resident.RegisterResident;
 import Resident.ResidentClass;
+import Resident.ResidentDirectory;
 import UI_Medical_Department.PatientMainFrame;
 import static aed_project.AED_Project.rc;
 import javax.swing.table.DefaultTableModel;
@@ -194,6 +195,8 @@ public class ResidentPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterResident res = new RegisterResident();
+        res.getRole("Resident");
+        ResidentDirectory.getInstance().viewResident(rc, res);
         res.show();
     }//GEN-LAST:event_jButton6ActionPerformed
 

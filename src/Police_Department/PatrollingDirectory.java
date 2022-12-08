@@ -34,7 +34,7 @@ public class PatrollingDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO patrol" + " VALUES(?,?,?,?,?,?)";
+            String query1 = "INSERT INTO patrol(StateId, Name, PhoneNumber, Date, Report, Zip)" + " VALUES(?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(pc.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1,pc.getStateID());

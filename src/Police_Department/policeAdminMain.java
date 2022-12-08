@@ -140,9 +140,10 @@ public class policeAdminMain extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton3)
                             .addComponent(jButton5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton6)
-                                .addComponent(jButton4)))
+                                .addGap(33, 33, 33))
+                            .addComponent(jButton4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))))
@@ -158,9 +159,9 @@ public class policeAdminMain extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton4)
                         .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton6)
@@ -212,6 +213,7 @@ public class policeAdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         PoliceOfficerRegister par = new PoliceOfficerRegister();
+        par.getRole("Police Admin");
         par.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 

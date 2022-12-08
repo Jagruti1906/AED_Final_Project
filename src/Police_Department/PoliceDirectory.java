@@ -91,7 +91,6 @@ public class PoliceDirectory {
         polAdmin.jDateChooser.setDate((pc.getDob()));
         polAdmin.jComboBox1.setSelectedItem(pc.getGender());
         polAdmin.jComboBox2.setSelectedItem(pc.getBranch());
-        polAdmin.jComboBox2.setEnabled(false);
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
             if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==pc.getStateID()){

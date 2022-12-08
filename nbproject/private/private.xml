@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/DoctorMainFrame.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/AppointmentDetailsDirectory.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/ResidentPoliceMain.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/PatrollingClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/RegisterDoctor.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/ResidentPage.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/aed_project/AED_Project.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/policeAdminMain.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/PoliceDirectory.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/CrimeReport.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/AssignDuty.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Resident/RegisterResident.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Resident/ResidentDirectory.java</file>
         </group>
     </open-files>
 </project-private>

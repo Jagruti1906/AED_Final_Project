@@ -8,6 +8,7 @@ import Login.LoginClass;
 import Login.LoginDirectory;
 import UI.ResidentPage;
 import UI.SystemAdminFrame;
+import static aed_project.AED_Project.rc;
 
 /**
  *
@@ -218,10 +219,44 @@ public class RegisterResident extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ResidentClass resident = new ResidentClass("Resident", jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jTextField2.getText(),Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField5.getText()),jTextField4.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
-        ResidentDirectory.getInstance().addResident(resident);
-        LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Resident");
-        LoginDirectory.getInstance().addUser(login);
+        this.hide();
+        try{
+            ResidentClass resident = new ResidentClass("Resident", jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jTextField2.getText(),Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField5.getText()),jTextField4.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Resident");
+            int flag=0,k=0;
+            for(int i=0;i<ResidentDirectory.getInstance().getResidentDir().size();i++) {
+                if(r == "Resident") {
+                    if(ResidentDirectory.getInstance().getResidentDir().get(i).getStateID() == resident.getStateID()) {
+                        flag=1;
+                        k=i;
+                        break;
+                    }
+                }
+                else {
+                    flag=0;
+                    break;
+                }
+            }
+            if(flag==1) {
+                ResidentDirectory.getInstance().updateResident(resident, k);
+                rc = ResidentDirectory.getInstance().getResidentDir().get(k);
+                LoginDirectory.getInstance().updateUser(login.getStateID(), login);
+            }
+            else {
+                ResidentDirectory.getInstance().addResident(resident);
+                LoginDirectory.getInstance().addUser(login);
+            }
+            if(r.equals("System Admin")) {
+                SystemAdminFrame sys = new SystemAdminFrame();
+                sys.show();
+            }
+            else {
+                ResidentPage res = new ResidentPage();
+                res.show();
+            }
+        } catch(Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -54,7 +54,7 @@ public class AssignDuty extends javax.swing.JFrame {
 
         jLabel4.setText("Zip Code");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "02120", "02121", "02122", "02123", "02124" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "21200", "21201", "21202", "21203", "21204" }));
 
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

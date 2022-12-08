@@ -231,11 +231,11 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
                     count++;
                 }
             }
+            System.out.println(count);
             String[][] rows = new String[count][3];
             int j=0;
-            System.out.println(PatrollingDirectory.getInstance().getPatrollingDir().size());
+//            System.out.println(PatrollingDirectory.getInstance().getPatrollingDir().size());
             for(int i=0;i<PatrollingDirectory.getInstance().getPatrollingDir().size();i++) {
-                System.out.println("heee");
                 if(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getZip()==rc.getZip()) {
                     System.out.println("heee");
                     rows[j][0] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getName();
