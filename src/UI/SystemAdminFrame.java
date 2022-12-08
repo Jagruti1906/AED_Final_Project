@@ -5,6 +5,7 @@
 package UI;
 
 import Police_Department.PoliceAdminRegister;
+import Resident.RegisterResident;
 
 /**
  *
@@ -31,6 +32,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +57,13 @@ public class SystemAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Register Resident");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,6 +79,10 @@ public class SystemAdminFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addGap(248, 248, 248))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jButton4)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +91,9 @@ public class SystemAdminFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(123, 123, 123)
+                .addGap(70, 70, 70)
+                .addComponent(jButton4)
+                .addGap(31, 31, 31)
                 .addComponent(jButton3)
                 .addContainerGap(195, Short.MAX_VALUE))
         );
@@ -107,6 +122,14 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         Login login = new Login();
         login.show();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterResident res = new RegisterResident();
+        res.getRole("System Admin");
+        res.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,5 +170,6 @@ public class SystemAdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

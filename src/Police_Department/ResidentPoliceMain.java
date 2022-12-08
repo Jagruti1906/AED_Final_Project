@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Police_Department;
+import Medical_Department.AppointmentDetailsDirectory;
 import UI.ResidentPage;
 import static aed_project.AED_Project.rc;
 import java.text.SimpleDateFormat;
@@ -55,6 +56,11 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
         });
 
         jButton3.setText("Patrolling Chart");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +132,14 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         CrimeReport cr = new CrimeReport();
+        cr.jTextField1.setText(rc.getName());
+        cr.jTextField1.setEnabled(false);
+        cr.jTextField2.setText(Integer.toString(rc.getStateID()));
+        cr.jTextField2.setEnabled(false);
+        cr.jTextField3.setText(Integer.toString(rc.getPhoneNumber()));
+        cr.jTextField3.setEnabled(false);
+        cr.jTextField5.setText(Integer.toString(rc.getZip()));
+        cr.jTextField5.setEnabled(false);
         cr.show();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -154,7 +168,12 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"Complaint","Incident date","Incident Address", "Incident Time","Status"};
-        int count= ComplaintDirectory.getInstance().getComp(rc.getStateID());
+        int count=0;
+        for(int i=0;i<ComplaintDirectory.getInstance().getComplaintDir().size();i++) {
+            if(ComplaintDirectory.getInstance().getComplaintDir().get(i).getStatus().equals("Resolved")) {
+                count++;
+            }
+        }
         String[][] rows = new String[count][5];
         int j=0;
         for(int i=0;i<ComplaintDirectory.getInstance().getComplaintDir().size();i++) {
@@ -179,6 +198,58 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
         ResidentPage res = new ResidentPage();
         res.show();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+//        try {
+//            String[] columnNames = {"Name","Phone Number","Date", "Report"};
+//            int count= PatrollingDirectory.getInstance().getPatrollingDir().size();
+//            String[][] rows = new String[count][5];
+//            int j=0;
+//        for(int i=0;i<PatrollingDirectory.getInstance().getPatrollingDir().size();i++) {
+//            rows[j][1] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getName();
+//            int pn = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getPhoneNumber();
+//            rows[j][2] =Integer.toString(pn) ;
+//            int id = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getStateID();
+//            rows[j][0] =Integer.toString(id) ;
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//            String s = formatter.format(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getDate());
+//            rows[j][3] = s;
+//            rows[j][4] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getReport();
+//            j++;
+//            
+//            DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+//            jTable1.setModel(model);
+//        }
+//        } catch(Exception e) {
+//            System.out.println(e);
+//        }
+            String[] columnNames = {"Name", "Date", "Report"};
+            int count=0;
+            for(int i=0;i<PatrollingDirectory.getInstance().getPatrollingDir().size();i++) {
+                if(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getZip()==rc.getZip()) {
+                    count++;
+                }
+            }
+            System.out.println(count);
+            String[][] rows = new String[count][3];
+            int j=0;
+//            System.out.println(PatrollingDirectory.getInstance().getPatrollingDir().size());
+            for(int i=0;i<PatrollingDirectory.getInstance().getPatrollingDir().size();i++) {
+                if(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getZip()==rc.getZip()) {
+                    System.out.println("heee");
+                    rows[j][0] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getName();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    String s = formatter.format(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getDate());
+                    rows[j][1] = s;
+                    rows[j][2] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getReport();
+                    j++;
+
+                    DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+                    jTable1.setModel(model);
+                }
+            }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +293,6 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

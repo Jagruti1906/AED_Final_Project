@@ -4,10 +4,13 @@
  */
 package Police_Department;
 
+import Medical_Department.AppointmentSlotsDirectory;
 import UI.Login;
 import static aed_project.AED_Project.police;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -20,6 +23,10 @@ public class PoliceOfficerMain extends javax.swing.JFrame {
      */
     public PoliceOfficerMain() {
         initComponents();
+    }
+    
+    public void getPol(PoliceClass pol) {
+        police = pol;
     }
 
     /**
@@ -50,6 +57,11 @@ public class PoliceOfficerMain extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("View Profile");
@@ -149,6 +161,29 @@ public class PoliceOfficerMain extends javax.swing.JFrame {
         jTable1.setModel(model); 
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        this.hide();
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        PatrolReport pat = new PatrolReport();
+        for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
+            if(PoliceDirectory.getInstance().getPoliceDir().get(i).getStateID()==police.getStateID()) {
+                pat.jTextField1.setText(Integer.toString(police.getStateID()));
+                pat.jTextField1.setEnabled(false);
+                pat.jTextField2.setText(model.getValueAt(index, 0).toString());
+                pat.jTextField2.setEnabled(false);
+                pat.jTextField3.setEnabled(false);
+                pat.jTextField4.setEnabled(false);
+                pat.jTextField5.setEnabled(false);
+                pat.jTextField3.setText(Integer.toString(police.getPhoneNumber()));
+                pat.jTextField4.setText(model.getValueAt(index, 1).toString());
+                pat.jTextField5.setText(model.getValueAt(index, 2).toString());
+            }
+        }
+        pat.show();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

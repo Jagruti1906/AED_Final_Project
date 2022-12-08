@@ -34,14 +34,14 @@ public class DutyDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO duty_assgined" + " VALUES(?,?,?,?,?)";
+            String query1 = "INSERT INTO duty_assigned" + " VALUES(?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(dc.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1,dc.getId());
-            pst.setInt(2, dc.getStateId());
-            pst.setString(3, dc.getName());
-            pst.setDate(4, sqlDate);
-            pst.setInt(5, dc.getZip());
+            pst.setInt(3, dc.getStateId());
+            pst.setString(2, dc.getName());
+            pst.setDate(5, sqlDate);
+            pst.setInt(4, dc.getZip());
             int rs = pst.executeUpdate();
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
             if(rs>0)
@@ -66,6 +66,7 @@ public class DutyDirectory {
                 dutyDir.add(dc);
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }

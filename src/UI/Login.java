@@ -10,6 +10,7 @@ import Login.LoginDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminDirectory;
 import Police_Department.PoliceDirectory;
+import Police_Department.PoliceOfficerMain;
 import Police_Department.policeAdminMain;
 import Resident.ResidentDirectory;
 import UI_Medical_Department.DoctorMainFrame;
@@ -178,6 +179,19 @@ public class Login extends javax.swing.JFrame {
                         police.show();
                         break;
                     }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Police Officer")) {
+                        this.hide();
+                        int size = PoliceDirectory.getInstance().getPoliceDir().size();
+                        PoliceOfficerMain police = new PoliceOfficerMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == PoliceDirectory.getInstance().getPoliceDir().get(j).getStateID()) {
+                                police.getPol(PoliceDirectory.getInstance().getPoliceDir().get(j));
+                                break;
+                            }
+                        }
+                        police.show();
+                        break;
+                    }
                     else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Fire Admin")) {
                         this.hide();
                         int size = AdminsDirectory.getInstance().getAdminsDir().size();
@@ -190,6 +204,13 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         fire.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("System Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        SystemAdminFrame sys = new SystemAdminFrame();
+                        sys.show();
                         break;
                     }
                 } catch(Exception e) {
