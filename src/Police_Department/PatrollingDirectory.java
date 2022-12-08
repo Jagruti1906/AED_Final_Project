@@ -34,7 +34,7 @@ public class PatrollingDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO patrol" + " VALUES(?,?,?,?,?)";
+            String query1 = "INSERT INTO patrol" + " VALUES(?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(pc.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1,pc.getStateID());
@@ -42,6 +42,7 @@ public class PatrollingDirectory {
             pst.setInt(3, pc.getPhoneNumber());
             pst.setDate(4, sqlDate);
             pst.setString(5, pc.getReport());
+            pst.setInt(6, pc.getZip());
             int rs = pst.executeUpdate();
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
             if(rs>0)
@@ -52,8 +53,6 @@ public class PatrollingDirectory {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
-        
-        
         }
         
         public void getDutyData() {
@@ -63,7 +62,7 @@ public class PatrollingDirectory {
             String str = "Select * from patrol";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                PatrollingClass pc = new PatrollingClass(rs.getString("Name"),rs.getInt("StateId"),rs.getInt("PhoneNumber"),rs.getDate("Date"),rs.getString("Report"));
+                PatrollingClass pc = new PatrollingClass(rs.getString("Name"),rs.getInt("StateId"),rs.getInt("PhoneNumber"),rs.getDate("Date"),rs.getString("Report"), rs.getInt("Zip"));
                 patrollingDir.add(pc);
             }
         } catch (SQLException ex) {

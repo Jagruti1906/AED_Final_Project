@@ -192,6 +192,13 @@ public class Login extends javax.swing.JFrame {
                         fire.show();
                         break;
                     }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("System Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        SystemAdminFrame sys = new SystemAdminFrame();
+                        sys.show();
+                        break;
+                    }
                 } catch(Exception e) {
                     System.out.println(e);
                 }

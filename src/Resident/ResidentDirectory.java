@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Resident;
+import Login.LoginDirectory;
 import UI.RegisterDoctor;
 import aed_project.DatabaseConnectionClass;
 import java.sql.*;
@@ -45,12 +46,14 @@ public class ResidentDirectory {
             pst.setDate(6, sqlDate);
             pst.setString(7, res.getAddress());
             pst.setInt(8, res.getZip());
+            pst.setString(9, res.getRole());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
                 JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
@@ -67,6 +70,52 @@ public class ResidentDirectory {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+    }
+    
+    public void viewDoctor(ResidentClass res, RegisterResident resident){
+        resident.jTextField1.setText(Integer.toString(res.getStateID()));
+        resident.jTextField1.setEnabled(false);
+        resident.jTextField2.setText(res.getName());
+        resident.jTextField5.setText(Integer.toString(res.getPhoneNumber()));
+        resident.jTextField4.setText(res.getEmail());
+        resident.jComboBox1.setSelectedItem(res.getGender());
+        resident.jTextField6.setText(res.getAddress());
+        resident.jTextField7.setText(Integer.toString(res.getZip()));
+        resident.jDateChooser1.setDate((res.getDob()));
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==res.getStateID()){
+                resident.jTextField8.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+    }
+    
+    
+    public void updateDoctor(ResidentClass res,int i) {
+        residentDir.set(i,res);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Update doctor" + " set name=?,gender=?,email=?,phoneNumber=?,date_of_birth=?,address=?,zip=? where stateID=?";
+            java.sql.Date sqlDate = new java.sql.Date(res.getDob().getTime());
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setInt(8, res.getStateID());
+            pst.setString(1, res.getName());
+            pst.setString(2, res.getGender());
+            pst.setString(3, res.getEmail());
+            pst.setInt(4, res.getPhoneNumber());
+            pst.setDate(5, sqlDate);
+            pst.setString(6, res.getAddress());
+            pst.setInt(7,res.getZip());
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
     
