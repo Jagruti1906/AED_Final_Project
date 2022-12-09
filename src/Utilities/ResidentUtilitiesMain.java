@@ -64,7 +64,7 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
             }
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        jTable2.setModel(model);
+        jTable3.setModel(model);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,9 +76,9 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,7 +130,14 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jButton7.setText("jButton7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -141,19 +148,12 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                jTable3MouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-
-        jButton6.setText("Connection Status");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jScrollPane3.setViewportView(jTable3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,36 +162,37 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addContainerGap(251, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -235,6 +236,15 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
         check=3;
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        
+    }                                        
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        // TODO add your handling code here:
+    }                                    
+
     public String getStatus(String type,int billID, Date sd, Date ed, Float u, Float c, Float t) {
         int answer = JOptionPane.showConfirmDialog(null, "Pay Now", "Bill Payment",JOptionPane.YES_NO_OPTION);
         String s = "";
@@ -254,39 +264,9 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
         return s;
     }
     
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        int index = jTable2.getSelectedRow();
-        TableModel model = jTable2.getModel();
-        try{
-            String billId = model.getValueAt(index, 0).toString();
-            String s = model.getValueAt(index, 0).toString();
-            int id = Integer.parseInt(billId);
-            Date sd=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 1).toString());
-            Date ed=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());
-            String units = model.getValueAt(index, 4).toString();
-            Float u = Float.parseFloat(units);
-            String con = model.getValueAt(index, 3).toString();
-            Float c = Float.parseFloat(con);
-            String total = model.getValueAt(index, 5).toString();
-            Float t = Float.parseFloat(total);
-            if(check==1) {
-                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
-            }
-            else if(check==2) {
-                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
-            }
-            else {
-                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
-            }
-
-        } catch(Exception e) {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_jTable2MouseClicked
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
         String[] columnNames = {"Request ID", "Type", "Status"};
         int count=0;
         for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
@@ -306,8 +286,40 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
             }
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        jTable2.setModel(model);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        jTable3.setModel(model);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+                int index = jTable3.getSelectedRow();
+        TableModel model = jTable3.getModel();
+        try{
+            String billId = model.getValueAt(index, 0).toString();
+            String s = model.getValueAt(index, 0).toString();
+            int id = Integer.parseInt(billId);
+            Date sd=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 1).toString());
+            Date ed=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());
+            String units = model.getValueAt(index, 4).toString();
+            Float u = Float.parseFloat(units);        // TODO add your handling code here:
+
+            String con = model.getValueAt(index, 3).toString();
+            Float c = Float.parseFloat(con);
+            String total = model.getValueAt(index, 5).toString();
+            Float t = Float.parseFloat(total);
+            if(check==1) {
+                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+            }
+            else if(check==2) {
+                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+            }
+            else {
+                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+            }
+
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -350,10 +362,10 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    public javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
