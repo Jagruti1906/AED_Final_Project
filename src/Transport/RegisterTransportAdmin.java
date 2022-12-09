@@ -24,6 +24,10 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
     public RegisterTransportAdmin() {
         initComponents();
     }
+    
+    public void getRole(String role) {
+        r=role;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,7 +172,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         this.hide();
         try{
             PersonClass person = new PersonClass("Transport Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
-            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Utility Admin");
+            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Transport Admin");
             int flag=0,k=0;
             for(int i=0;i<AdminsDirectory.getInstance().getAdminsDir().size();i++) {
                 if(r.equals("Transport Admin")) {
@@ -274,6 +278,6 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
     public javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

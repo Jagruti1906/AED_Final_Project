@@ -25,6 +25,8 @@ import Police_Department.PoliceDirectory;
 import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
+import Transport_Department.BookingsDirectory;
+import Transport_Department.TransportDirectory;
 import UI.Login;
 import UI.RegisterDoctor;
 import UI.RegisterHospitalAdmin;
@@ -83,6 +85,8 @@ public class AED_Project {
         DutyDirectory.getInstance().getDutyData();
         NewConnDirectory.getInstance().getConnRequest();
         BillsDirectory.getInstance().getBillsData();
+        TransportDirectory.getInstance().getTransportDetails();
+        BookingsDirectory.getInstance().getBookingsData();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();

@@ -52,7 +52,7 @@ public class BookingsDirectory {
         }
     }
     
-    public void getBillsData() {
+    public void getBookingsData() {
         Statement stmt;
         try{
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();

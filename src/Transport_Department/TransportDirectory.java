@@ -39,10 +39,10 @@ public class TransportDirectory {
             pst.setString(3, trans.getSource());
             pst.setString(4, trans.getDestination());
             pst.setInt(5, trans.getTotalSeats());
-            pst.setFloat(6, trans.getCost());
-            pst.setString(7, trans.getArrivalTime());
-            pst.setString(8, trans.getDepartTime());
-            pst.setInt(9, trans.getAvailableSeats());
+            pst.setFloat(7, trans.getCost());
+            pst.setString(8, trans.getArrivalTime());
+            pst.setString(9, trans.getDepartTime());
+            pst.setInt(6, trans.getAvailableSeats());
             pst.setDate(10,sqlDate);
             pst.setInt(11,trans.getTransportNumber());
             pst.setString(12, trans.getStatus());
@@ -52,11 +52,12 @@ public class TransportDirectory {
                 JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
     
-    public void getBillsData() {
+    public void getTransportDetails() {
         Statement stmt;
         try{
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();

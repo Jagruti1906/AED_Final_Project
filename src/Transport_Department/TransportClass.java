@@ -35,7 +35,7 @@ public class TransportClass {
         this.arrivalTime = arrivalTime;
         this.departTime = departTime;
         this.status = status;
-        this.transportNumber = this.transportNumber;
+        this.transportNumber = transportNumber;
         this.date = date;
     }
 

@@ -13,6 +13,7 @@ import Police_Department.PoliceDirectory;
 import Police_Department.PoliceOfficerMain;
 import Police_Department.policeAdminMain;
 import Resident.ResidentDirectory;
+import Transport.TransportAdminMain;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
 import UI_Medical_Department.PatientMainFrame;
@@ -235,6 +236,20 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         uam.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Transport Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        TransportAdminMain tam = new TransportAdminMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                tam.getTransportAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        tam.show();
                         break;
                     }
                     else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Supplier")) {
