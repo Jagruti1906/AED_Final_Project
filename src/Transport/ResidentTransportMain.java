@@ -5,9 +5,12 @@
 package Transport;
 
 import Transport_Department.BookingsDirectory;
+import Transport_Department.TransportDirectory;
 import UI.ResidentPage;
 import Utilities.NewConnDirectory;
 import static aed_project.AED_Project.rc;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,6 +56,11 @@ public class ResidentTransportMain extends javax.swing.JFrame {
         jLabel3.setText("Date");
 
         jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("View Bookings");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +154,7 @@ public class ResidentTransportMain extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"BookingID", "TransportID", "Seats Booked","Total Cost","Status"};
+        String[] columnNames = {"BookingID", "TransportID","Date","Seats Booked","Total Cost","Status"};
         int count=0;
         for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++) {
             if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID()) {
@@ -170,6 +178,44 @@ public class ResidentTransportMain extends javax.swing.JFrame {
         jTable1.setModel(model);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                String[] columnNames = {"TransportID","Date","Arrival Time","Departure Time,Seats","Cost"};
+        int count=0;
+        
+        try {
+            for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
+            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
+            int checkDate = date1.compareTo(jDateChooser1.getDate());
+            if(TransportDirectory.getInstance().getTransportDir().get(i).getSource().equals(jTextField1.getText()) 
+               && TransportDirectory.getInstance().getTransportDir().get(i).getDestination().equals(jTextField2.getText())
+               && checkDate==0) {
+                count++;
+            }
+            String[][] rows = new String[count][5];
+        int j=0;
+        for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++){
+                int id = BookingsDirectory.getInstance().getBookingDir().get(i).getBookingId();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTransportId());
+                rows[j][2]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getSeatCount());
+                rows[j][3]=Float.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTotalCost());
+                rows[j][4] = BookingsDirectory.getInstance().getBookingDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+        }
+                    
+            
+            
+        } catch(Exception e) {
+            System.out.println();
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
