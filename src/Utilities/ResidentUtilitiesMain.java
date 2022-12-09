@@ -149,6 +149,11 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jButton6.setText("Connection Status");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,6 +284,30 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Request ID", "Type", "Status"};
+        int count=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getStateID()==rc.getStateID()) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][3];
+        int j=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getStateID()==rc.getStateID()) {
+                int id = NewConnDirectory.getInstance().getConnDir().get(i).getConnID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = NewConnDirectory.getInstance().getConnDir().get(i).getType();
+                rows[j][2] = NewConnDirectory.getInstance().getConnDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable2.setModel(model);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
