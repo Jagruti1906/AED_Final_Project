@@ -4,7 +4,13 @@
  */
 package Transport;
 
+import Fire_Department.AdminsDirectory;
+import Transport_Department.TransportDirectory;
 import UI.Login;
+import User.PersonClass;
+import static aed_project.AED_Project.TransportAdmin;
+import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +23,10 @@ public class TransportAdminMain extends javax.swing.JFrame {
      */
     public TransportAdminMain() {
         initComponents();
+    }
+    
+    public void getTransportAdmin(PersonClass transport) {
+        TransportAdmin = transport;
     }
 
     /**
@@ -38,8 +48,18 @@ public class TransportAdminMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Create Transport");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("View Profile");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Logout");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +69,11 @@ public class TransportAdminMain extends javax.swing.JFrame {
         });
 
         jButton4.setText("View");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,31 +93,33 @@ public class TransportAdminMain extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
                         .addGap(10, 10, 10)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,6 +131,49 @@ public class TransportAdminMain extends javax.swing.JFrame {
         Login log = new Login();
         log.show();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        CreateTransportMain ctm = new CreateTransportMain();
+        ctm.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Transport Number", "Transport", "Source", "Destination","Available Seats", "Date", "Departure Time", "Arrival Time", "Cost"};
+        int count=0;
+        String[][] rows = new String[TransportDirectory.getInstance().getTransportDir().size()][9];
+        int j=0;
+        for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
+            int tn = TransportDirectory.getInstance().getTransportDir().get(i).getTransportNumber();
+            int seats = TransportDirectory.getInstance().getTransportDir().get(i).getAvailableSeats();
+            rows[j][0] = Integer.toString(tn);
+            rows[j][1] = TransportDirectory.getInstance().getTransportDir().get(i).getType();
+            rows[j][2] = TransportDirectory.getInstance().getTransportDir().get(i).getSource();
+            rows[j][3] = TransportDirectory.getInstance().getTransportDir().get(i).getDestination();
+            rows[j][4] = Integer.toString(seats);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String s = formatter.format(TransportDirectory.getInstance().getTransportDir().get(i).getDate());
+            rows[j][5] = s;
+            rows[j][6] = TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime();
+            rows[j][7] = TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime();
+            float c = TransportDirectory.getInstance().getTransportDir().get(i).getCost();
+            rows[j][8] = Float.toString(c);
+            j++;
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        RegisterTransportAdmin tam = new RegisterTransportAdmin();
+        tam.getRole("Transport Admin");
+        AdminsDirectory.getInstance().viewTransportAdmin(TransportAdmin,tam);
+        tam.show();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
