@@ -9,6 +9,7 @@ import Police_Department.ResidentPoliceMain;
 import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
+import Transport.ResidentTransportMain;
 import UI_Medical_Department.PatientMainFrame;
 import Utilities.ResidentUtilitiesMain;
 import static aed_project.AED_Project.rc;
@@ -48,6 +49,7 @@ public class ResidentPage extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +104,13 @@ public class ResidentPage extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setText("Transport");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,7 +128,8 @@ public class ResidentPage extends javax.swing.JFrame {
                             .addComponent(jButton4)
                             .addComponent(jButton3)
                             .addComponent(jButton6)
-                            .addComponent(jButton7)))
+                            .addComponent(jButton7)
+                            .addComponent(jButton8)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -142,7 +152,9 @@ public class ResidentPage extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addGap(18, 18, 18)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
@@ -220,6 +232,13 @@ public class ResidentPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        ResidentTransportMain rtm = new ResidentTransportMain();
+        rtm.show();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +283,7 @@ public class ResidentPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
