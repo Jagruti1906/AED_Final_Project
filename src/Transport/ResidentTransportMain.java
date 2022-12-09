@@ -4,7 +4,11 @@
  */
 package Transport;
 
+import Transport_Department.BookingsDirectory;
 import UI.ResidentPage;
+import Utilities.NewConnDirectory;
+import static aed_project.AED_Project.rc;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -51,6 +55,11 @@ public class ResidentTransportMain extends javax.swing.JFrame {
         jButton1.setText("Search");
 
         jButton2.setText("View Bookings");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +143,33 @@ public class ResidentTransportMain extends javax.swing.JFrame {
         rp.show();
                
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"BookingID", "TransportID", "Seats Booked","Total Cost","Status"};
+        int count=0;
+        for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++) {
+            if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID()) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][5];
+        int j=0;
+        for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++) {
+            if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID()) {
+                int id = BookingsDirectory.getInstance().getBookingDir().get(i).getBookingId();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTransportId());
+                rows[j][2]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getSeatCount());
+                rows[j][3]=Float.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTotalCost());
+                rows[j][4] = BookingsDirectory.getInstance().getBookingDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
