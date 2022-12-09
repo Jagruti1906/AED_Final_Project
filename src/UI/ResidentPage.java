@@ -171,9 +171,13 @@ public class ResidentPage extends javax.swing.JFrame {
         this.hide();
         alertsmainform amf = new alertsmainform();
         amf.jTextField1.setText(Integer.toString(rc.getStateID()));
+        amf.jTextField1.setEnabled(false);
         amf.jTextField2.setText(rc.getName());
         amf.jTextField3.setText(rc.getAddress());
         amf.jTextField4.setText(Integer.toString(rc.getZip()));
+        amf.jTextField2.setEnabled(false);
+        amf.jTextField3.setEnabled(false);
+        amf.jTextField4.setEnabled(false);
         amf.show();
     }//GEN-LAST:event_jButton3ActionPerformed
 
