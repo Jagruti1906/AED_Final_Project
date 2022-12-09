@@ -165,7 +165,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"Patient ID", "Patient Name", "Address","Zip","Reason","Status"};
+        String[] columnNames = {"ID", "Name", "Address","Zip","Reason","Status"};
         int count=0;
         for(int i=0;i<AlertsDirectory.getInstance().getAlertsDir().size();i++) {
             if(AlertsDirectory.getInstance().getAlertsDir().get(i).getDept().equals("Fire")) {

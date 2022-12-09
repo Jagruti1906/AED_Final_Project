@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class ComplaintClass {
 
-    public ComplaintClass(String name, int stateID, int phoneNumber, String incidentPlace,int zip, Date incidentDate, String complaintType, String incidentTime, String status) {
+    public ComplaintClass(int caseID,String name, int stateID, int phoneNumber, String incidentPlace,int zip, Date incidentDate, String complaintType, String incidentTime, String status) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
@@ -22,6 +22,8 @@ public class ComplaintClass {
         this.complaintType = complaintType;
         this.incidentTime = incidentTime;
         this.status = status;
+        this.caseID = caseID;
+        
     }
     private String name;
 
@@ -87,6 +89,15 @@ public class ComplaintClass {
     private String complaintType;
     private String incidentTime;
     private String status;
+    private int caseID;
+
+    public int getCaseID() {
+        return caseID;
+    }
+
+    public void setCaseID(int caseID) {
+        this.caseID = caseID;
+    }
     private int zip;
     public String getStatus() {
         return status;

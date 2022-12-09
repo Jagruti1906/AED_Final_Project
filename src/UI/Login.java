@@ -10,11 +10,16 @@ import Login.LoginDirectory;
 import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminDirectory;
 import Police_Department.PoliceDirectory;
+import Police_Department.PoliceOfficerMain;
 import Police_Department.policeAdminMain;
 import Resident.ResidentDirectory;
+import Transport.TransportAdminMain;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
 import UI_Medical_Department.PatientMainFrame;
+import Utilities.SupplierMainFrame;
+import Utilities.UtilityAdminMain;
+import Utilities.VerifierMainForm;
 import java.sql.ResultSet;
 
 import java.sql.Connection;
@@ -178,6 +183,19 @@ public class Login extends javax.swing.JFrame {
                         police.show();
                         break;
                     }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Police Officer")) {
+                        this.hide();
+                        int size = PoliceDirectory.getInstance().getPoliceDir().size();
+                        PoliceOfficerMain police = new PoliceOfficerMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == PoliceDirectory.getInstance().getPoliceDir().get(j).getStateID()) {
+                                police.getPol(PoliceDirectory.getInstance().getPoliceDir().get(j));
+                                break;
+                            }
+                        }
+                        police.show();
+                        break;
+                    }
                     else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Fire Admin")) {
                         this.hide();
                         int size = AdminsDirectory.getInstance().getAdminsDir().size();
@@ -190,6 +208,69 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         fire.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Verifier")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        VerifierMainForm vmf = new VerifierMainForm();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                vmf.getV(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        vmf.show();
+                        break;
+                    } 
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Utility Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        UtilityAdminMain uam = new UtilityAdminMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                uam.getUAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        uam.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Transport Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        TransportAdminMain tam = new TransportAdminMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                tam.getTransportAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        tam.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Supplier")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        SupplierMainFrame smf = new SupplierMainFrame();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                smf.getS(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        smf.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("System Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        SystemAdminFrame sys = new SystemAdminFrame();
+                        sys.show();
                         break;
                     }
                 } catch(Exception e) {

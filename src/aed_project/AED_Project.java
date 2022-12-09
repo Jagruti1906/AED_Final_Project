@@ -17,11 +17,16 @@ import Medical_Department.DoctorDirectory;
 import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import Medical_Department.HospitalDirectory;
+import Police_Department.ComplaintDirectory;
+import Police_Department.DutyDirectory;
+import Police_Department.PatrollingDirectory;
 import Police_Department.PoliceClass;
 import Police_Department.PoliceDirectory;
 import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
+import Transport_Department.BookingsDirectory;
+import Transport_Department.TransportDirectory;
 import UI.Login;
 import UI.RegisterDoctor;
 import UI.RegisterHospitalAdmin;
@@ -31,6 +36,8 @@ import UI_Medical_Department.CreateHospital;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.PatientMainFrame;
 import User.PersonClass;
+import Utilities.BillsDirectory;
+import Utilities.NewConnDirectory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -51,6 +58,10 @@ public class AED_Project {
     public static PoliceClass police;
     public static PoliceClass policeAdmin;
     public static PersonClass fireAdmin;
+    public static PersonClass supplier;
+    public static PersonClass verifier;
+    public static PersonClass UtilityAdmin;
+    public static PersonClass TransportAdmin;
     
     
     public static void main(String[] args) {
@@ -69,6 +80,13 @@ public class AED_Project {
         PoliceDirectory.getInstance().getpoliceData();
         AdminsDirectory.getInstance().getAdminData();
         FireVehicleDirectory.getInstance().getVehicle();
+        ComplaintDirectory.getInstance().getComplaintData();
+        PatrollingDirectory.getInstance().getDutyData();
+        DutyDirectory.getInstance().getDutyData();
+        NewConnDirectory.getInstance().getConnRequest();
+        BillsDirectory.getInstance().getBillsData();
+        TransportDirectory.getInstance().getTransportDetails();
+        BookingsDirectory.getInstance().getBookingsData();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();
