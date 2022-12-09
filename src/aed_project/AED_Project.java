@@ -34,6 +34,8 @@ import UI_Medical_Department.CreateHospital;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.PatientMainFrame;
 import User.PersonClass;
+import Utilities.BillsDirectory;
+import Utilities.NewConnDirectory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -78,6 +80,8 @@ public class AED_Project {
         ComplaintDirectory.getInstance().getComplaintData();
         PatrollingDirectory.getInstance().getDutyData();
         DutyDirectory.getInstance().getDutyData();
+        NewConnDirectory.getInstance().getConnRequest();
+        BillsDirectory.getInstance().getBillsData();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();

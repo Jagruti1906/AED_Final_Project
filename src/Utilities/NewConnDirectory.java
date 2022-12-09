@@ -1,82 +1,73 @@
-package Utilities;
-
-
-import Utilities.ResidentUtilitiesMain;
-import aed_project.DatabaseConnectionClass;
-import java.util.ArrayList;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package Utilities;
+
+import Resident.ResidentDirectory;
+import aed_project.DatabaseConnectionClass;
+import java.util.ArrayList;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jagru
  */
-public class BillsDirectory {
-    private static ArrayList<BillsClass> billsDir;
-    private static BillsDirectory mInstance;
-    
-    private BillsDirectory() {
-        this.billsDir = new ArrayList();
+public class NewConnDirectory {
+    private static ArrayList<NewConnectionClass> connDir;
+    private static NewConnDirectory mInstance;
+
+    private NewConnDirectory() {
+        this.connDir = new ArrayList();
     }
 
-    public ArrayList<BillsClass> getBillsDir() {
-        return billsDir;
+    public ArrayList<NewConnectionClass> getConnDir() {
+        return connDir;
     }
-        private static int check=0;
     
-    public void addBill(BillsClass bill){
-        billsDir.add(bill);
+    public void addConnRequest(NewConnectionClass conn){
+        connDir.add(conn);
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO bills" + " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-            java.sql.Date start = new java.sql.Date(bill.getStartDate().getTime());
-            java.sql.Date end = new java.sql.Date(bill.getEndDate().getTime());
+            String query1 = "INSERT INTO new_connection" + " VALUES(?,?,?,?,?,?,?)";
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-            pst.setInt(1, bill.getBillID());
-            pst.setInt(2, bill.getStateID());
-            pst.setString(3, bill.getName());
-            pst.setString(4, bill.getAddress());
-            pst.setString(5, bill.getType());
-            pst.setFloat(6, bill.getUnits());
-            pst.setFloat(7, bill.getConsumption());
-            pst.setFloat(8, bill.getTotal());
-            pst.setDate(9, start);
-            pst.setDate(10, end);
-            pst.setString(11,bill.getStatus());
+            pst.setInt(1, conn.getConnID());
+            pst.setInt(2, conn.getStateID());
+            pst.setString(3, conn.getName());
+            pst.setString(4, conn.getType());
+            pst.setString(5, conn.getAddressPath());
+            pst.setString(6, conn.getIdPath());
+            pst.setString(7, conn.getStatus());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
                 JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
     
-    public void getBillsData() {
+    public void getConnRequest() {
         Statement stmt;
         try{
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String str = "Select * from bills";
+            String str = "Select * from new_connection";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                BillsClass bill = new BillsClass(rs.getInt("billId"),rs.getInt("stateID"), rs.getString("name"),rs.getString("address"),rs.getString("type"),rs.getFloat("units"),rs.getFloat("consumption"),rs.getFloat("total"),rs.getDate("startDate"),rs.getDate("endDate"),rs.getString("status"));
-                billsDir.add(bill);
+                NewConnectionClass conn = new NewConnectionClass(rs.getInt("connId"),rs.getInt("stateID"), rs.getString("name"),rs.getString("type"),rs.getString("addressPath"),rs.getString("idPath"),rs.getString("status"));
+                connDir.add(conn);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
         }
     }
     
-//    public void viewDoctor(BillsClass bill, RegisterDoctor doctor){
+//    public void viewRequest(BillsClass bill, RegisterDoctor doctor){
 //        doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
 //        doctor.jTextField1.setEnabled(false);
 //        doctor.jTextField2.setText(doc.getName());
@@ -98,21 +89,15 @@ public class BillsDirectory {
 //    }
     
     
-    public void updateBill(BillsClass bill,int i) {
-        billsDir.set(i,bill);
+    public void updateRequest(NewConnectionClass conn,int i) {
+        connDir.set(i,conn);
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "Update bills" + " set consumption=?,total=?,startDate=?,endDate=?,status=? where billId=?";
-            java.sql.Date start = new java.sql.Date(bill.getStartDate().getTime());
-            java.sql.Date end = new java.sql.Date(bill.getEndDate().getTime());
+            String query1 = "Update new_connection" + " set status=? where connId=?";
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-            pst.setFloat(1, bill.getConsumption());
-            pst.setFloat(2, bill.getTotal());
-            pst.setDate(3, start);
-            pst.setDate(4, end);
-            pst.setString(5,bill.getStatus());
-            pst.setInt(6, bill.getBillID());
+            pst.setString(1, conn.getStatus());
+            pst.setFloat(2, conn.getConnID());
             int rs = pst.executeUpdate();
             if(rs>0)
             {
@@ -123,13 +108,11 @@ public class BillsDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
-
     
-    public static BillsDirectory getInstance() {
+    public static NewConnDirectory getInstance() {
         if(mInstance == null)
-            mInstance = new BillsDirectory();
+            mInstance = new NewConnDirectory();
 
         return mInstance;
     }
-    
 }

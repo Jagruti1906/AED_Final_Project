@@ -180,7 +180,7 @@ public class RegsiterUtilityAdmin extends javax.swing.JFrame {
         this.hide();
         try{
             PersonClass person = new PersonClass("Utility Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
-            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Verifier");
+            LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Utility Admin");
             int flag=0,k=0;
             for(int i=0;i<AdminsDirectory.getInstance().getAdminsDir().size();i++) {
                 if(r.equals("Utility Admin")) {

@@ -4,7 +4,11 @@
  */
 package Utilities;
 
+import Fire_Department.AdminsDirectory;
 import UI.Login;
+import User.PersonClass;
+import static aed_project.AED_Project.UtilityAdmin;
+import static aed_project.AED_Project.verifier;
 
 /**
  *
@@ -17,6 +21,10 @@ public class UtilityAdminMain extends javax.swing.JFrame {
      */
     public UtilityAdminMain() {
         initComponents();
+    }
+    
+    public void getUAdmin(PersonClass uam) {
+        UtilityAdmin = uam;
     }
 
     /**
@@ -137,7 +145,11 @@ public class UtilityAdminMain extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+        this.hide();
+        RegsiterUtilityAdmin v = new RegsiterUtilityAdmin();
+        v.getRole("Utility Admin");
+        AdminsDirectory.getInstance().viewUtilityAdmin(UtilityAdmin,v);
+        v.show();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

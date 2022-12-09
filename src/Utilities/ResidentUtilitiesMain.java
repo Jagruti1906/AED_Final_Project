@@ -6,8 +6,14 @@ package Utilities;
 
 import UI.ResidentPage;
 import static aed_project.AED_Project.rc;
+import java.awt.Button;
+import java.awt.Label;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -21,6 +27,8 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
     public ResidentUtilitiesMain() {
         initComponents();
     }
+    
+    private static int check=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +45,7 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
                 count++;
             }
         }
-        String[][] rows = new String[count][6];
+        String[][] rows = new String[count][7];
         int j=0;
         for(int i=0;i<BillsDirectory.getInstance().getBillsDir().size();i++) {
             if(BillsDirectory.getInstance().getBillsDir().get(i).getType().equals(type)) {
@@ -198,10 +206,12 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        this.show();
+        this.hide();
         NewConnectionForm ncf = new  NewConnectionForm();
         ncf.jTextField1.setText(rc.getName());
+        ncf.jTextField1.setEnabled(false);
         ncf.jTextField2.setText(Integer.toString(rc.getStateID()));
+        ncf.jTextField2.setEnabled(false);
         ncf.show();
         
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -209,27 +219,104 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         populateBill("Gas");
+        check=1;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         populateBill("Electricity");
+        check=2;
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         populateBill("Water");
+        check=3;
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        
+    }                                        
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        // TODO add your handling code here:
+    }                                    
+
+    public String getStatus(String type,int billID, Date sd, Date ed, Float u, Float c, Float t) {
+        int answer = JOptionPane.showConfirmDialog(null, "Pay Now", "Bill Payment",JOptionPane.YES_NO_OPTION);
+        String s = "";
+        if(answer == 0) {
+            BillsClass bill = new BillsClass(billID,rc.getStateID(),rc.getName(),rc.getAddress(),type,u,c,t,sd,ed,"Bill Paid");
+            for(int j=0;j<BillsDirectory.getInstance().getBillsDir().size();j++) {
+                if(BillsDirectory.getInstance().getBillsDir().get(j).getBillID() == billID) {
+                    BillsDirectory.getInstance().updateBill(bill, j);
+                    s = BillsDirectory.getInstance().getBillsDir().get(j).getStatus();
+                }
+            }    
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Bill Not Paid");
+            s = "Pending";
+        }
+        return s;
+    }
+    
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        int index = jTable2.getSelectedRow();
+        TableModel model = jTable2.getModel();
+        try{
+            String billId = model.getValueAt(index, 0).toString();
+            String s = model.getValueAt(index, 0).toString();
+            int id = Integer.parseInt(billId);
+            Date sd=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 1).toString());
+            Date ed=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 2).toString());
+            String units = model.getValueAt(index, 4).toString();
+            Float u = Float.parseFloat(units);
+            String con = model.getValueAt(index, 3).toString();
+            Float c = Float.parseFloat(con);
+            String total = model.getValueAt(index, 5).toString();
+            Float t = Float.parseFloat(total);
+            if(check==1) {
+                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+            }
+            else if(check==2) {
+                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+            }
+            else {
+                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+            }
+
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        
+        String[] columnNames = {"Request ID", "Type", "Status"};
+        int count=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getStateID()==rc.getStateID()) {
+                count++;
+            }
+        }
+        String[][] rows = new String[count][3];
+        int j=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getStateID()==rc.getStateID()) {
+                int id = NewConnDirectory.getInstance().getConnDir().get(i).getConnID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = NewConnDirectory.getInstance().getConnDir().get(i).getType();
+                rows[j][2] = NewConnDirectory.getInstance().getConnDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable2.setModel(model);
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments

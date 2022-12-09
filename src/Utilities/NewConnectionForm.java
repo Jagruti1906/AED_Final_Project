@@ -4,6 +4,10 @@
  */
 package Utilities;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
@@ -16,6 +20,9 @@ public class NewConnectionForm extends javax.swing.JFrame {
     public NewConnectionForm() {
         initComponents();
     }
+    
+    private String filepath1="";
+    private String filepath2="";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +60,7 @@ public class NewConnectionForm extends javax.swing.JFrame {
 
         jLabel5.setText("ID proof");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gas ", "Electricity", "Water" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gas", "Electricity", "Water" }));
 
         jButton1.setText("Upload");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -63,8 +70,18 @@ public class NewConnectionForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Upload");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Apply");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +106,14 @@ public class NewConnectionForm extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
+                                .addGap(64, 64, 64)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton2)
                                     .addComponent(jButton1)))))
@@ -105,7 +122,7 @@ public class NewConnectionForm extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(45, 45, 45)
                         .addComponent(jButton4)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +151,7 @@ public class NewConnectionForm extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
@@ -146,6 +163,18 @@ public class NewConnectionForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int selected = fileChooser.showOpenDialog(this);
+        try{
+            if(selected == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                filepath1 = file.getAbsolutePath();
+                jTextField3.setText(filepath1);
+            } 
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "File Not Uploaded");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -154,6 +183,28 @@ public class NewConnectionForm extends javax.swing.JFrame {
         ResidentUtilitiesMain rum = new ResidentUtilitiesMain();
         rum.show();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        NewConnectionClass nc = new NewConnectionClass(NewConnDirectory.getInstance().getConnDir().size()+1, Integer.parseInt(jTextField2.getText()), jTextField1.getText(), jComboBox1.getSelectedItem().toString(), jTextField3.getText(), jTextField4.getText(), "Pending");
+        NewConnDirectory.getInstance().addConnRequest(nc);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int selected = fileChooser.showOpenDialog(this);
+        try{
+            if(selected == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                filepath2 = file.getAbsolutePath();
+                jTextField4.setText(filepath2);
+            } 
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "File Not Uploaded");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

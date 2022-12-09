@@ -8,6 +8,15 @@ import Fire_Department.AdminsDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.verifier;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -44,6 +53,11 @@ public class VerifierMainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("View Requests");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Logout");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +77,11 @@ public class VerifierMainForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setText("Edit Profile");
@@ -119,6 +138,156 @@ public class VerifierMainForm extends javax.swing.JFrame {
         AdminsDirectory.getInstance().viewVerifier(verifier,v);
         v.show();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Request ID", "Name", "Connection Type","Address Proof","ID Proof","Status"};
+        String[][] rows = new String[NewConnDirectory.getInstance().getConnDir().size()][6];
+        int j=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Pending")) {
+                int id = NewConnDirectory.getInstance().getConnDir().get(i).getConnID();
+                rows[j][0] = Integer.toString(id);
+                rows[j][1] = NewConnDirectory.getInstance().getConnDir().get(i).getName();
+                rows[j][2] = NewConnDirectory.getInstance().getConnDir().get(i).getType();
+                rows[j][3] = NewConnDirectory.getInstance().getConnDir().get(i).getAddressPath();
+                rows[j][4] = NewConnDirectory.getInstance().getConnDir().get(i).getIdPath();
+                rows[j][5] = NewConnDirectory.getInstance().getConnDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        JButton address = new JButton("View Address Proof");
+        JButton id = new JButton("View ID Proof");
+        JButton done = new JButton("Done");
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String fp1 = model.getValueAt(index, 3).toString();
+        String fp2 = model.getValueAt(index, 4).toString();
+        String status[] = {"Approved","Declined"};
+        JComboBox cb = new JComboBox(status);
+        
+        address.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try{
+                    File pdf1 = new File(fp1);
+                    if(pdf1.exists()) {
+                        if(Desktop.isDesktopSupported()) {
+                            Desktop.getDesktop().open(pdf1);
+                        } 
+                        else {
+                            JOptionPane.showMessageDialog(null, "Desktop is not supported");
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "File does not exists");
+                    }
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+            }
+        });
+        
+        id.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try{
+                    File pdf2 = new File(fp2);
+                    if(pdf2.exists()) {
+                        if(Desktop.isDesktopSupported()) {
+                            Desktop.getDesktop().open(pdf2);
+                        } 
+                        else {
+                            JOptionPane.showMessageDialog(null, "Desktop is not supported");
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "File does not exists");
+                    }
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+            }
+        });
+        
+        done.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int input;
+                input = JOptionPane.showConfirmDialog(null, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+                try{
+                    String name = model.getValueAt(index, 1).toString();
+                    String s = model.getValueAt(index, 0).toString();
+                    int id = Integer.parseInt(s);
+                    String connection = model.getValueAt(index, 2).toString();
+                    String ap = model.getValueAt(index, 3).toString();
+                    String idp = model.getValueAt(index, 4).toString();
+                    int stateID = 0;
+                    for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) { 
+                        if(id == NewConnDirectory.getInstance().getConnDir().get(i).getConnID()) {
+                            stateID = NewConnDirectory.getInstance().getConnDir().get(i).getStateID();
+                        }
+                    }
+
+                    NewConnectionClass nc = new NewConnectionClass(id, stateID, name,connection,ap,idp,(String)cb.getSelectedItem());
+                    for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+                        if(NewConnDirectory.getInstance().getConnDir().get(i).getConnID()== id) {
+                            NewConnDirectory.getInstance().updateRequest(nc, i);
+                            break;
+                        }
+                    }
+                    model.setValueAt((String)cb.getSelectedItem(), index, 5);
+                } catch(Exception ex) {
+                    System.out.println(ex);
+                }
+            }
+        });
+        
+        Object[] options = {address, id, done};
+
+        JOptionPane.showOptionDialog(null, "View Documents", "View Documents",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, options, options[0]);
+//        
+//        
+//
+//        int input;
+//        input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+//        try{
+//            String name = model.getValueAt(index, 1).toString();
+//            String s = model.getValueAt(index, 0).toString();
+//            int id = Integer.parseInt(s);
+//            String connection = model.getValueAt(index, 2).toString();
+//            String ap = model.getValueAt(index, 3).toString();
+//            String idp = model.getValueAt(index, 4).toString();
+//            int stateID = 0;
+//            for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) { 
+//                if(id == NewConnDirectory.getInstance().getConnDir().get(i).getConnID()) {
+//                    stateID = NewConnDirectory.getInstance().getConnDir().get(i).getStateID();
+//                }
+//            }
+//            
+//            NewConnectionClass nc = new NewConnectionClass(id, stateID, name,connection,ap,idp,(String)cb.getSelectedItem());
+//            for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+//                if(NewConnDirectory.getInstance().getConnDir().get(i).getConnID()== id) {
+//                    NewConnDirectory.getInstance().updateRequest(nc, i);
+//                    break;
+//                }
+//            }
+//            model.setValueAt((String)cb.getSelectedItem(), index, 5);
+//        } catch(Exception e) {
+//            System.out.println(e);
+//        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
