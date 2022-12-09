@@ -124,6 +124,16 @@ public class PoliceDirectory {
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }
+            public int getComp(String r){
+            int count =0;
+            for(int i=0;i<policeDir.size();i++) {
+                if(policeDir.get(i).getRole().equals(r)) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        
         
     public static PoliceDirectory getInstance() {
         if(mInstance == null)

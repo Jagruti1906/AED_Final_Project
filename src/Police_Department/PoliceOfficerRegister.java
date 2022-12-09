@@ -6,6 +6,7 @@ package Police_Department;
 
 import Login.LoginClass;
 import Login.LoginDirectory;
+import static aed_project.AED_Project.police;
 import static aed_project.AED_Project.policeAdmin;
 
 /**
@@ -17,8 +18,14 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
     /**
      * Creates new form PoliceAdminRegister
      */
+    private static String r="";
+    
     public PoliceOfficerRegister() {
         initComponents();
+    }
+    
+    public void getRole(String role) {
+        r=role;
     }
 
     /**
@@ -48,6 +55,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +89,13 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
         jLabel2.setText("Branch");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Huntington", "Tremont", "Fenway" }));
+
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +137,9 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
                                         .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1)
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,7 +180,9 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(29, 29, 29))
         );
 
@@ -178,7 +197,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
         login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Officer");
         int flag=0,k=0;
         for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
-            if(PoliceDirectory.getInstance().getPoliceDir().get(i).getStateID() == policeAdmin.getStateID()) {
+            if(PoliceDirectory.getInstance().getPoliceDir().get(i).getStateID() == police.getStateID()) {
                 flag=1;
                 k=i;
                 break;
@@ -193,6 +212,19 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             LoginDirectory.getInstance().addUser(login);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        if(r.equals("Police Admin")) {
+            policeAdminMain policeAdmin = new policeAdminMain();
+            policeAdmin.show();
+        }
+        else {
+            PoliceOfficerMain pol = new PoliceOfficerMain();
+            pol.show();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,6 +264,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     public javax.swing.JComboBox<String> jComboBox1;
     public javax.swing.JComboBox<String> jComboBox2;
     public com.toedter.calendar.JDateChooser jDateChooser;
