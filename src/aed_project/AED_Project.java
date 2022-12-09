@@ -59,6 +59,7 @@ public class AED_Project {
     public static PersonClass supplier;
     public static PersonClass verifier;
     public static PersonClass UtilityAdmin;
+    public static PersonClass TransportAdmin;
     
     
     public static void main(String[] args) {
