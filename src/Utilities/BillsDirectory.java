@@ -68,7 +68,7 @@ public class BillsDirectory {
             String str = "Select * from bills";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                BillsClass bill = new BillsClass(rs.getInt("billId"),rs.getInt("stateID"), rs.getString("name"),rs.getString("address"),rs.getString("type"),rs.getFloat("units"),rs.getFloat("comsumption"),rs.getFloat("total"),rs.getDate("startDate"),rs.getDate("endDate"),rs.getString("status"));
+                BillsClass bill = new BillsClass(rs.getInt("billId"),rs.getInt("stateID"), rs.getString("name"),rs.getString("address"),rs.getString("type"),rs.getFloat("units"),rs.getFloat("consumption"),rs.getFloat("total"),rs.getDate("startDate"),rs.getDate("endDate"),rs.getString("status"));
                 billsDir.add(bill);
             }
         } catch (SQLException ex) {

@@ -146,7 +146,7 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         String[] columnNames = {"ID", "Name", "Address","Phone Number"};
         int count=0;
         for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
-            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type)  && NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Approved")) {
+            if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type) && NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Approved")) {
                 count++;
             }
         }
@@ -155,12 +155,12 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
             if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type) && NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Approved")) {
                 for(int k=0;k<ResidentDirectory.getInstance().getResidentDir().size();k++) {
-                    if(ResidentDirectory.getInstance().getResidentDir().get(i).getStateID() == NewConnDirectory.getInstance().getConnDir().get(i).getStateID()) {
-                        int pn = ResidentDirectory.getInstance().getResidentDir().get(i).getPhoneNumber();
-                        int id = ResidentDirectory.getInstance().getResidentDir().get(i).getStateID();
+                    if(ResidentDirectory.getInstance().getResidentDir().get(k).getStateID() == NewConnDirectory.getInstance().getConnDir().get(i).getStateID()) {
+                        int pn = ResidentDirectory.getInstance().getResidentDir().get(k).getPhoneNumber();
+                        int id = ResidentDirectory.getInstance().getResidentDir().get(k).getStateID();
                         rows[j][0] = Integer.toString(id);
-                        rows[j][1] = ResidentDirectory.getInstance().getResidentDir().get(i).getName();
-                        rows[j][2] = ResidentDirectory.getInstance().getResidentDir().get(i).getAddress();
+                        rows[j][1] = ResidentDirectory.getInstance().getResidentDir().get(k).getName();
+                        rows[j][2] = ResidentDirectory.getInstance().getResidentDir().get(k).getAddress();
                         rows[j][3] = Integer.toString(pn);
                         j++;
                     }
@@ -182,7 +182,7 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterMainS v = new RegisterMainS();
-        v.getRole("Verifier");
+        v.getRole("Supplier");
         AdminsDirectory.getInstance().viewSupplier(supplier,v);
         v.show();
     }//GEN-LAST:event_jButton5ActionPerformed

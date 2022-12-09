@@ -83,6 +83,12 @@ public class BillMain extends javax.swing.JFrame {
             }
         });
 
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -200,6 +206,12 @@ public class BillMain extends javax.swing.JFrame {
         SupplierMainFrame s = new SupplierMainFrame();
         s.show();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+        Float f = Float.parseFloat(jTextField4.getText()) * Float.parseFloat(jTextField5.getText());
+        jTextField6.setText(Float.toString(f));
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments

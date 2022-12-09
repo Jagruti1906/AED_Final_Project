@@ -4,11 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/NewConnDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Login/LoginDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/RegisterMainV.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/VerifierMainForm.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/NewConnectionClass.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/BillsDirectory.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/aed_project/AED_Project.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/BillsClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/Login.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/RegisterMainS.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/NewConnectionForm.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Utilities/SupplierMainFrame.java</file>
         </group>
     </open-files>

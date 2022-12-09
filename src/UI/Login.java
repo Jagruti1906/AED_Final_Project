@@ -17,6 +17,7 @@ import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
 import UI_Medical_Department.PatientMainFrame;
 import Utilities.SupplierMainFrame;
+import Utilities.UtilityAdminMain;
 import Utilities.VerifierMainForm;
 import java.sql.ResultSet;
 
@@ -220,6 +221,20 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                         vmf.show();
+                        break;
+                    } 
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Utility Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        UtilityAdminMain uam = new UtilityAdminMain();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                uam.getUAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        uam.show();
                         break;
                     }
                     else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("Supplier")) {

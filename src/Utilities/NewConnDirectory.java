@@ -47,6 +47,7 @@ public class NewConnDirectory {
                 JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Cannot be Inserted");
         }
     }

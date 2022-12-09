@@ -8,6 +8,10 @@ import Fire_Department.AdminsDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.verifier;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -68,6 +72,11 @@ public class VerifierMainForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setText("Edit Profile");
@@ -127,7 +136,58 @@ public class VerifierMainForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String[] columnNames = {"Request ID", "Name", "Connection Type","Address Proof","ID Proof","Status"};
+        String[][] rows = new String[NewConnDirectory.getInstance().getConnDir().size()][6];
+        int j=0;
+        for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+            int id = NewConnDirectory.getInstance().getConnDir().get(i).getConnID();
+            rows[j][0] = Integer.toString(id);
+            rows[j][1] = NewConnDirectory.getInstance().getConnDir().get(i).getName();
+            rows[j][2] = NewConnDirectory.getInstance().getConnDir().get(i).getType();
+            rows[j][3] = NewConnDirectory.getInstance().getConnDir().get(i).getAddressPath();
+            rows[j][4] = NewConnDirectory.getInstance().getConnDir().get(i).getIdPath();
+            rows[j][5] = NewConnDirectory.getInstance().getConnDir().get(i).getStatus();
+            j++;
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String status[] = {"Approved","Declined"};
+        JComboBox cb = new JComboBox(status);
+
+        int input;
+        input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+        try{
+            String name = model.getValueAt(index, 1).toString();
+            String s = model.getValueAt(index, 0).toString();
+            int id = Integer.parseInt(s);
+            String connection = model.getValueAt(index, 2).toString();
+            String ap = model.getValueAt(index, 3).toString();
+            String idp = model.getValueAt(index, 4).toString();
+            int stateID = 0;
+            for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) { 
+                if(id == NewConnDirectory.getInstance().getConnDir().get(i).getConnID()) {
+                    stateID = NewConnDirectory.getInstance().getConnDir().get(i).getStateID();
+                }
+            }
+            
+            NewConnectionClass nc = new NewConnectionClass(id, stateID, name,connection,ap,idp,(String)cb.getSelectedItem());
+            for(int i=0;i<NewConnDirectory.getInstance().getConnDir().size();i++) {
+                if(NewConnDirectory.getInstance().getConnDir().get(i).getConnID()== id) {
+                    NewConnDirectory.getInstance().updateRequest(nc, i);
+                    break;
+                }
+            }
+            model.setValueAt((String)cb.getSelectedItem(), index, 5);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
