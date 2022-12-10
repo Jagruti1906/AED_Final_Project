@@ -310,7 +310,7 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
                 model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
             }
             else if(check==2) {
-                model.setValueAt(getStatus("Electriciy", id, sd, ed, u, c, t), index, 6);
+                model.setValueAt(getStatus("Electricity", id, sd, ed, u, c, t), index, 6);
             }
             else {
                 model.setValueAt(getStatus("Water", id, sd, ed, u, c, t), index, 6);

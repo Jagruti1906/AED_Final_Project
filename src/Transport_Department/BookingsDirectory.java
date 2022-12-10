@@ -85,6 +85,7 @@ public class BookingsDirectory {
         }
     }
 
+
     
     public static BookingsDirectory getInstance() {
         if(mInstance == null)

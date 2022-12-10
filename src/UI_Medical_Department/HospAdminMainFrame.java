@@ -307,6 +307,8 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterDoctor doc = new RegisterDoctor();
+        doc.jTextField10.setText(hospAdmin.getHospitalName());
+        doc.jTextField10.setEnabled(false);
         doc.getRole("Hospital Admin");
         doc.show();
     }//GEN-LAST:event_addDocActionPerformed
@@ -315,6 +317,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterHospitalAdmin hosp = new RegisterHospitalAdmin();
+        hosp.getRole("Hospital Admin");
         HospitalAdminDirectory.getInstance().viewHospAdminData(hospAdmin,hosp);
         hosp.show();
     }//GEN-LAST:event_viewProfileActionPerformed

@@ -8,6 +8,7 @@ import Login.LoginClass;
 import Login.LoginDirectory;
 import UI.ResidentPage;
 import UI.SystemAdminFrame;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.rc;
 
 /**
@@ -93,6 +94,11 @@ public class RegisterResident extends javax.swing.JFrame {
         jTextField6.setText("jTextField6");
 
         jTextField7.setText("jTextField7");
+        jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField7MouseClicked(evt);
+            }
+        });
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -271,6 +277,11 @@ public class RegisterResident extends javax.swing.JFrame {
             res.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
+        // TODO add your handling code here:
+        AED_Project.zipValidation(jTextField7.getText());
+    }//GEN-LAST:event_jTextField7MouseClicked
 
     /**
      * @param args the command line arguments

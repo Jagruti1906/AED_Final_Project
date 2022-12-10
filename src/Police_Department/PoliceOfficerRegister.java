@@ -191,25 +191,34 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        PoliceClass pc;
-        LoginClass login;
-        pc = new PoliceClass("Police Officer",jComboBox2.getSelectedItem().toString(),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
-        login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Officer");
-        int flag=0,k=0;
-        for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
-            if(PoliceDirectory.getInstance().getPoliceDir().get(i).getStateID() == police.getStateID()) {
-                flag=1;
-                k=i;
-                break;
+        try{
+            PoliceClass pc = new PoliceClass("Police Officer",jComboBox2.getSelectedItem().toString(),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Officer");
+            int flag=0,k=0;
+            for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
+                if(r.equals("Police Officer")) {
+                    if(PoliceDirectory.getInstance().getPoliceDir().get(i).getRole().equals("Police Admin")) {
+                        flag=1;
+                        k=i;
+                        break;
+                    }
+                }
+                else {
+                    flag=0;
+                    break;
+                }
             }
-        }
-        if(flag==1) {
-            PoliceDirectory.getInstance().updatePolice(pc,k);
+            if(flag==1) {
+                PoliceDirectory.getInstance().updatePolice(pc,k);
+            police = PoliceDirectory.getInstance().getPoliceDir().get(k);
             LoginDirectory.getInstance().updateUser(login.getStateID(), login);
-        }
-        else {
-            PoliceDirectory.getInstance().addPolice(pc);
+            }
+            else {
+                PoliceDirectory.getInstance().addPolice(pc);
             LoginDirectory.getInstance().addUser(login);
+            }
+        } catch(Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
