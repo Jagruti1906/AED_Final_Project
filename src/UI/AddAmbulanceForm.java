@@ -8,6 +8,7 @@ import Medical_Department.AmbulanceClass;
 import Medical_Department.AmbulanceDirectory;
 import UI_Medical_Department.HospAdminMainFrame;
 import static aed_project.AED_Project.hospAdmin;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,6 +48,11 @@ public class AddAmbulanceForm extends javax.swing.JFrame {
         jTextField1.setText("Type");
 
         jTextField2.setText("Ambulance Number");
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,6 +89,15 @@ public class AddAmbulanceForm extends javax.swing.JFrame {
         HospAdminMainFrame hosp = new HospAdminMainFrame();
         hosp.show();
     }//GEN-LAST:event_addAmbulanceActionPerformed
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        try {
+            AmbulanceDirectory.getInstance().uniqueNumber(Integer.parseInt(jTextField2.getText()));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter Ambulance Number");
+        }
+    }//GEN-LAST:event_jTextField2MouseClicked
 
     /**
      * @param args the command line arguments

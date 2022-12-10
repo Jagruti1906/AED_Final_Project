@@ -8,6 +8,7 @@ import Fire_Department.FireAdminMainFrame;
 import Fire_Department.FireVehicleClass;
 import Fire_Department.FireVehicleDirectory;
 import UI_Medical_Department.HospAdminMainFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,6 +48,11 @@ public class AddFireVehicle extends javax.swing.JFrame {
         jTextField3.setText("Type");
 
         jTextField4.setText("Fire Vehicle Number");
+        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,6 +89,15 @@ public class AddFireVehicle extends javax.swing.JFrame {
         FireAdminMainFrame hosp = new FireAdminMainFrame();
         hosp.show();
     }//GEN-LAST:event_addAmbulanceActionPerformed
+
+    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
+        // TODO add your handling code here:
+        try {
+            FireVehicleDirectory.getInstance().uniqueNumber(Integer.parseInt(jTextField4.getText()));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter Vehicle Number");
+        }
+    }//GEN-LAST:event_jTextField4MouseClicked
 
     /**
      * @param args the command line arguments
