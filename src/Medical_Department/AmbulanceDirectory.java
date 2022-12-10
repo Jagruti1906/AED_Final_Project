@@ -64,6 +64,14 @@ public class AmbulanceDirectory {
         }
     }
     
+    public void uniqueNumber(int num) {
+        for(int i=0;i<ambulanceDir.size();i++) {
+            if(ambulanceDir.get(i).getAmbulanceNumber()==num) {
+                JOptionPane.showMessageDialog(null, "Ambulance Number Already Exists.");
+            } 
+        }
+    }
+    
     public void updateAmbulance(AmbulanceClass amb,int i) {
         ambulanceDir.set(i,amb);
         Statement stmt;
