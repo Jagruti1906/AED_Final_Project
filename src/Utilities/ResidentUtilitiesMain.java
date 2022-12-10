@@ -130,7 +130,7 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("jButton7");
+        jButton7.setText("Connection Status");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -310,10 +310,10 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
                 model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
             }
             else if(check==2) {
-                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+                model.setValueAt(getStatus("Electriciy", id, sd, ed, u, c, t), index, 6);
             }
             else {
-                model.setValueAt(getStatus("Gas", id, sd, ed, u, c, t), index, 6);
+                model.setValueAt(getStatus("Water", id, sd, ed, u, c, t), index, 6);
             }
 
         } catch(Exception e) {

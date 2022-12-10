@@ -11,7 +11,9 @@ import Utilities.NewConnDirectory;
 import static aed_project.AED_Project.rc;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -25,6 +27,8 @@ public class ResidentTransportMain extends javax.swing.JFrame {
     public ResidentTransportMain() {
         initComponents();
     }
+    
+    private static int check=0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +91,11 @@ public class ResidentTransportMain extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,24 +163,36 @@ public class ResidentTransportMain extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"BookingID", "TransportID","Date","Seats Booked","Total Cost","Status"};
+        String[] columnNames = {"BookingID","Source","Destination","Date","Departure Time", "Arrival Time","Seats Booked","Total Cost","Status"};
         int count=0;
+        check=1;
         for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++) {
-            if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID()) {
+            if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID() && BookingsDirectory.getInstance().getBookingDir().get(i).getStatus().equals("Booked")) {
                 count++;
             }
         }
-        String[][] rows = new String[count][5];
+        String[][] rows = new String[count][9];
         int j=0;
         for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++) {
-            if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID()) {
-                int id = BookingsDirectory.getInstance().getBookingDir().get(i).getBookingId();
-                rows[j][0] = Integer.toString(id);
-                rows[j][1]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTransportId());
-                rows[j][2]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getSeatCount());
-                rows[j][3]=Float.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTotalCost());
-                rows[j][4] = BookingsDirectory.getInstance().getBookingDir().get(i).getStatus();
-                j++;
+            for(int k=0;k<TransportDirectory.getInstance().getTransportDir().size();k++) {
+                if(BookingsDirectory.getInstance().getBookingDir().get(i).getStateId()==rc.getStateID() &&
+                        BookingsDirectory.getInstance().getBookingDir().get(i).getTransportId()==TransportDirectory.getInstance().getTransportDir().get(j).getTransportId()
+                        && BookingsDirectory.getInstance().getBookingDir().get(i).getStatus().equals("Booked")) {
+                    
+                    int id = BookingsDirectory.getInstance().getBookingDir().get(i).getBookingId();
+                    rows[j][0] = Integer.toString(id);
+                    rows[j][1] = TransportDirectory.getInstance().getTransportDir().get(j).getSource();
+                    rows[j][2] = TransportDirectory.getInstance().getTransportDir().get(j).getDestination();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    String s = formatter.format(TransportDirectory.getInstance().getTransportDir().get(j).getDate());
+                    rows[j][3] = s;
+                    rows[j][4] = TransportDirectory.getInstance().getTransportDir().get(j).getDepartTime();
+                    rows[j][5] = TransportDirectory.getInstance().getTransportDir().get(j).getArrivalTime();
+                    rows[j][6]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getSeatCount());
+                    rows[j][7]=Float.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTotalCost());
+                    rows[j][8] = BookingsDirectory.getInstance().getBookingDir().get(i).getStatus();
+                    j++;
+                }
             }
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
@@ -181,41 +202,75 @@ public class ResidentTransportMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                String[] columnNames = {"TransportID","Date","Arrival Time","Departure Time,Seats","Cost"};
-        int count=0;
-        
+          String[] columnNames = {"TransportID","Date","Arrival Time","Departure Time,Seats","Cost"};
+           int count=0;
+        check=2;
         try {
             for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
             Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
-            int checkDate = date1.compareTo(jDateChooser1.getDate());
+           int checkDate = date1.compareTo(jDateChooser1.getDate());
             if(TransportDirectory.getInstance().getTransportDir().get(i).getSource().equals(jTextField1.getText()) 
                && TransportDirectory.getInstance().getTransportDir().get(i).getDestination().equals(jTextField2.getText())
-               && checkDate==0) {
-                count++;
+              && checkDate==0) {
+               count++;
             }
-            String[][] rows = new String[count][5];
-        int j=0;
-        for(int i=0;i<BookingsDirectory.getInstance().getBookingDir().size();i++){
-                int id = BookingsDirectory.getInstance().getBookingDir().get(i).getBookingId();
-                rows[j][0] = Integer.toString(id);
-                rows[j][1]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTransportId());
-                rows[j][2]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getSeatCount());
-                rows[j][3]=Float.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTotalCost());
-                rows[j][4] = BookingsDirectory.getInstance().getBookingDir().get(i).getStatus();
-                j++;
             }
+//            
+           String[][] rows = new String[count][5];
+       int j=0;
+       
+        for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++){    
+           Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
+           int checkDate = date1.compareTo(jDateChooser1.getDate());
+            if(TransportDirectory.getInstance().getTransportDir().get(i).getSource().equals(jTextField1.getText()) 
+               && TransportDirectory.getInstance().getTransportDir().get(i).getDestination().equals(jTextField2.getText())
+                && checkDate==0) {
+                rows[j][0]=Integer.toString(BookingsDirectory.getInstance().getBookingDir().get(i).getTransportId());
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(TransportDirectory.getInstance().getTransportDir().get(i).getDate());
+                rows[j][1] = s;
+                rows[j][2]=TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime();
+                rows[j][3]=TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime();
+
+                rows[j][4]=Integer.toString(TransportDirectory.getInstance().getTransportDir().get(i).getTotalSeats());
+                rows[j][5] = Float.toString(TransportDirectory.getInstance().getTransportDir().get(i).getCost());                
+                 j++;
+           }
         }
-        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
-        jTable1.setModel(model);
+                DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+                jTable1.setModel(model);
         }
-                    
-            
-            
-        } catch(Exception e) {
+        catch(Exception e) {
             System.out.println();
-        }
-        
+        } 
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        if(check==1) {
+            String bookingId = model.getValueAt(index, 0).toString();
+            int id = Integer.parseInt(bookingId);
+            int answer = JOptionPane.showConfirmDialog(null, "Cancel Booking", "Booking",JOptionPane.YES_NO_OPTION);
+            String s = "";
+            if(answer == 0) {
+                for(int j=0;j<BookingsDirectory.getInstance().getBookingDir().size();j++) {
+                    if(BookingsDirectory.getInstance().getBookingDir().get(j).getBookingId()== id) {
+                        BookingsDirectory.getInstance().removeBooking(id, j);
+                    }
+                }    
+            }
+        }
+        else if(check==2) {
+            BookingForm book = new BookingForm();
+            String transId = model.getValueAt(index, 0).toString();
+            int id = Integer.parseInt(transId);
+            book.getId(id);
+            book.show();
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -256,13 +311,13 @@ public class ResidentTransportMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    public javax.swing.JTable jTable1;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
