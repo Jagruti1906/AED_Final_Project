@@ -58,12 +58,13 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         doctorRecord = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
         ambulanceList = new javax.swing.JButton();
         addAmbulance = new javax.swing.JButton();
         addDoc = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,33 +98,6 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
         jLabel.setText("Welcome");
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        table.getTableHeader().setReorderingAllowed(false);
-        table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(table);
-
         ambulanceList.setText("Ambulance List");
         ambulanceList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +126,50 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table.getTableHeader().setReorderingAllowed(false);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,8 +191,8 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
@@ -202,8 +220,8 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -280,6 +298,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
     private void ambulanceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ambulanceListActionPerformed
         // TODO add your handling code here:
+        jPanel1.setVisible(true);
         String[] columnNames = {"Ambulance Type", "Ambulance Number", "Status"};
         check=1;
         int count=0;
@@ -307,6 +326,8 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterDoctor doc = new RegisterDoctor();
+        doc.jTextField10.setText(hospAdmin.getHospitalName());
+        doc.jTextField10.setEnabled(false);
         doc.getRole("Hospital Admin");
         doc.show();
     }//GEN-LAST:event_addDocActionPerformed
@@ -315,6 +336,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterHospitalAdmin hosp = new RegisterHospitalAdmin();
+        hosp.getRole("Hospital Admin");
         HospitalAdminDirectory.getInstance().viewHospAdminData(hospAdmin,hosp);
         hosp.show();
     }//GEN-LAST:event_viewProfileActionPerformed
@@ -448,6 +470,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
     public javax.swing.JButton doctorRecord;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton logout;
     public javax.swing.JTable table;

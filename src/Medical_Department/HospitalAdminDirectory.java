@@ -73,6 +73,14 @@ public class HospitalAdminDirectory {
         }
     }
     
+    public static void uniqueId(int num) {
+        for(int i=0;i<hospitalAdminDir.size();i++) {
+            if(hospitalAdminDir.get(i).getAdminID()==num) {
+                JOptionPane.showMessageDialog(null, "Admin ID Already Exists.");
+            } 
+        }
+    }
+    
     public void viewHospAdminData(HospitalAdminClass hosp, RegisterHospitalAdmin hosAdmin) {
         hosAdmin.txtHospName.setText(hosp.getHospitalName());
         hosAdmin.txtEmail.setText(hosp.getEmail());

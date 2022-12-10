@@ -5,12 +5,17 @@
 package Transport;
 
 import Fire_Department.AdminsDirectory;
+import Transport_Department.TransportClass;
 import Transport_Department.TransportDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.TransportAdmin;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -86,6 +91,11 @@ public class TransportAdminMain extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,9 +151,9 @@ public class TransportAdminMain extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String[] columnNames = {"Transport Number", "Transport", "Source", "Destination","Available Seats", "Date", "Departure Time", "Arrival Time", "Cost"};
+        String[] columnNames = {"Transport Number", "Transport", "Source", "Destination","Available Seats", "Date", "Departure Time", "Arrival Time", "Cost", "Status"};
         int count=0;
-        String[][] rows = new String[TransportDirectory.getInstance().getTransportDir().size()][9];
+        String[][] rows = new String[TransportDirectory.getInstance().getTransportDir().size()][10];
         int j=0;
         for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
             int tn = TransportDirectory.getInstance().getTransportDir().get(i).getTransportNumber();
@@ -160,6 +170,7 @@ public class TransportAdminMain extends javax.swing.JFrame {
             rows[j][7] = TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime();
             float c = TransportDirectory.getInstance().getTransportDir().get(i).getCost();
             rows[j][8] = Float.toString(c);
+            rows[j][9] = TransportDirectory.getInstance().getTransportDir().get(i).getStatus();
             j++;
         }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
@@ -174,6 +185,42 @@ public class TransportAdminMain extends javax.swing.JFrame {
         AdminsDirectory.getInstance().viewTransportAdmin(TransportAdmin,tam);
         tam.show();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String status[] = {"On time","Train is Delayed"};
+        JComboBox cb = new JComboBox(status);
+
+        int input;
+        input = JOptionPane.showConfirmDialog(this, cb, "Update Status", JOptionPane.DEFAULT_OPTION);
+        try{
+            String depart = model.getValueAt(index, 6).toString();
+            String arrival = model.getValueAt(index, 7).toString();
+            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(index, 5).toString());  
+            String tn = model.getValueAt(index, 0).toString();
+            int num = Integer.parseInt(tn);
+            String type = model.getValueAt(index, 1).toString();
+            String source = model.getValueAt(index, 2).toString();
+            String dest = model.getValueAt(index, 3).toString();
+            String as = model.getValueAt(index, 4).toString();
+            int available = Integer.parseInt(as);
+            String c = model.getValueAt(index, 8).toString();
+            Float cost = Float.parseFloat(c);
+            
+            for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
+                if(TransportDirectory.getInstance().getTransportDir().get(i).getTransportNumber()== num) {
+                    TransportClass trans = new TransportClass(TransportDirectory.getInstance().getTransportDir().get(i).getTransportId(),type, source, dest, TransportDirectory.getInstance().getTransportDir().get(i).getTotalSeats(), available, cost, arrival, depart, date1, num, (String)cb.getSelectedItem());
+                    TransportDirectory.getInstance().updateDetails(trans, i);
+                    break;
+                }
+            }
+            model.setValueAt((String)cb.getSelectedItem(), index, 9);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

@@ -66,6 +66,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ambulance Number"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextField2MouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

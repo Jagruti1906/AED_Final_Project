@@ -9,7 +9,18 @@ import Login.LoginClass;
 import Login.LoginDirectory;
 import UI.SystemAdminFrame;
 import User.PersonClass;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.TransportAdmin;
+import java.util.Date;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,11 +85,32 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextField2MouseExited(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+
+        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField3MouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("State ID");
 
         jLabel5.setText("Phone Number");
+
+        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setText("Password");
 
@@ -90,6 +122,12 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField5MouseClicked(evt);
             }
         });
 
@@ -171,6 +209,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
+                    
             PersonClass person = new PersonClass("Transport Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Transport Admin");
             int flag=0,k=0;
@@ -205,6 +244,27 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
                 saf.show();
 
             }
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth","true");
+            properties.put("mail.smtp.starttls.enable","true");
+            properties.put("mail.smtp.host","smtp.gmail.com");
+            properties.put("mail.smtp.port","587");
+            Session session=Session.getDefaultInstance(properties, new Authenticator(){
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("aedproject50@gmail.com","AED_project@123"); 
+                }
+            });
+            Message message = new MimeMessage(session);
+            message.setSubject("StateId and password Assigned");
+            message.setContent(jTextField1.getText(),"kmfkdk");
+            message.setContent(jTextField5.getText(),"kmfkdk");
+            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
+            message.setSentDate(new Date());
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null,"Sent");
+            
         } catch(Exception e) {
             System.out.println(e);
         }
@@ -226,6 +286,30 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
             saf.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(jTextField2.getText());
+    }//GEN-LAST:event_jTextField2MouseClicked
+
+    private void jTextField2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2MouseExited
+
+    private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(jTextField3.getText());
+    }//GEN-LAST:event_jTextField3MouseClicked
+
+    private void jTextField5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField5MouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(jTextField5.getText());
+    }//GEN-LAST:event_jTextField5MouseClicked
+
+    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(jTextField4.getText());
+    }//GEN-LAST:event_jTextField4MouseClicked
 
     /**
      * @param args the command line arguments

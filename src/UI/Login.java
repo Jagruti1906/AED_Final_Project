@@ -154,6 +154,7 @@ public class Login extends javax.swing.JFrame {
                                 break;
                             }
                         }
+                        hospFrame.jPanel1.setVisible(false);
                         hospFrame.show();
                         break;
                     }
