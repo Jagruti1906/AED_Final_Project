@@ -67,48 +67,24 @@ public class BookingsDirectory {
         }
     }
     
-//    public void viewDoctor(BillsClass bill, RegisterDoctor doctor){
-//        doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
-//        doctor.jTextField1.setEnabled(false);
-//        doctor.jTextField2.setText(doc.getName());
-//        doctor.jTextField4.setText(Integer.toString(doc.getdoctorId()));
-//        doctor.jTextField4.setEnabled(false);
-//        doctor.jComboBox1.setSelectedItem(doc.getGender());
-//        doctor.jTextField6.setText(doc.getEmail());
-//        doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
-//        doctor.jDateChooser1.setDate((doc.getDob()));
-//        doctor.jComboBox2.setSelectedItem(doc.getRole());
-//        doctor.jTextField10.setText(doc.getHospitalName());
-//        doctor.jComboBox2.setEnabled(false);
-//        
-//        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
-//            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==doc.getStateID()){
-//                doctor.jTextField8.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
-//            }
-//        }
-//    }
-    
-    
-//    public void updateBill(TransportClass trans,int i) {
-//        transportDir.set(i,trans);
-//        Statement stmt;
-//        try {
-//            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-//            String query1 = "Update transport_vehicles" + " set availableSeats=?,status=? where transportId=?";
-//            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
-//            pst.setInt(1, trans.getAvailableSeats());
-//            pst.setString(2, trans.getStatus());
-//            pst.setInt(3, trans.getTransportId());
-//            int rs = pst.executeUpdate();
-//            if(rs>0)
-//            {
-//                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//            JOptionPane.showMessageDialog(null,"Cannot be Inserted");
-//        }
-//    }
+    public void removeBooking(int bookingId, int i) {
+        bookingDir.remove(i);
+        Statement stmt;
+        try {
+            stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
+            String query1 = "Delete from bookings where bookingId=?";
+            PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
+            pst.setInt(1, bookingId);
+            int rs = pst.executeUpdate();
+            if(rs>0)
+            {
+                JOptionPane.showMessageDialog(null,"Deleted Successfully!");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Cannot be Deleted");
+        }
+    }
+
 
     
     public static BookingsDirectory getInstance() {

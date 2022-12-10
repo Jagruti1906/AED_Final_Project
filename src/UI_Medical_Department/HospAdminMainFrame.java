@@ -315,6 +315,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterHospitalAdmin hosp = new RegisterHospitalAdmin();
+        hosp.getRole("Hospital Admin");
         HospitalAdminDirectory.getInstance().viewHospAdminData(hospAdmin,hosp);
         hosp.show();
     }//GEN-LAST:event_viewProfileActionPerformed

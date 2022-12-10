@@ -4,10 +4,12 @@
  */
 package UI;
 
+import Fire_Department.AdminsDirectory;
 import Login.LoginClass;
 import Login.LoginDirectory;
 import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
+import UI_Medical_Department.HospAdminMainFrame;
 import static aed_project.AED_Project.hospAdmin;
 
 /**
@@ -21,6 +23,12 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
      */
     public RegisterHospitalAdmin() {
         initComponents();
+    }
+    
+    private static String r="";
+     
+    public void getRole(String role) {
+        r=role;
     }
 
     /**
@@ -179,24 +187,64 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
-        LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
-        int flag=0,k=0;
-        for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
-            if(HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(i).getStateID() == hospAdmin.getStateID()) {
-                flag=1;
-                k=i;
-                break;
+//        HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+//        LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
+//        int flag=0,k=0;
+//        for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
+//            if(HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(i).getStateID() == hospAdmin.getStateID()) {
+//                flag=1;
+//                k=i;
+//                break;
+//            }
+//        }
+//        if(flag==1) {
+//            HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
+//            hospAdmin = HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(k);
+//            LoginDirectory.getInstance().updateUser(login.getStateID(), login);
+//        }
+//        else {
+//            HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
+//            LoginDirectory.getInstance().addUser(login);
+//        }
+//        this.hide();
+        this.hide();
+        try{
+            HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
+            int flag=0,k=0;
+            for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
+                if(r.equals("Hospital Admin")) {
+                    if(HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(i).getStateID() == hospAdmin.getStateID()) {
+                        flag=1;
+                        k=i;
+                        break;
+                    }
+                }
+                else {
+                    flag=0;
+                    break;
+                }
             }
-        }
-        if(flag==1) {
-            HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
+            System.out.println(flag);
+            if(flag==1) {
+                HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
             hospAdmin = HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(k);
             LoginDirectory.getInstance().updateUser(login.getStateID(), login);
-        }
-        else {
-            HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
+            }
+            else {
+                HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
             LoginDirectory.getInstance().addUser(login);
+            }
+            if(r.equals("Hospital Admin")) {
+                HospAdminMainFrame ho = new HospAdminMainFrame();
+                ho.show();
+            }
+            else {
+                SystemAdminFrame sys = new SystemAdminFrame();
+                sys.show();
+            }
+        } catch(Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
