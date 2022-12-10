@@ -6,6 +6,7 @@ package Transport;
 
 import Transport_Department.TransportClass;
 import Transport_Department.TransportDirectory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,6 +87,11 @@ public class CreateTransportMain extends javax.swing.JFrame {
 
         jLabel9.setText("Transport Number");
 
+        jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField7MouseClicked(evt);
+            }
+        });
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -207,6 +213,15 @@ public class CreateTransportMain extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
+        // TODO add your handling code here:
+        try {
+            TransportDirectory.getInstance().trans(Integer.parseInt(jTextField7.getText()));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter Transport Number");
+        }
+    }//GEN-LAST:event_jTextField7MouseClicked
 
     /**
      * @param args the command line arguments

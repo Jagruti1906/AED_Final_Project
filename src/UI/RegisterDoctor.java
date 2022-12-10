@@ -86,6 +86,12 @@ public class RegisterDoctor extends javax.swing.JFrame {
             }
         });
 
+        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField4MouseClicked(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other", " " }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Physician", "Heart Specialist", "Neurosurgeon", "Pediatrician", "Dermatologist" }));
@@ -289,6 +295,15 @@ public class RegisterDoctor extends javax.swing.JFrame {
             hosp.show();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
+        // TODO add your handling code here:
+        try {
+            DoctorDirectory.getInstance().uniqueId(Integer.parseInt(jTextField4.getText()));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter Doctor ID");
+        }
+    }//GEN-LAST:event_jTextField4MouseClicked
 
     /**
      * @param args the command line arguments

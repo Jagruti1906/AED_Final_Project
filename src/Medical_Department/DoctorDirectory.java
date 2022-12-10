@@ -76,6 +76,14 @@ public class DoctorDirectory {
         }
     }
     
+    public static void uniqueId(int num) {
+        for(int i=0;i<doctorDir.size();i++) {
+            if(doctorDir.get(i).getdoctorId()==num) {
+                JOptionPane.showMessageDialog(null, "Doctor ID Already Exists.");
+            } 
+        }
+    }
+    
     public void viewDoctor(DoctorClass doc, RegisterDoctor doctor){
         doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
         doctor.jTextField1.setEnabled(false);

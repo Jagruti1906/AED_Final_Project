@@ -60,6 +60,14 @@ public class FireVehicleDirectory {
         }
     }
     
+    public void uniqueNumber(int num) {
+        for(int i=0;i<fireVehicleDir.size();i++) {
+            if(fireVehicleDir.get(i).getVehicleNumber()==num) {
+                JOptionPane.showMessageDialog(null, "Vehicle Number Already Exists.");
+            } 
+        }
+    }
+    
     public void updateVehicle(FireVehicleClass fire,int i) {
         fireVehicleDir.set(i,fire);
         Statement stmt;
