@@ -11,6 +11,7 @@ import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import UI_Medical_Department.HospAdminMainFrame;
 import static aed_project.AED_Project.hospAdmin;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -85,6 +86,17 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         jLabel1.setText("Hospital Admin Registration Page");
 
         jLabel2.setText("Hospital Name");
+
+        txtAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAdminMouseClicked(evt);
+            }
+        });
+        txtAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAdminActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Admin ID");
 
@@ -247,6 +259,19 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAdminActionPerformed
+
+    private void txtAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAdminMouseClicked
+        // TODO add your handling code here:
+        try {
+            HospitalAdminDirectory.getInstance().uniqueId(Integer.parseInt(txtAdmin.getText()));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter Admin ID");
+        }
+    }//GEN-LAST:event_txtAdminMouseClicked
 
     /**
      * @param args the command line arguments

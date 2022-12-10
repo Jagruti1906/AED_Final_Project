@@ -9,6 +9,7 @@ import Login.LoginClass;
 import Login.LoginDirectory;
 import UI.SystemAdminFrame;
 import User.PersonClass;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.TransportAdmin;
 
 /**
@@ -74,11 +75,32 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextField2MouseExited(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+
+        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField3MouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("State ID");
 
         jLabel5.setText("Phone Number");
+
+        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setText("Password");
 
@@ -90,6 +112,12 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField5MouseClicked(evt);
             }
         });
 
@@ -226,6 +254,30 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
             saf.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(jTextField2.getText());
+    }//GEN-LAST:event_jTextField2MouseClicked
+
+    private void jTextField2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2MouseExited
+
+    private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(jTextField3.getText());
+    }//GEN-LAST:event_jTextField3MouseClicked
+
+    private void jTextField5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField5MouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(jTextField5.getText());
+    }//GEN-LAST:event_jTextField5MouseClicked
+
+    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(jTextField4.getText());
+    }//GEN-LAST:event_jTextField4MouseClicked
 
     /**
      * @param args the command line arguments

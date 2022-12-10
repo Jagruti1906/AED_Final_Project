@@ -42,6 +42,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,6 +64,58 @@ public class AED_Project {
     public static PersonClass verifier;
     public static PersonClass UtilityAdmin;
     public static PersonClass TransportAdmin;
+    
+    public static void nameValidation(String name) {
+          try {
+              if(!name.matches("[A-Z][a-z]*")) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+          } catch(Exception e) {
+              JOptionPane.showMessageDialog(null, "Insert appropriate name.");
+          }
+    }
+    
+    public static void emailValidation(String email) {
+          try {
+              if(!email.matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+          } catch(Exception e) {
+              JOptionPane.showMessageDialog(null, "Insert appropriate email.");
+          }
+    }
+    
+    public static void passValidation(String pass) {
+          try {
+              if(!pass.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+          } catch(Exception e) {
+              JOptionPane.showMessageDialog(null, "Insert appropriate password with 1 special character, 1 uppercase letter and minimum 8 characters.");
+          }
+    }
+    
+    public static void zipValidation(String zip) {
+          try {
+            String regex = "^[0-9]{5}(?:-[0-9]{4})?$";
+              if(!Pattern.compile(regex).matcher(zip).matches()) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+          } catch(Exception e) {
+              JOptionPane.showMessageDialog(null, "Insert appropriate zip with maximum length of 5.");
+          }
+    }
+    
+    public static void pnValidation(String pn) {
+          try {
+            String regex = "^\\d{10}$";
+              if(!Pattern.compile(regex).matcher(pn).matches()) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+          } catch(Exception e) {
+              JOptionPane.showMessageDialog(null, "Insert appropriate phone number.");
+          }
+    }
     
     
     public static void main(String[] args) {
@@ -115,5 +169,9 @@ public class AED_Project {
 //        res.show();
 //        DoctorMainFrame docFrame = new DoctorMainFrame();
 //        docFrame.show();
+    }
+
+    private static Exception TypeNotPresentException(String incorrect_Details) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

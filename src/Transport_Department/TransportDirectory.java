@@ -72,27 +72,13 @@ public class TransportDirectory {
         }
     }
     
-//    public void viewDoctor(BillsClass bill, RegisterDoctor doctor){
-//        doctor.jTextField1.setText(Integer.toString(doc.getStateID()));
-//        doctor.jTextField1.setEnabled(false);
-//        doctor.jTextField2.setText(doc.getName());
-//        doctor.jTextField4.setText(Integer.toString(doc.getdoctorId()));
-//        doctor.jTextField4.setEnabled(false);
-//        doctor.jComboBox1.setSelectedItem(doc.getGender());
-//        doctor.jTextField6.setText(doc.getEmail());
-//        doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
-//        doctor.jDateChooser1.setDate((doc.getDob()));
-//        doctor.jComboBox2.setSelectedItem(doc.getRole());
-//        doctor.jTextField10.setText(doc.getHospitalName());
-//        doctor.jComboBox2.setEnabled(false);
-//        
-//        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
-//            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==doc.getStateID()){
-//                doctor.jTextField8.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
-//            }
-//        }
-//    }
-    
+    public static void trans(int num) {
+        for(int i=0;i<transportDir.size();i++) {
+            if(transportDir.get(i).getTransportNumber()==num) {
+                JOptionPane.showMessageDialog(null, "Transport Number Already Exists.");
+            } 
+        }
+    }
     
     public void updateDetails(TransportClass trans,int i) {
         transportDir.set(i,trans);
