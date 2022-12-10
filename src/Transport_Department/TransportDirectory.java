@@ -94,7 +94,7 @@ public class TransportDirectory {
 //    }
     
     
-    public void updateBill(TransportClass trans,int i) {
+    public void updateDetails(TransportClass trans,int i) {
         transportDir.set(i,trans);
         Statement stmt;
         try {
