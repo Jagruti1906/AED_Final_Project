@@ -11,6 +11,16 @@ import UI.SystemAdminFrame;
 import User.PersonClass;
 import aed_project.AED_Project;
 import static aed_project.AED_Project.TransportAdmin;
+import java.util.Date;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -199,6 +209,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
+                    
             PersonClass person = new PersonClass("Transport Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Transport Admin");
             int flag=0,k=0;
@@ -233,6 +244,27 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
                 saf.show();
 
             }
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth","true");
+            properties.put("mail.smtp.starttls.enable","true");
+            properties.put("mail.smtp.host","smtp.gmail.com");
+            properties.put("mail.smtp.port","587");
+            Session session=Session.getDefaultInstance(properties, new Authenticator(){
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("aedproject50@gmail.com","AED_project@123"); 
+                }
+            });
+            Message message = new MimeMessage(session);
+            message.setSubject("StateId and password Assigned");
+            message.setContent(jTextField1.getText(),"kmfkdk");
+            message.setContent(jTextField5.getText(),"kmfkdk");
+            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
+            message.setSentDate(new Date());
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null,"Sent");
+            
         } catch(Exception e) {
             System.out.println(e);
         }
