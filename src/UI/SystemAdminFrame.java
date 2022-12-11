@@ -4,10 +4,14 @@
  */
 package UI;
 
+import Login.LoginDirectory;
+import Medical_Department.HospitalDirectory;
 import Police_Department.PoliceAdminRegister;
 import Resident.RegisterResident;
 import Transport.RegisterTransportAdmin;
+import UI_Medical_Department.CreateHospital;
 import Utilities.RegsiterUtilityAdmin;
+import java.util.Date;
 import Education.AdminSection;
 
 /**
@@ -40,6 +44,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +104,13 @@ public class SystemAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setText("Add Hospital");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,12 +124,17 @@ public class SystemAdminFrame extends javax.swing.JFrame {
                             .addComponent(jButton4)
                             .addComponent(jButton2)
                             .addComponent(jButton8))
-                        .addGap(153, 153, 153)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(153, 153, 153)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButton7)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(132, 132, 132)
+                                .addComponent(jButton9)))
                         .addGap(122, 122, 122))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton3)
@@ -127,7 +144,9 @@ public class SystemAdminFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addComponent(jButton8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -156,6 +175,8 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         PoliceAdminRegister police = new PoliceAdminRegister();
+        police.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        police.txtSSN.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         police.getRole("System Admin");
         police.show();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -164,6 +185,8 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterFireAdmin fireAdmin = new RegisterFireAdmin();
+        fireAdmin.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        fireAdmin.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         fireAdmin.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -178,6 +201,8 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterResident res = new RegisterResident();
+        res.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        res.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         res.getRole("System Admin");
         res.show();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -186,6 +211,8 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegsiterUtilityAdmin rua = new RegsiterUtilityAdmin();
+        rua.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        rua.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         rua.getRole("System Admin");
         rua.show();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -194,6 +221,8 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterTransportAdmin rta = new RegisterTransportAdmin();
+        rta.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        rta.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         rta.getRole("System Admin");
         rta.show();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -202,7 +231,12 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterHospitalAdmin resHosp = new RegisterHospitalAdmin();
+        resHosp.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        resHosp.txtSSN.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         resHosp.getRole("System Admin");
+        for(int i=0;i<HospitalDirectory.getInstance().getHospitaldir().size();i++) {
+            resHosp.jComboBox2.addItem(HospitalDirectory.getInstance().getHospitaldir().get(i).getName());
+        }
         resHosp.show();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -212,6 +246,13 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         AdminSection as = new AdminSection();
         as.show();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        CreateHospital hosp = new CreateHospital();
+        hosp.show();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,5 +298,6 @@ public class SystemAdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     // End of variables declaration//GEN-END:variables
 }

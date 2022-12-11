@@ -4,6 +4,8 @@
  */
 package Utilities;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
@@ -196,8 +198,17 @@ public class BillMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        BillsClass bill = new BillsClass(BillsDirectory.getInstance().getBillsDir().size()+1, Integer.parseInt(jTextField2.getText()), jTextField1.getText(), jTextField3.getText(), t, Float.parseFloat(jTextField5.getText()), Float.parseFloat(jTextField4.getText()), Float.parseFloat(jTextField6.getText()), jDateChooser1.getDate(), jDateChooser2.getDate(),"Pending");
-        BillsDirectory.getInstance().addBill(bill);
+        try {
+            if(jDateChooser2.getDate().compareTo(jDateChooser1.getDate())>1) {
+                BillsClass bill = new BillsClass(BillsDirectory.getInstance().getBillsDir().size()+1, Integer.parseInt(jTextField2.getText()), jTextField1.getText(), jTextField3.getText(), t, Float.parseFloat(jTextField5.getText()), Float.parseFloat(jTextField4.getText()), Float.parseFloat(jTextField6.getText()), jDateChooser1.getDate(), jDateChooser2.getDate(),"Pending");
+                BillsDirectory.getInstance().addBill(bill);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Enter Appropriate Dates");
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter Appropriate Details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

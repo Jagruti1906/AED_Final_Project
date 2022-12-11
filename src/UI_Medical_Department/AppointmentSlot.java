@@ -109,12 +109,16 @@ public class AppointmentSlot extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.hide();
+        try{
+            this.hide();
         AppointmentSlotsClass apps= new AppointmentSlotsClass(jDateChooser1.getDate(),jComboBox1.getSelectedItem().toString(),"Available",doctor.getStateID());
         AppointmentSlotsDirectory.getInstance().addslots(apps);
         System.out.println(jDateChooser1.getDate());
         DoctorMainFrame doc = new DoctorMainFrame();
         doc.show();
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -164,11 +168,11 @@ public class AppointmentSlot extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

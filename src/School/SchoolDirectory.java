@@ -21,7 +21,7 @@ public class SchoolDirectory {
         this.schoolDir = new ArrayList();
     }
 
-    public static ArrayList<SchoolClass> getSchoolDir() {
+    public ArrayList<SchoolClass> getSchoolDir() {
         return schoolDir;
     }
     

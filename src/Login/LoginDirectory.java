@@ -41,7 +41,6 @@ public class LoginDirectory {
             int rs = pst.executeUpdate();
             if(rs>0)
             {
-                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -65,7 +64,6 @@ public class LoginDirectory {
             int rs = pst.executeUpdate();
             if(rs>0)
             {
-                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
             }
         } catch (SQLException ex) {
             System.out.println(ex);

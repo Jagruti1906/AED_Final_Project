@@ -10,14 +10,22 @@ import Medical_Department.DoctorClass;
 import Medical_Department.DoctorDirectory;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.doctor;
 import aed_project.DatabaseConnectionClass;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 /**
@@ -79,6 +87,12 @@ public class RegisterDoctor extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
+
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +103,24 @@ public class RegisterDoctor extends javax.swing.JFrame {
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField4MouseClicked(evt);
+            }
+        });
+
+        jTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField6MouseClicked(evt);
+            }
+        });
+
+        jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField7MouseClicked(evt);
+            }
+        });
+
+        jTextField8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField8MouseClicked(evt);
             }
         });
 
@@ -268,8 +300,30 @@ public class RegisterDoctor extends javax.swing.JFrame {
                 HospAdminMainFrame hosp = new HospAdminMainFrame();
                 hosp.show();
             }
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth","true");
+            properties.put("mail.smtp.starttls.enable","true");
+            properties.put("mail.smtp.host","smtp.gmail.com");
+            properties.put("mail.smtp.port","587");
+            Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                }
+            
+
+            });
+            Message message = new MimeMessage(session);
+            message.setSubject("StateId and password Assigned");
+            String s = "You have been assigned your state ID and password. Your state ID is " + jTextField1.getText() + " and password is " + jTextField8.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+            message.setContent(s,"text/plain");
+            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField6.getText()));
+            message.setSentDate(new Date());
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null,"Sent");
         } catch(Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,"Please fill all details");
         }
 
         
@@ -304,6 +358,26 @@ public class RegisterDoctor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter Doctor ID");
         }
     }//GEN-LAST:event_jTextField4MouseClicked
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(jTextField2.getText());
+    }//GEN-LAST:event_jTextField2MouseClicked
+
+    private void jTextField6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField6MouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(jTextField6.getText());
+    }//GEN-LAST:event_jTextField6MouseClicked
+
+    private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(jTextField7.getText());
+    }//GEN-LAST:event_jTextField7MouseClicked
+
+    private void jTextField8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField8MouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(jTextField8.getText());
+    }//GEN-LAST:event_jTextField8MouseClicked
 
     /**
      * @param args the command line arguments

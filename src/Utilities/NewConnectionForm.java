@@ -191,8 +191,12 @@ public class NewConnectionForm extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        NewConnectionClass nc = new NewConnectionClass(NewConnDirectory.getInstance().getConnDir().size()+1, Integer.parseInt(jTextField2.getText()), jTextField1.getText(), jComboBox1.getSelectedItem().toString(), jTextField3.getText(), jTextField4.getText(), "Pending");
-        NewConnDirectory.getInstance().addConnRequest(nc);
+        try {
+            NewConnectionClass nc = new NewConnectionClass(NewConnDirectory.getInstance().getConnDir().size()+1, Integer.parseInt(jTextField2.getText()), jTextField1.getText(), jComboBox1.getSelectedItem().toString(), jTextField3.getText(), jTextField4.getText(), "Pending");
+            NewConnDirectory.getInstance().addConnRequest(nc);
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

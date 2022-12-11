@@ -4,6 +4,8 @@
  */
 package Police_Department;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
@@ -60,21 +62,11 @@ public class CrimeReport extends javax.swing.JFrame {
 
         jLabel6.setText("Incident Date");
 
-        jLabel7.setText("Complaint Type");
+        jLabel7.setText("Complaint");
 
         jLabel8.setText("Approx Time");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField6.setText("jTextField6");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12am-3am", "3am-6am", "6am-9am", "9am-12pm", "12pm-3pm", "3pm-6pm", "6pm-9pm", "9pm-12am" }));
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,8 +83,6 @@ public class CrimeReport extends javax.swing.JFrame {
         });
 
         jLabel9.setText("zip");
-
-        jTextField5.setText("jTextField5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,9 +177,13 @@ public class CrimeReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ComplaintClass cc = new ComplaintClass(ComplaintDirectory.getInstance().getComplaintDir().size()+1,jTextField1.getText(),Integer.parseInt(jTextField2.getText()),Integer.parseInt(jTextField3.getText()),jTextField4.getText(),Integer.parseInt(jTextField5.getText()),jDateChooser1.getDate(),jTextField6.getText(),jComboBox1.getSelectedItem().toString(),"Pending");
-        ComplaintDirectory.getInstance().addComplaint(cc);
+        // TODO add your handling code here
+        try{
+            ComplaintClass cc = new ComplaintClass(ComplaintDirectory.getInstance().getComplaintDir().size()+1,jTextField1.getText(),Integer.parseInt(jTextField2.getText()),Integer.parseInt(jTextField3.getText()),jTextField4.getText(),Integer.parseInt(jTextField5.getText()),jDateChooser1.getDate(),jTextField6.getText(),jComboBox1.getSelectedItem().toString(),"Pending");
+            ComplaintDirectory.getInstance().addComplaint(cc);
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

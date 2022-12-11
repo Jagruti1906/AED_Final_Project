@@ -10,7 +10,15 @@ import Login.LoginDirectory;
 import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import UI_Medical_Department.HospAdminMainFrame;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.hospAdmin;
+import java.util.Date;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,7 +57,6 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         txtPass = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtHospName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtAdmin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -61,6 +68,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jDateChooser = new com.toedter.calendar.JDateChooser();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +86,12 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         });
 
         jLabel10.setText("Date Of Birth");
+
+        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPassMouseClicked(evt);
+            }
+        });
 
         jLabel11.setText("Password");
 
@@ -100,11 +114,29 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 
         jLabel3.setText("Admin ID");
 
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
+
         jLabel4.setText("Name");
+
+        txtPhoneNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPhoneNoMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("SSN");
 
         jLabel7.setText("Phone Number");
+
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,12 +163,12 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtHospName)
                                         .addComponent(txtAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(txtName)
                                         .addComponent(txtPhoneNo)
@@ -156,7 +188,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtHospName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -221,7 +253,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 //        this.hide();
         this.hide();
         try{
-            HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",jComboBox2.getSelectedItem().toString(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
             int flag=0,k=0;
             for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
@@ -239,7 +271,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
             }
             System.out.println(flag);
             if(flag==1) {
-                HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
+            HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
             hospAdmin = HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(k);
             LoginDirectory.getInstance().updateUser(login.getStateID(), login);
             }
@@ -255,8 +287,30 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                 SystemAdminFrame sys = new SystemAdminFrame();
                 sys.show();
             }
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth","true");
+            properties.put("mail.smtp.starttls.enable","true");
+            properties.put("mail.smtp.host","smtp.gmail.com");
+            properties.put("mail.smtp.port","587");
+            Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                }
+            
+
+            });
+            Message message = new MimeMessage(session);
+            message.setSubject("StateId and password Assigned");
+            String s = "You have been assigned your state ID and password. Your state ID is " + txtSSN.getText() + " and password is " + txtPass.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+            message.setContent(s,"text/plain");
+            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(txtEmail.getText()));
+            message.setSentDate(new Date());
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null,"Sent");
         } catch(Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,"Please fill all details");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -272,6 +326,26 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter Admin ID");
         }
     }//GEN-LAST:event_txtAdminMouseClicked
+
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(txtName.getText());
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtPhoneNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNoMouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(txtPhoneNo.getText());
+    }//GEN-LAST:event_txtPhoneNoMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(txtEmail.getText());
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(txtPass.getText());
+    }//GEN-LAST:event_txtPassMouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,6 +385,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
     public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
     public com.toedter.calendar.JDateChooser jDateChooser;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
@@ -324,7 +399,6 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel9;
     public javax.swing.JTextField txtAdmin;
     public javax.swing.JTextField txtEmail;
-    public javax.swing.JTextField txtHospName;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPass;
     public javax.swing.JTextField txtPhoneNo;

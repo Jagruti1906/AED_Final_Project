@@ -83,11 +83,15 @@ public class AddAmbulanceForm extends javax.swing.JFrame {
 
     private void addAmbulanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAmbulanceActionPerformed
         // TODO add your handling code here:
-        this.hide();
-        AmbulanceClass ambulance = new AmbulanceClass(jTextField1.getText(),Integer.parseInt(jTextField2.getText()),"Available",hospAdmin.getHospitalName());
-        AmbulanceDirectory.getInstance().addAmbulance(ambulance);
-        HospAdminMainFrame hosp = new HospAdminMainFrame();
-        hosp.show();
+        try{
+            this.hide();
+            AmbulanceClass ambulance = new AmbulanceClass(jTextField1.getText(),Integer.parseInt(jTextField2.getText()),"Available",hospAdmin.getHospitalName());
+            AmbulanceDirectory.getInstance().addAmbulance(ambulance);
+            HospAdminMainFrame hosp = new HospAdminMainFrame();
+            hosp.show();
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_addAmbulanceActionPerformed
 
     private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked

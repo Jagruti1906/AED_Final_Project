@@ -231,7 +231,8 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.hide();
+        try {
+            this.hide();
         int id = 0;
         int stateID = 0;
         for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {
@@ -260,6 +261,9 @@ public class AppointmentBookingMain extends javax.swing.JFrame {
             System.out.println(ex);
         }
         back.show();
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed

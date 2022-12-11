@@ -4,6 +4,8 @@
  */
 package Police_Department;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jagru
@@ -125,6 +127,7 @@ public class AssignDuty extends javax.swing.JFrame {
             DutyDirectory.getInstance().addDuty(duty);
         } catch(Exception e) {
             System.out.println(e);
+            System.out.println("Please fill all details");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

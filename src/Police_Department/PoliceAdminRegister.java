@@ -7,6 +7,15 @@ import static aed_project.AED_Project.policeAdmin;
 import Login.LoginClass;
 import Login.LoginDirectory;
 import UI.SystemAdminFrame;
+import aed_project.AED_Project;
+import java.util.Date;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -57,11 +66,23 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtPhoneNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPhoneNoMouseClicked(evt);
+            }
+        });
+
         jLabel11.setText("Password");
 
         jLabel10.setText("Date Of Birth");
 
         jLabel6.setText("SSN");
+
+        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPassMouseClicked(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 204, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -69,9 +90,21 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
 
         jLabel7.setText("Phone Number");
 
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
+
         jLabel8.setText("Email");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("Gender");
 
@@ -205,8 +238,30 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
                 PoliceDirectory.getInstance().addPolice(pc);
             LoginDirectory.getInstance().addUser(login);
             }
+                    Properties properties = new Properties();
+            properties.put("mail.smtp.auth","true");
+            properties.put("mail.smtp.starttls.enable","true");
+            properties.put("mail.smtp.host","smtp.gmail.com");
+            properties.put("mail.smtp.port","587");
+            Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                }
+            
+
+            });
+            Message message = new MimeMessage(session);
+            message.setSubject("StateId and password Assigned");
+            String s = "You have been assigned your state ID and password. Your state ID is " + txtName.getText() + " and password is " + txtPass.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+            message.setContent(s,"text/plain");
+            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(txtEmail.getText()));
+            message.setSentDate(new Date());
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null,"Sent");
         } catch(Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,"Please fill all details");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -222,6 +277,26 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
             pol.show();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(txtName.getText());
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtPhoneNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNoMouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(txtPhoneNo.getText());
+    }//GEN-LAST:event_txtPhoneNoMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(txtEmail.getText());
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(txtPass.getText());
+    }//GEN-LAST:event_txtPassMouseClicked
 
     /**
      * @param args the command line arguments
@@ -259,9 +334,8 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton jButton3;
     public javax.swing.JComboBox<String> jComboBox1;
     public com.toedter.calendar.JDateChooser jDateChooser;
     public javax.swing.JLabel jLabel1;

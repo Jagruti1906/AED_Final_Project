@@ -4,6 +4,7 @@
  */
 package UI_Medical_Department;
 
+import Login.LoginDirectory;
 import Medical_Department.AlertsClass;
 import Medical_Department.AlertsDirectory;
 import Medical_Department.AmbulanceClass;
@@ -328,6 +329,7 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         RegisterDoctor doc = new RegisterDoctor();
         doc.jTextField10.setText(hospAdmin.getHospitalName());
         doc.jTextField10.setEnabled(false);
+        doc.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         doc.getRole("Hospital Admin");
         doc.show();
     }//GEN-LAST:event_addDocActionPerformed

@@ -28,6 +28,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
      */
     public FireAdminMainFrame() {
         initComponents();
+        this.getContentPane().setBackground(CYAN);
     }
     
     public void getFireAdmin(PersonClass fire) {
@@ -55,6 +56,8 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 204, 255));
+        setForeground(new java.awt.Color(51, 204, 255));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

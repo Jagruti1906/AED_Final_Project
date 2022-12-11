@@ -25,7 +25,7 @@ public class ConnectionClass {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/schoolmanagement","root","Shreyansh!9");
+            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/schoolmanagement","root","Jagruti#1906");
             stm=con.createStatement();
             
             if(con.isClosed())

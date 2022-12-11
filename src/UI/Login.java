@@ -120,9 +120,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        // get username
-        
-        int stateID = Integer.parseInt(txtUser.getText());
+        try{
+            int stateID = Integer.parseInt(txtUser.getText());
         // get password
 
         String password = txtPass.getText();
@@ -278,36 +277,11 @@ public class Login extends javax.swing.JFrame {
                     System.out.println(e);
                 }
             }
-//            if( && ) {
-//                
-//            }
         }
-//        if(username.equals("admin") && password.equals("admin"))
-//        {
-//            AdminPage adminview = new AdminPage();
-//            adminview.show();
-//        }
-//        
-//        else if (username.equals("resident") && password.equals("resident"))
-//        {
-//            ResidentPage resview = new ResidentPage();
-//            resview.show();
-//        }
-//         else if (username.equals("doc") && password.equals("doc"))
-//        {
-//            DoctorMainFrame docview = new DoctorMainFrame();
-//            docview.show();
-//        }
-//        else if (username.equals("patient") && password.equals("patient"))
-//        {
-//            PatientMainFrame patview = new PatientMainFrame();
-//            patview.show();
-//        }
-//       
-//        
-//        else{
-//               JOptionPane.showMessageDialog(this, "Incorrent Username or Password");
-//        }
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
