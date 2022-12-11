@@ -203,7 +203,7 @@ public class Update_Resident extends JFrame implements ActionListener
                 {
                     JOptionPane.showMessageDialog(null, "your data Successfully updated");
                     this.setVisible(false);
-                    new View_Customer().setVisible(true);
+                    new View_Resident().setVisible(true);
                 }
                 else
                 {

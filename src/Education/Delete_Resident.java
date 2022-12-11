@@ -215,7 +215,7 @@ public class Delete_Resident extends JFrame implements ActionListener
                     JOptionPane.showMessageDialog(null, "your record successfully Deleted");
                 
                     this.setVisible(false);
-                    new View_Customer().setVisible(true);
+                    new View_Resident().setVisible(true);
                 }
                 else
                 {

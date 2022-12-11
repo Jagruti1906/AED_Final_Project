@@ -125,27 +125,27 @@ public class HomePage extends JFrame implements ActionListener
         String comnd=e.getActionCommand();
         if(comnd.equals("Add Resident Profile"))
         {
-            new Add_Customer();
+            new Add_Resident();
         }
         else if(comnd.equals("View Resident Profile"))
         {
-            new View_Customer().setVisible(true);
+            new View_Resident().setVisible(true);
         }
         else if(comnd.equals("Update Resident Details"))
         {
-            new Update_Customer().setVisible(true);
+            new Update_Resident().setVisible(true);
         }
         else if(comnd.equals("Book Tour"))
         {
-            new Book_Cab().setVisible(true);
+            new Book_Tour().setVisible(true);
         }
         else if(comnd.equals("View Booked Tour"))
         {
-            new View_BookedCab().setVisible(true);
+            new View_BookedTour().setVisible(true);
         }
         else if(comnd.equals("Delete Resident"))
         {
-            new Delete_Customer().setVisible(true);
+            new Delete_Resident().setVisible(true);
         }
         else if(comnd.equals("About"))
         {
