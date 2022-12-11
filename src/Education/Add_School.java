@@ -14,7 +14,7 @@ public class Add_School extends JFrame implements ActionListener
     JPasswordField pf;
     Font f,f1;
     
-    Add_School()
+    public Add_School()
     {
         super("Add School");
         setLocation(450,50);

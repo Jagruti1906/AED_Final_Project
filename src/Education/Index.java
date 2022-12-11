@@ -11,7 +11,7 @@ public class Index extends JFrame implements ActionListener
     JPanel p1,p2,p3;
     Font f,f1;
     
-    Index()
+    public Index()
     {
         super("Home Page");
         setLocation(450,250);
@@ -29,7 +29,7 @@ public class Index extends JFrame implements ActionListener
         bt1.addActionListener(this);
         bt2.addActionListener(this);
         
-        ImageIcon c=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/login.png"));
+        ImageIcon c=new ImageIcon(ClassLoader.getSystemResource("Icons/login.png"));
 	Image i=c.getImage().getScaledInstance(130,100,Image.SCALE_DEFAULT);
 	ImageIcon c1=new ImageIcon(i);
 	l3=new JLabel(c1);

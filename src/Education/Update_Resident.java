@@ -14,7 +14,7 @@ public class Update_Resident extends JFrame implements ActionListener
     Font f,f1;
     Choice ch;
     
-    Update_Resident()
+    public Update_Resident()
     {
         super("Update Resident");
         setLocation(450,10);
@@ -135,7 +135,7 @@ public class Update_Resident extends JFrame implements ActionListener
         p3=new JPanel();
         p3.setLayout(new GridLayout(1,1,10,10));
         
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/update.png"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/update.png"));
         Image img1=img.getImage().getScaledInstance(200,500,Image.SCALE_DEFAULT);
         ImageIcon ic1=new ImageIcon(img1);
         l12 = new JLabel(ic1);

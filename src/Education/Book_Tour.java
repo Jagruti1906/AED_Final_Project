@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.Random;
+import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Book_Tour extends JFrame implements ActionListener
 {
@@ -15,7 +17,8 @@ public class Book_Tour extends JFrame implements ActionListener
     Font f,f1;
     Choice ch1,ch2,ch3;
     
-    Book_Tour()
+    
+    public Book_Tour()
     {
         super("Book School Tour");
         setLocation(50,10);
@@ -61,10 +64,14 @@ public class Book_Tour extends JFrame implements ActionListener
         }
         
         l1=new JLabel("Book School Tour");
+        l5=new JLabel("Resident Name");
+        l6=new JLabel("Phone Number");
+        l7=new JLabel("Email");
+        
         l2=new JLabel("Book ID");
         l3=new JLabel("School Name");
         l4=new JLabel("Guide Name");
-        l5=new JLabel("Resident Name");
+        l8=new JLabel("Date");
         //l6=new JLabel("Name");
         //l7=new JLabel("Driver Name");
         //l8=new JLabel("Car");
@@ -73,9 +80,10 @@ public class Book_Tour extends JFrame implements ActionListener
         //l11=new JLabel("Price");
         
         tf1=new JTextField();
-        //tf3=new JTextField();
-        //tf4=new JTextField();
-        //tf5=new JTextField();
+        tf3=new JTextField();
+        tf4=new JTextField();
+        tf5=new JTextField();
+        
         //tf6=new JTextField();
         //tf7=new JTextField();
         //tf8=new JTextField();
@@ -83,7 +91,7 @@ public class Book_Tour extends JFrame implements ActionListener
         tf1.setEditable(false);
         //tf3.setEditable(false);
         //tf4.setEditable(false);
-        //tf5.setEditable(false);
+        tf5.setEditable(false);
         //tf6.setEditable(false);
         //tf7.setEditable(false);
         //tf8.setEditable(false);
@@ -91,6 +99,8 @@ public class Book_Tour extends JFrame implements ActionListener
         Random r = new Random();
         tf1.setText(""+Math.abs(r.nextInt() % 100000));
         tf1.setForeground(Color.RED);
+        
+        tf5.setText(java.time.LocalDate.now().toString());
         
         bt1=new JButton("Book Tour");
         bt2=new JButton("Back");
@@ -105,9 +115,9 @@ public class Book_Tour extends JFrame implements ActionListener
         l3.setFont(f1);
         l4.setFont(f1);
         l5.setFont(f1);
-        //l6.setFont(f1);
-        //l7.setFont(f1);
-        //l8.setFont(f1);
+        l6.setFont(f1);
+        l7.setFont(f1);
+        l8.setFont(f1);
         //l9.setFont(f1);
         //l10.setFont(f1);
         //l11.setFont(f1);
@@ -116,9 +126,9 @@ public class Book_Tour extends JFrame implements ActionListener
         ch3.setFont(f1);
         
         tf1.setFont(f1);
-        //tf3.setFont(f1);
-        //tf4.setFont(f1);
-        //tf5.setFont(f1);
+        tf3.setFont(f1);
+        tf4.setFont(f1);
+        tf5.setFont(f1);
         //tf6.setFont(f1);
         //tf7.setFont(f1);
        // tf8.setFont(f1);
@@ -147,12 +157,12 @@ public class Book_Tour extends JFrame implements ActionListener
         p2.add(ch2);
         p2.add(l5);
         p2.add(ch3);
-//        p2.add(l6);
-        //p2.add(tf3);
-  //      p2.add(l7);
-        //p2.add(tf4);
-    //    p2.add(l8);
-        //p2.add(tf5);
+        p2.add(l6);
+        p2.add(tf3);
+        p2.add(l7);
+        p2.add(tf4);
+        p2.add(l8);
+        p2.add(tf5);
       //  p2.add(l9);
         //p2.add(tf6);
         //p2.add(l10);
@@ -165,7 +175,7 @@ public class Book_Tour extends JFrame implements ActionListener
         p3=new JPanel();
         p3.setLayout(new GridLayout(1,1,10,10));
         
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/R.png"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/R.png"));
         Image img1=img.getImage().getScaledInstance(680,500,Image.SCALE_DEFAULT);
         ImageIcon ic1=new ImageIcon(img1);
         l12 = new JLabel(ic1);

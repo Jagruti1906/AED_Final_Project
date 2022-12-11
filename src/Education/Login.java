@@ -23,7 +23,7 @@ public class Login extends JFrame implements ActionListener
         l1=new JLabel();
         l1.setBounds(0,0,580,350);
         l1.setLayout(null);
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/signup.jpg"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/signup.jpg"));
         Image i1=img.getImage().getScaledInstance(580,350,Image.SCALE_DEFAULT);
         ImageIcon img1=new ImageIcon(i1);
         l1.setIcon(img1);

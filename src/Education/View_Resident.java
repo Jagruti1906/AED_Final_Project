@@ -17,7 +17,7 @@ public class View_Resident extends JFrame
     Font f,f1;
     JLabel l1,l2;
 
-    View_Resident()
+    public View_Resident()
     {       
         super("All Resident records");
         setSize(1300,400);

@@ -14,7 +14,7 @@ public class Delete_Resident extends JFrame implements ActionListener
     Font f,f1;
     Choice ch;
     
-    Delete_Resident()
+    public Delete_Resident()
     {
         super("Delete Resident");
         setLocation(50,10);
@@ -145,7 +145,7 @@ public class Delete_Resident extends JFrame implements ActionListener
         p3=new JPanel();
         p3.setLayout(new GridLayout(1,1,10,10));
         
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/delete.png"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/delete.png"));
         Image img1=img.getImage().getScaledInstance(400,500,Image.SCALE_DEFAULT);
         ImageIcon ic1=new ImageIcon(img1);
         l12 = new JLabel(ic1);

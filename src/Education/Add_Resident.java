@@ -12,7 +12,7 @@ public class Add_Resident extends JFrame implements ActionListener
     JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13;
     JButton b,b1;
     
-    Add_Resident()
+    public Add_Resident()
     {
         f=new JFrame("Add Resident");
         f.setBackground(Color.WHITE);
@@ -21,7 +21,7 @@ public class Add_Resident extends JFrame implements ActionListener
         id=new JLabel();
         id.setBounds(0,0,900,600);
         id.setLayout(null);
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/ResidentBg.jpg"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/ResidentBg.jpg"));
         Image i1=img.getImage().getScaledInstance(900,600,Image.SCALE_DEFAULT);
         ImageIcon img1=new ImageIcon(i1);
         id.setIcon(img1);

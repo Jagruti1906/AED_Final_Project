@@ -17,7 +17,7 @@ public class View_BookedTour extends JFrame
     Font f,f1;
     JLabel l1,l2;
     
-    View_BookedTour()
+    public View_BookedTour()
     {
         super("All Booked School Tour Records");
         setSize(1300,400);
