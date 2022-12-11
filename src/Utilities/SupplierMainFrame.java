@@ -156,12 +156,11 @@ public class SupplierMainFrame extends javax.swing.JFrame {
             if(NewConnDirectory.getInstance().getConnDir().get(i).getType().equals(type) && NewConnDirectory.getInstance().getConnDir().get(i).getStatus().equals("Approved")) {
                 for(int k=0;k<ResidentDirectory.getInstance().getResidentDir().size();k++) {
                     if(ResidentDirectory.getInstance().getResidentDir().get(k).getStateID() == NewConnDirectory.getInstance().getConnDir().get(i).getStateID()) {
-                        int pn = ResidentDirectory.getInstance().getResidentDir().get(k).getPhoneNumber();
                         int id = ResidentDirectory.getInstance().getResidentDir().get(k).getStateID();
                         rows[j][0] = Integer.toString(id);
                         rows[j][1] = ResidentDirectory.getInstance().getResidentDir().get(k).getName();
                         rows[j][2] = ResidentDirectory.getInstance().getResidentDir().get(k).getAddress();
-                        rows[j][3] = Integer.toString(pn);
+                        rows[j][3] = ResidentDirectory.getInstance().getResidentDir().get(k).getPhoneNumber();
                         j++;
                     }
                 }

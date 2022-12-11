@@ -186,8 +186,7 @@ public class policeAdminMain extends javax.swing.JFrame {
         for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
              if(PoliceDirectory.getInstance().getPoliceDir().get(i).getRole().equals("Police Officer")){
                 rows[j][1] = PoliceDirectory.getInstance().getPoliceDir().get(i).getName();
-                int pn = PoliceDirectory.getInstance().getPoliceDir().get(i).getPhoneNumber();
-                rows[j][2] =Integer.toString(pn) ;
+                rows[j][2] =PoliceDirectory.getInstance().getPoliceDir().get(i).getPhoneNumber() ;
                 int id = PoliceDirectory.getInstance().getPoliceDir().get(i).getStateID();
                 rows[j][0] =Integer.toString(id) ;
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

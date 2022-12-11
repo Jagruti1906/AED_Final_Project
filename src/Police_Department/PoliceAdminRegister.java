@@ -180,7 +180,7 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try{
-            PoliceClass pc = new PoliceClass("Police Admin","Head",txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            PoliceClass pc = new PoliceClass("Police Admin","Head",txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Admin");
             int flag=0,k=0;
             for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {

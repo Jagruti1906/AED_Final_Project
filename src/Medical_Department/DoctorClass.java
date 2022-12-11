@@ -15,7 +15,7 @@ public class DoctorClass extends PersonClass {
     private int doctorId;
     private String hospitalName;
 
-    public DoctorClass(int stateID, String name, int doctorId, String gender, String email, int phoneNumber,  Date dob, String specialisation, String hospitalName) {
+    public DoctorClass(int stateID, String name, int doctorId, String gender, String email, String phoneNumber,  Date dob, String specialisation, String hospitalName) {
         super(specialisation, name, stateID, phoneNumber, email, gender, dob);
         this.doctorId = doctorId;
         this.hospitalName = hospitalName;

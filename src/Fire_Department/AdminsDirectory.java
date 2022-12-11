@@ -44,7 +44,7 @@ public class AdminsDirectory {
             pst.setString(2, person.getName());
             pst.setString(3, person.getEmail());
             pst.setString(5, person.getGender());
-            pst.setInt(4, person.getPhoneNumber());
+            pst.setString(4, person.getPhoneNumber());
             pst.setDate(6, sqlDate);
             pst.setString(7, person.getRole());
             int rs = pst.executeUpdate();
@@ -64,7 +64,7 @@ public class AdminsDirectory {
             String str = "Select * from admins";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                PersonClass person = new PersonClass(rs.getString("role"),rs.getString("name"), rs.getInt("state_id"),rs.getInt("phone_number"),rs.getString("email"), rs.getString("gender"),rs.getDate("date_of_birth"));
+                PersonClass person = new PersonClass(rs.getString("role"),rs.getString("name"), rs.getInt("state_id"),rs.getString("phone_number"),rs.getString("email"), rs.getString("gender"),rs.getDate("date_of_birth"));
                 adminsDir.add(person);
             }
         } catch (SQLException ex) {
@@ -79,7 +79,7 @@ public class AdminsDirectory {
         fire.jTextField2.setText(person.getName());
         fire.jTextField3.setText(person.getEmail());
         fire.jComboBox1.setSelectedItem(person.getGender());
-        fire.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        fire.jTextField4.setText(person.getPhoneNumber());
         fire.jDateChooser1.setDate((person.getDob()));
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
@@ -95,7 +95,7 @@ public class AdminsDirectory {
         v.jTextField2.setText(person.getName());
         v.jTextField3.setText(person.getEmail());
         v.jComboBox1.setSelectedItem(person.getGender());
-        v.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        v.jTextField4.setText(person.getPhoneNumber());
         v.jDateChooser1.setDate((person.getDob()));
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
@@ -111,7 +111,7 @@ public class AdminsDirectory {
         s.jTextField2.setText(person.getName());
         s.jTextField3.setText(person.getEmail());
         s.jComboBox1.setSelectedItem(person.getGender());
-        s.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        s.jTextField4.setText(person.getPhoneNumber());
         s.jDateChooser1.setDate((person.getDob()));
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
@@ -126,7 +126,7 @@ public class AdminsDirectory {
         rua.jTextField2.setText(person.getName());
         rua.jTextField3.setText(person.getEmail());
         rua.jComboBox1.setSelectedItem(person.getGender());
-        rua.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        rua.jTextField4.setText(person.getPhoneNumber());
         rua.jDateChooser1.setDate((person.getDob()));
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
@@ -142,7 +142,7 @@ public class AdminsDirectory {
         tam.jTextField2.setText(person.getName());
         tam.jTextField3.setText(person.getEmail());
         tam.jComboBox1.setSelectedItem(person.getGender());
-        tam.jTextField4.setText(Integer.toString(person.getPhoneNumber()));
+        tam.jTextField4.setText(person.getPhoneNumber());
         tam.jDateChooser1.setDate((person.getDob()));
         
         for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
@@ -164,7 +164,7 @@ public class AdminsDirectory {
             pst.setString(1, person.getName());
             pst.setString(2, person.getGender());
             pst.setString(3, person.getEmail());
-            pst.setInt(4, person.getPhoneNumber());
+            pst.setString(4, person.getPhoneNumber());
             pst.setDate(5, sqlDate);
             pst.setInt(6, person.getStateID());
             int rs = pst.executeUpdate();

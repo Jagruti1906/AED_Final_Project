@@ -136,7 +136,7 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
         cr.jTextField1.setEnabled(false);
         cr.jTextField2.setText(Integer.toString(rc.getStateID()));
         cr.jTextField2.setEnabled(false);
-        cr.jTextField3.setText(Integer.toString(rc.getPhoneNumber()));
+        cr.jTextField3.setText(rc.getPhoneNumber());
         cr.jTextField3.setEnabled(false);
         cr.jTextField5.setText(Integer.toString(rc.getZip()));
         cr.jTextField5.setEnabled(false);

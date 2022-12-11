@@ -210,7 +210,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         this.hide();
         try{
                     
-            PersonClass person = new PersonClass("Transport Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+            PersonClass person = new PersonClass("Transport Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),jTextField4.getText(),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Transport Admin");
             int flag=0,k=0;
             for(int i=0;i<AdminsDirectory.getInstance().getAdminsDir().size();i++) {
@@ -249,16 +249,18 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
             properties.put("mail.smtp.starttls.enable","true");
             properties.put("mail.smtp.host","smtp.gmail.com");
             properties.put("mail.smtp.port","587");
-            Session session=Session.getDefaultInstance(properties, new Authenticator(){
+            Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
                 @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("aedproject50@gmail.com","AED_project@123"); 
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
                 }
+            
+
             });
             Message message = new MimeMessage(session);
             message.setSubject("StateId and password Assigned");
-            message.setContent(jTextField1.getText(),"kmfkdk");
-            message.setContent(jTextField5.getText(),"kmfkdk");
+            String s = "You have been assigned your state ID and password. Your state ID is " + jTextField1.getText() + " and password is " + jTextField5.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+            message.setContent(s,"text/plain");
             message.setFrom(new InternetAddress("aedproject50@gmail.com"));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
             message.setSentDate(new Date());
@@ -308,7 +310,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
 
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
         // TODO add your handling code here:
-        AED_Project.pnValidation(jTextField4.getText());
+//        AED_Project.pnValidation(jTextField4.getText());
     }//GEN-LAST:event_jTextField4MouseClicked
 
     /**

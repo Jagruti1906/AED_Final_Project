@@ -177,7 +177,7 @@ public class PoliceOfficerMain extends javax.swing.JFrame {
                 pat.jTextField3.setEnabled(false);
                 pat.jTextField4.setEnabled(false);
                 pat.jTextField5.setEnabled(false);
-                pat.jTextField3.setText(Integer.toString(police.getPhoneNumber()));
+                pat.jTextField3.setText(police.getPhoneNumber());
                 pat.jTextField4.setText(model.getValueAt(index, 1).toString());
                 pat.jTextField5.setText(model.getValueAt(index, 2).toString());
             }
