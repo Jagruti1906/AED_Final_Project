@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
+import aed_project.AED_Project;
 
 public class Add_Resident extends JFrame implements ActionListener
 {
@@ -156,6 +157,10 @@ public class Add_Resident extends JFrame implements ActionListener
         String country = t8.getText();
         String gender = t9.getText();
         String ssn = t10.getText();
+        
+        AED_Project.nameValidation(username);
+        AED_Project.emailValidation(email);
+        AED_Project.pnValidation(phone);
         
         if(e.getSource()==b)
         {

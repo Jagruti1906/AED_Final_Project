@@ -51,6 +51,7 @@ public class TransportAdminMain extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 204, 255));
 
         jButton1.setText("Create Transport");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
