@@ -239,7 +239,7 @@ public class RegisterMainV extends javax.swing.JFrame {
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
         } catch(Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,"please fill all details");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

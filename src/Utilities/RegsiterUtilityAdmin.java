@@ -245,7 +245,7 @@ public class RegsiterUtilityAdmin extends javax.swing.JFrame {
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
         } catch(Exception e) {
-            System.out.println(e);
+           JOptionPane.showMessageDialog(null,"Please fill all details");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
