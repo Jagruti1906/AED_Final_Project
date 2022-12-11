@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class Add_Resident implements ActionListener
+public class Add_Resident extends JFrame implements ActionListener
 {
     JLabel id,id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13;
     JFrame f;

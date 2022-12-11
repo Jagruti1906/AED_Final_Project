@@ -248,7 +248,7 @@ public class Book_Tour extends JFrame implements ActionListener
                 {
                     JOptionPane.showMessageDialog(null, "School Tour Booked Successfully");
                     this.setVisible(false);
-                    new Update_Customer();
+                    new Update_Resident();
                 }
                 else
                 {

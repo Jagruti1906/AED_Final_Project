@@ -65,7 +65,7 @@ public class AdminSection extends JFrame implements ActionListener
     {
         if(e.getSource()==bt1)
         {
-            new  Add_InterCity_Driver().setVisible(true);
+            new  Add_Resident().setVisible(true);
         }
         
         if(e.getSource()==bt4)

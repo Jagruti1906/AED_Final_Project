@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class Delete_Resident extends JFrame implements ActionListener
+public class Update_Resident extends JFrame implements ActionListener
 {
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12;
     JButton bt1,bt2;
@@ -14,11 +14,11 @@ public class Delete_Resident extends JFrame implements ActionListener
     Font f,f1;
     Choice ch;
     
-    Delete_Resident()
+    Update_Resident()
     {
-        super("Delete Resident");
-        setLocation(50,10);
-        setSize(980,700);
+        super("Update Resident");
+        setLocation(450,10);
+        setSize(740,700);
         
         f=new Font("Arial",Font.BOLD,25);
         f1=new Font("Arial",Font.BOLD,18);
@@ -40,7 +40,7 @@ public class Delete_Resident extends JFrame implements ActionListener
             e.printStackTrace();
         }
         
-        l1=new JLabel("Delete Customer");
+        l1=new JLabel("Update Customer");
         l2=new JLabel("Username");
         l3=new JLabel("Name");
         l4=new JLabel("Age");
@@ -62,17 +62,7 @@ public class Delete_Resident extends JFrame implements ActionListener
         tf8=new JTextField();
         tf9=new JTextField();
         
-        tf1.setEditable(false);
-        tf2.setEditable(false);
-        tf3.setEditable(false);
-        tf4.setEditable(false);
-        tf5.setEditable(false);
-        tf6.setEditable(false);
-        tf7.setEditable(false);
-        tf8.setEditable(false);
-        tf9.setEditable(false);
-        
-        bt1=new JButton("Delete Customer");
+        bt1=new JButton("Update Data");
         bt2=new JButton("Back");
                 
         l1.setHorizontalAlignment(JLabel.CENTER);
@@ -145,8 +135,8 @@ public class Delete_Resident extends JFrame implements ActionListener
         p3=new JPanel();
         p3.setLayout(new GridLayout(1,1,10,10));
         
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/delete.png"));
-        Image img1=img.getImage().getScaledInstance(400,500,Image.SCALE_DEFAULT);
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/update.png"));
+        Image img1=img.getImage().getScaledInstance(200,500,Image.SCALE_DEFAULT);
         ImageIcon ic1=new ImageIcon(img1);
         l12 = new JLabel(ic1);
         
@@ -202,24 +192,22 @@ public class Delete_Resident extends JFrame implements ActionListener
             String email=tf6.getText();
             String country=tf7.getText();
             String gender=tf8.getText();
-            String aadhar=tf9.getText();
+            String ssn=tf9.getText();
             
             try
             {
                 ConnectionClass obj3=new ConnectionClass();
-                String q="delete from schoolresident where username='"+username+"'";
-                
-                int aa=obj3.stm.executeUpdate(q);
+                String q1="update schoolresident set name='"+name+"',age='"+age+"',dob='"+dob+"',address='"+address+"',phone='"+phone+"',email='"+email+"',country='"+country+"',gender='"+gender+"',ssn='"+ssn+"' where username='"+username+"'";
+                int aa=obj3.stm.executeUpdate(q1);
                 if(aa==1)
                 {
-                    JOptionPane.showMessageDialog(null, "your record successfully Deleted");
-                
+                    JOptionPane.showMessageDialog(null, "your data Successfully updated");
                     this.setVisible(false);
                     new View_Resident().setVisible(true);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Please!,check all details carefully");
+                    JOptionPane.showMessageDialog(null, "Please!, Fill all details carefully");
                 }
             }
             catch(Exception ee)
@@ -232,8 +220,8 @@ public class Delete_Resident extends JFrame implements ActionListener
             this.setVisible(false);
         }        
     }
-    public static void main(String args[])
+    public static void main(String[] args) 
     {
-        new Delete_Resident().setVisible(true);
+        new Update_Resident().setVisible(true);
     }
 }
