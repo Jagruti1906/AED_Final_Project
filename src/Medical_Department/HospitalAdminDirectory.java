@@ -82,7 +82,7 @@ public class HospitalAdminDirectory {
     }
     
     public void viewHospAdminData(HospitalAdminClass hosp, RegisterHospitalAdmin hosAdmin) {
-        hosAdmin.txtHospName.setText(hosp.getHospitalName());
+        hosAdmin.jComboBox2.setSelectedItem(hosp.getHospitalName());
         hosAdmin.txtEmail.setText(hosp.getEmail());
         hosAdmin.txtAdmin.setText(Integer.toString(hosp.getAdminID()));
         hosAdmin.txtAdmin.setEnabled(false);

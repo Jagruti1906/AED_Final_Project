@@ -16,15 +16,17 @@ public class PatrollingClass {
     private int phoneNumber;
     private Date date;
     private String report;
+    private String status;
     private int zip;
 
-    public PatrollingClass(String name, int stateID, int phoneNumber, Date date, String report, int zip) {
+    public PatrollingClass(String name, int stateID, int phoneNumber, Date date, String report, int zip, String status) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
         this.date = date;
         this.report = report;
         this.zip = zip;
+        this.status = status;
     }
 
     public String getName() {
@@ -73,5 +75,13 @@ public class PatrollingClass {
 
     public void setZip(int zip) {
         this.zip = zip;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

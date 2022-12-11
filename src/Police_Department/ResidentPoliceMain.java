@@ -224,7 +224,7 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
 //        } catch(Exception e) {
 //            System.out.println(e);
 //        }
-            String[] columnNames = {"Name", "Date", "Report"};
+            String[] columnNames = {"Name", "Date", "Report", "Status"};
             int count=0;
             for(int i=0;i<PatrollingDirectory.getInstance().getPatrollingDir().size();i++) {
                 if(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getZip()==rc.getZip()) {
@@ -232,7 +232,7 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
                 }
             }
             System.out.println(count);
-            String[][] rows = new String[count][3];
+            String[][] rows = new String[count][4];
             int j=0;
 //            System.out.println(PatrollingDirectory.getInstance().getPatrollingDir().size());
             for(int i=0;i<PatrollingDirectory.getInstance().getPatrollingDir().size();i++) {
@@ -243,6 +243,7 @@ public class ResidentPoliceMain extends javax.swing.JFrame {
                     String s = formatter.format(PatrollingDirectory.getInstance().getPatrollingDir().get(i).getDate());
                     rows[j][1] = s;
                     rows[j][2] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getReport();
+                    rows[j][3] = PatrollingDirectory.getInstance().getPatrollingDir().get(i).getStatus();
                     j++;
                 }
             }

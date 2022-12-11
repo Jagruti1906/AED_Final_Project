@@ -171,7 +171,7 @@ public class PatrolReport extends javax.swing.JFrame {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String dateInString = jTextField4.getText();
             Date date1 = formatter.parse(dateInString);
-            PatrollingClass patrol = new PatrollingClass(jTextField2.getText(), Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField3.getText()), date1, jTextArea1.getText(), Integer.parseInt(jTextField5.getText()));
+            PatrollingClass patrol = new PatrollingClass(jTextField2.getText(), Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField3.getText()), date1, jTextArea1.getText(), Integer.parseInt(jTextField5.getText()), "Completed");
             PatrollingDirectory.getInstance().addpatroldata(patrol);
         }
         catch(Exception e) {

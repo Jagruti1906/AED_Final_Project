@@ -212,6 +212,7 @@ public class policeAdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         PoliceOfficerRegister par = new PoliceOfficerRegister();
+        par.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
         par.getRole("Police Admin");
         par.show();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -303,6 +304,7 @@ public class policeAdminMain extends javax.swing.JFrame {
                         ad.jTextField1.setEnabled(false);
                         ad.jTextField2.setText(model.getValueAt(index, 1).toString());
                         ad.jTextField2.setEnabled(false);
+                        ad.jDateChooser3.getJCalendar().setMaxSelectableDate(new Date());
                     }
                 }
                 ad.show();

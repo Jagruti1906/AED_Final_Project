@@ -164,11 +164,11 @@ public class AppointmentSlot extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

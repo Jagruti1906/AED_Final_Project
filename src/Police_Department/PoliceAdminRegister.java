@@ -259,9 +259,8 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton jButton3;
     public javax.swing.JComboBox<String> jComboBox1;
     public com.toedter.calendar.JDateChooser jDateChooser;
     public javax.swing.JLabel jLabel1;

@@ -49,7 +49,6 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         txtPass = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtHospName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtAdmin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -61,6 +60,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jDateChooser = new com.toedter.calendar.JDateChooser();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,12 +131,12 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtHospName)
                                         .addComponent(txtAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(txtName)
                                         .addComponent(txtPhoneNo)
@@ -156,7 +156,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtHospName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -221,7 +221,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 //        this.hide();
         this.hide();
         try{
-            HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",jComboBox2.getSelectedItem().toString(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
             int flag=0,k=0;
             for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
@@ -311,6 +311,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
     public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
     public com.toedter.calendar.JDateChooser jDateChooser;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
@@ -324,7 +325,6 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel9;
     public javax.swing.JTextField txtAdmin;
     public javax.swing.JTextField txtEmail;
-    public javax.swing.JTextField txtHospName;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPass;
     public javax.swing.JTextField txtPhoneNo;

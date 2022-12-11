@@ -4,10 +4,12 @@
  */
 package UI;
 
+import Medical_Department.HospitalDirectory;
 import Police_Department.PoliceAdminRegister;
 import Resident.RegisterResident;
 import Transport.RegisterTransportAdmin;
 import Utilities.RegsiterUtilityAdmin;
+import java.util.Date;
 
 /**
  *
@@ -147,6 +149,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         PoliceAdminRegister police = new PoliceAdminRegister();
+        police.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
         police.getRole("System Admin");
         police.show();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -155,6 +158,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterFireAdmin fireAdmin = new RegisterFireAdmin();
+        fireAdmin.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         fireAdmin.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -169,6 +173,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterResident res = new RegisterResident();
+        res.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         res.getRole("System Admin");
         res.show();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -177,6 +182,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegsiterUtilityAdmin rua = new RegsiterUtilityAdmin();
+        rua.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         rua.getRole("System Admin");
         rua.show();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -185,6 +191,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterTransportAdmin rta = new RegisterTransportAdmin();
+        rta.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         rta.getRole("System Admin");
         rta.show();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -193,7 +200,11 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterHospitalAdmin resHosp = new RegisterHospitalAdmin();
+        resHosp.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
         resHosp.getRole("System Admin");
+        for(int i=0;i<HospitalDirectory.getInstance().getHospitaldir().size();i++) {
+            resHosp.jComboBox2.addItem(HospitalDirectory.getInstance().getHospitaldir().get(i).getName());
+        }
         resHosp.show();
     }//GEN-LAST:event_jButton7ActionPerformed
 

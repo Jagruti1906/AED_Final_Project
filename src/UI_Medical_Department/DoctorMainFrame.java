@@ -180,6 +180,7 @@ public class DoctorMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         AppointmentSlot as = new AppointmentSlot();
+        as.jDateChooser1.getJCalendar().setMinSelectableDate(new Date());
         as.show();
     }//GEN-LAST:event_addAvailabilityActionPerformed
 
