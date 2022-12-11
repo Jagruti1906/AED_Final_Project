@@ -6,6 +6,7 @@ package Police_Department;
 
 import Login.LoginClass;
 import Login.LoginDirectory;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.police;
 import static aed_project.AED_Project.policeAdmin;
 import java.util.Date;
@@ -71,9 +72,21 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
 
         jLabel7.setText("Phone Number");
 
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
+
         jLabel8.setText("Email");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("Gender");
 
@@ -86,9 +99,21 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             }
         });
 
+        txtPhoneNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPhoneNoMouseClicked(evt);
+            }
+        });
+
         jLabel10.setText("Date Of Birth");
 
         jLabel6.setText("SSN");
+
+        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPassMouseClicked(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 204, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -266,6 +291,26 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             pol.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(txtPass.getText());
+    }//GEN-LAST:event_txtPassMouseClicked
+
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(txtName.getText());
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtPhoneNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNoMouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(txtPhoneNo.getText());
+    }//GEN-LAST:event_txtPhoneNoMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(txtEmail.getText());
+    }//GEN-LAST:event_txtEmailMouseClicked
 
     /**
      * @param args the command line arguments

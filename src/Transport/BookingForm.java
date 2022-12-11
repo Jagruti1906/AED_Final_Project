@@ -145,32 +145,35 @@ public class BookingForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        int answer = JOptionPane.showConfirmDialog(null, "Confirm Payment", "Book Tickets",JOptionPane.YES_NO_OPTION);
-        int seats = seat - Integer.parseInt(jTextField5.getText());
-        for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
-            if(TransportDirectory.getInstance().getTransportDir().get(i).getTransportId() == transId) {
-                TransportClass trans = new TransportClass(transId, 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getType(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getSource(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getDestination(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getTotalSeats(), 
-                        seats, TransportDirectory.getInstance().getTransportDir().get(i).getCost(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getDate(), 
-                        TransportDirectory.getInstance().getTransportDir().get(i).getTransportNumber(),
-                TransportDirectory.getInstance().getTransportDir().get(i).getStatus());
-                TransportDirectory.getInstance().updateDetails(trans, i);
+        try {
+            int answer = JOptionPane.showConfirmDialog(null, "Confirm Payment", "Book Tickets",JOptionPane.YES_NO_OPTION);
+            int seats = seat - Integer.parseInt(jTextField5.getText());
+            for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
+                if(TransportDirectory.getInstance().getTransportDir().get(i).getTransportId() == transId) {
+                    TransportClass trans = new TransportClass(transId, 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getType(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getSource(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getDestination(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getTotalSeats(), 
+                            seats, TransportDirectory.getInstance().getTransportDir().get(i).getCost(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getDate(), 
+                            TransportDirectory.getInstance().getTransportDir().get(i).getTransportNumber(),
+                    TransportDirectory.getInstance().getTransportDir().get(i).getStatus());
+                    TransportDirectory.getInstance().updateDetails(trans, i);
+                }
             }
+            if(answer == 0) {
+                Bookings book = new Bookings(BookingsDirectory.getInstance().getBookingDir().size()+1,rc.getStateID(),rc.getName(),Integer.parseInt(jTextField5.getText()),total,transId,"Booked"); 
+                BookingsDirectory.getInstance().addBooking(book);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Booking Failed");
+            }
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
         }
-        if(answer == 0) {
-            Bookings book = new Bookings(BookingsDirectory.getInstance().getBookingDir().size()+1,rc.getStateID(),rc.getName(),Integer.parseInt(jTextField5.getText()),total,transId,"Booked"); 
-            BookingsDirectory.getInstance().addBooking(book);
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Booking Failed");
-        }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

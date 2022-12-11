@@ -176,6 +176,7 @@ public class PatrolReport extends javax.swing.JFrame {
         }
         catch(Exception e) {
             System.out.println(e);
+            System.out.println("Please fill all details");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

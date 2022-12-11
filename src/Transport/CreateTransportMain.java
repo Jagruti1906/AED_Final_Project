@@ -6,6 +6,7 @@ package Transport;
 
 import Transport_Department.TransportClass;
 import Transport_Department.TransportDirectory;
+import aed_project.AED_Project;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,6 +59,18 @@ public class CreateTransportMain extends javax.swing.JFrame {
         jLabel2.setText("Destination");
 
         jLabel3.setText("Date");
+
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
+
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
 
         jLabel4.setText("Type");
 
@@ -205,9 +218,13 @@ public class CreateTransportMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        TransportClass tc = new TransportClass(TransportDirectory.getInstance().getTransportDir().size()+1, jComboBox1.getSelectedItem().toString(), jTextField1.getText(), jTextField2.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField3.getText()), Float.parseFloat(jTextField6.getText()), jTextField5.getText(), jTextField4.getText(), jDateChooser1.getDate(), Integer.parseInt(jTextField7.getText()), "Available");
-        TransportDirectory.getInstance().addTransport(tc);
-        System.out.println(jTextField7.getText());
+        try {
+            TransportClass tc = new TransportClass(TransportDirectory.getInstance().getTransportDir().size()+1, jComboBox1.getSelectedItem().toString(), jTextField1.getText(), jTextField2.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField3.getText()), Float.parseFloat(jTextField6.getText()), jTextField5.getText(), jTextField4.getText(), jDateChooser1.getDate(), Integer.parseInt(jTextField7.getText()), "Available");
+            TransportDirectory.getInstance().addTransport(tc);
+            System.out.println(jTextField7.getText());
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
@@ -222,6 +239,16 @@ public class CreateTransportMain extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter Transport Number");
         }
     }//GEN-LAST:event_jTextField7MouseClicked
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(jTextField1.getText());
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(jTextField2.getText());
+    }//GEN-LAST:event_jTextField2MouseClicked
 
     /**
      * @param args the command line arguments

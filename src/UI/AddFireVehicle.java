@@ -83,11 +83,15 @@ public class AddFireVehicle extends javax.swing.JFrame {
 
     private void addAmbulanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAmbulanceActionPerformed
         // TODO add your handling code here:
-        this.hide();
-        FireVehicleClass fire = new FireVehicleClass(jTextField3.getText(),Integer.parseInt(jTextField4.getText()),"Available");
-        FireVehicleDirectory.getInstance().addVehicle(fire);
-        FireAdminMainFrame hosp = new FireAdminMainFrame();
-        hosp.show();
+        try{
+            this.hide();
+            FireVehicleClass fire = new FireVehicleClass(jTextField3.getText(),Integer.parseInt(jTextField4.getText()),"Available");
+            FireVehicleDirectory.getInstance().addVehicle(fire);
+            FireAdminMainFrame hosp = new FireAdminMainFrame();
+            hosp.show();
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_addAmbulanceActionPerformed
 
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked

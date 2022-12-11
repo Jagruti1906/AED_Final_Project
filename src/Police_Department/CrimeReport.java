@@ -4,6 +4,8 @@
  */
 package Police_Department;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
@@ -60,7 +62,7 @@ public class CrimeReport extends javax.swing.JFrame {
 
         jLabel6.setText("Incident Date");
 
-        jLabel7.setText("Complaint Type");
+        jLabel7.setText("Complaint");
 
         jLabel8.setText("Approx Time");
 
@@ -175,9 +177,13 @@ public class CrimeReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ComplaintClass cc = new ComplaintClass(ComplaintDirectory.getInstance().getComplaintDir().size()+1,jTextField1.getText(),Integer.parseInt(jTextField2.getText()),Integer.parseInt(jTextField3.getText()),jTextField4.getText(),Integer.parseInt(jTextField5.getText()),jDateChooser1.getDate(),jTextField6.getText(),jComboBox1.getSelectedItem().toString(),"Pending");
-        ComplaintDirectory.getInstance().addComplaint(cc);
+        // TODO add your handling code here
+        try{
+            ComplaintClass cc = new ComplaintClass(ComplaintDirectory.getInstance().getComplaintDir().size()+1,jTextField1.getText(),Integer.parseInt(jTextField2.getText()),Integer.parseInt(jTextField3.getText()),jTextField4.getText(),Integer.parseInt(jTextField5.getText()),jDateChooser1.getDate(),jTextField6.getText(),jComboBox1.getSelectedItem().toString(),"Pending");
+            ComplaintDirectory.getInstance().addComplaint(cc);
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -166,11 +166,15 @@ public class alertsmainform extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.hide();
+        try{
+            this.hide();
         ResidentPage res = new ResidentPage();
         AlertsClass ac = new AlertsClass(Integer.parseInt(jTextField1.getText()),jTextField2.getText(),jTextField3.getText(),Integer.parseInt(jTextField4.getText()),jComboBox1.getSelectedItem().toString(),jTextArea1.getText(),"Request Sent");
         AlertsDirectory.getInstance().addalerts(ac);
         res.show();
+        } catch(Exception e) {
+            System.out.println("Please fill all details");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

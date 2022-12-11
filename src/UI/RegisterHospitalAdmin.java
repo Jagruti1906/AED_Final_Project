@@ -10,6 +10,7 @@ import Login.LoginDirectory;
 import Medical_Department.HospitalAdminClass;
 import Medical_Department.HospitalAdminDirectory;
 import UI_Medical_Department.HospAdminMainFrame;
+import aed_project.AED_Project;
 import static aed_project.AED_Project.hospAdmin;
 import java.util.Date;
 import java.util.Properties;
@@ -86,6 +87,12 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 
         jLabel10.setText("Date Of Birth");
 
+        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPassMouseClicked(evt);
+            }
+        });
+
         jLabel11.setText("Password");
 
         jLabel1.setBackground(new java.awt.Color(0, 204, 153));
@@ -107,11 +114,29 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 
         jLabel3.setText("Admin ID");
 
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
+
         jLabel4.setText("Name");
+
+        txtPhoneNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPhoneNoMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("SSN");
 
         jLabel7.setText("Phone Number");
+
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,6 +326,26 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter Admin ID");
         }
     }//GEN-LAST:event_txtAdminMouseClicked
+
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+        // TODO add your handling code here:
+        AED_Project.nameValidation(txtName.getText());
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtPhoneNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNoMouseClicked
+        // TODO add your handling code here:
+        AED_Project.pnValidation(txtPhoneNo.getText());
+    }//GEN-LAST:event_txtPhoneNoMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        // TODO add your handling code here:
+        AED_Project.emailValidation(txtEmail.getText());
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseClicked
+        // TODO add your handling code here:
+        AED_Project.passValidation(txtPass.getText());
+    }//GEN-LAST:event_txtPassMouseClicked
 
     /**
      * @param args the command line arguments
