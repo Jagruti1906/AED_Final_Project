@@ -227,7 +227,7 @@ public class RegisterResident extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
-            ResidentClass resident = new ResidentClass("Resident", jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jTextField2.getText(),Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField5.getText()),jTextField4.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+            ResidentClass resident = new ResidentClass("Resident", jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jTextField2.getText(),Integer.parseInt(jTextField1.getText()),jTextField5.getText(),jTextField4.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Resident");
             int flag=0,k=0;
             for(int i=0;i<ResidentDirectory.getInstance().getResidentDir().size();i++) {

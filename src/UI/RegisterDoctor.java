@@ -235,7 +235,7 @@ public class RegisterDoctor extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
-            DoctorClass doc = new DoctorClass(Integer.parseInt(jTextField1.getText()),jTextField2.getText(),Integer.parseInt(jTextField4.getText()),jComboBox1.getSelectedItem().toString(),jTextField6.getText(),Integer.parseInt(jTextField7.getText()),jDateChooser1.getDate(),jComboBox2.getSelectedItem().toString(),jTextField10.getText());
+            DoctorClass doc = new DoctorClass(Integer.parseInt(jTextField1.getText()),jTextField2.getText(),Integer.parseInt(jTextField4.getText()),jComboBox1.getSelectedItem().toString(),jTextField6.getText(),jTextField7.getText(),jDateChooser1.getDate(),jComboBox2.getSelectedItem().toString(),jTextField10.getText());
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField8.getText(),"Doctor");
             int flag=0,k=0;
             for(int i=0;i<DoctorDirectory.getInstance().getDoctorDir().size();i++) {

@@ -175,7 +175,7 @@ public class RegisterMainV extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
-            PersonClass person = new PersonClass("Verifier", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField4.getText()),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
+            PersonClass person = new PersonClass("Verifier", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),jTextField4.getText(),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"Verifier");
             int flag=0,k=0;
             for(int i=0;i<AdminsDirectory.getInstance().getAdminsDir().size();i++) {

@@ -15,7 +15,7 @@ public class HospitalAdminClass extends PersonClass{
     private String hospitalName;
     private int adminID;
 
-    public HospitalAdminClass(String role, String hospitalName, int adminID, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+    public HospitalAdminClass(String role, String hospitalName, int adminID, String name, int stateID, String phoneNumber, String email, String gender, Date dob) {
         super(role, name, stateID, phoneNumber, email, gender, dob);
         this.hospitalName = hospitalName;
         this.adminID = adminID;

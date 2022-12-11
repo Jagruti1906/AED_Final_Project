@@ -44,7 +44,7 @@ public class HospitalAdminDirectory {
             pst.setString(3, had.getName());
             pst.setString(4, had.getGender());
             pst.setString(5, had.getEmail());
-            pst.setInt(6, had.getPhoneNumber());
+            pst.setString(6, had.getPhoneNumber());
             pst.setDate(7, sqlDate);
             pst.setString(8, had.getHospitalName());
             pst.setString(9, had.getRole());
@@ -65,7 +65,7 @@ public class HospitalAdminDirectory {
             String str = "Select * from hospitalAdmins";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                HospitalAdminClass hosp = new HospitalAdminClass(rs.getString("role"), rs.getString("hospital_name"), rs.getInt("admin_id"), rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
+                HospitalAdminClass hosp = new HospitalAdminClass(rs.getString("role"), rs.getString("hospital_name"), rs.getInt("admin_id"), rs.getString("name"),rs.getInt("stateID"),rs.getString("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
                 hospitalAdminDir.add(hosp);
             }
         } catch (SQLException ex) {
@@ -87,7 +87,7 @@ public class HospitalAdminDirectory {
         hosAdmin.txtAdmin.setText(Integer.toString(hosp.getAdminID()));
         hosAdmin.txtAdmin.setEnabled(false);
         hosAdmin.txtName.setText(hosp.getName());
-        hosAdmin.txtPhoneNo.setText(Integer.toString(hosp.getPhoneNumber()));
+        hosAdmin.txtPhoneNo.setText(hosp.getPhoneNumber());
         hosAdmin.txtSSN.setText(Integer.toString(hosp.getStateID()));
         hosAdmin.txtSSN.setEnabled(false);
         hosAdmin.jDateChooser.setDate((hosp.getDob()));
@@ -111,7 +111,7 @@ public class HospitalAdminDirectory {
             pst.setString(1, had.getName());
             pst.setString(2, had.getGender());
             pst.setString(3, had.getEmail());
-            pst.setInt(4, had.getPhoneNumber());
+            pst.setString(4, had.getPhoneNumber());
             pst.setDate(5, sqlDate);
             pst.setString(6, had.getHospitalName());
             pst.setInt(7, had.getStateID());

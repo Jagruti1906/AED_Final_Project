@@ -14,7 +14,7 @@ import java.util.Date;
 public class PoliceClass extends PersonClass {
     private String branch;
 
-    public PoliceClass(String role, String branch, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+    public PoliceClass(String role, String branch, String name, int stateID, String phoneNumber, String email, String gender, Date dob) {
         super(role, name, stateID, phoneNumber, email, gender, dob);
         this.branch = branch;
     }

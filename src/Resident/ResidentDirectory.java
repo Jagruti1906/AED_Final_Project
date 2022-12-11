@@ -42,7 +42,7 @@ public class ResidentDirectory {
             pst.setString(2, res.getName());
             pst.setString(3, res.getGender());
             pst.setString(4, res.getEmail());
-            pst.setInt(5, res.getPhoneNumber());
+            pst.setString(5, res.getPhoneNumber());
             pst.setDate(6, sqlDate);
             pst.setString(7, res.getAddress());
             pst.setInt(8, res.getZip());
@@ -65,7 +65,7 @@ public class ResidentDirectory {
             String str = "Select * from resident";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                ResidentClass resident = new ResidentClass(rs.getString("role"),rs.getString("address"),rs.getInt("zip"), rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
+                ResidentClass resident = new ResidentClass(rs.getString("role"),rs.getString("address"),rs.getInt("zip"), rs.getString("name"),rs.getInt("stateID"),rs.getString("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
                 residentDir.add(resident);
             }
         } catch (SQLException ex) {
@@ -77,7 +77,7 @@ public class ResidentDirectory {
         resident.jTextField1.setText(Integer.toString(res.getStateID()));
         resident.jTextField1.setEnabled(false);
         resident.jTextField2.setText(res.getName());
-        resident.jTextField5.setText(Integer.toString(res.getPhoneNumber()));
+        resident.jTextField5.setText(res.getPhoneNumber());
         resident.jTextField4.setText(res.getEmail());
         resident.jComboBox1.setSelectedItem(res.getGender());
         resident.jTextField6.setText(res.getAddress());
@@ -104,7 +104,7 @@ public class ResidentDirectory {
             pst.setString(1, res.getName());
             pst.setString(2, res.getGender());
             pst.setString(3, res.getEmail());
-            pst.setInt(4, res.getPhoneNumber());
+            pst.setString(4, res.getPhoneNumber());
             pst.setDate(5, sqlDate);
             pst.setString(6, res.getAddress());
             pst.setInt(7,res.getZip());
