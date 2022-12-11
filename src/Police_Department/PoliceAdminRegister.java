@@ -179,24 +179,34 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        PoliceClass pc = new PoliceClass("Police Admin","Head",txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
-        LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Admin");
-        int flag=0,k=0;
-        for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
-            if(PoliceDirectory.getInstance().getPoliceDir().get(i).getRole().equals("Police Admin")) {
-                flag=1;
-                k=i;
-                break;
+        try{
+            PoliceClass pc = new PoliceClass("Police Admin","Head",txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Admin");
+            int flag=0,k=0;
+            for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
+                if(r.equals("Police Admin")) {
+                    if(PoliceDirectory.getInstance().getPoliceDir().get(i).getRole().equals("Police Admin")) {
+                        flag=1;
+                        k=i;
+                        break;
+                    }
+                }
+                else {
+                    flag=0;
+                    break;
+                }
             }
-        }
-        if(flag==1) {
-            PoliceDirectory.getInstance().updatePolice(pc,k);
+            if(flag==1) {
+                PoliceDirectory.getInstance().updatePolice(pc,k);
             policeAdmin = PoliceDirectory.getInstance().getPoliceDir().get(k);
             LoginDirectory.getInstance().updateUser(login.getStateID(), login);
-        }
-        else {
-            PoliceDirectory.getInstance().addPolice(pc);
+            }
+            else {
+                PoliceDirectory.getInstance().addPolice(pc);
             LoginDirectory.getInstance().addUser(login);
+            }
+        } catch(Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -47,7 +47,7 @@ public class DoctorDirectory {
             pst.setInt(3, doc.getdoctorId());
             pst.setString(4, doc.getGender());
             pst.setString(5, doc.getEmail());
-            pst.setInt(6, doc.getPhoneNumber());
+            pst.setString(6, doc.getPhoneNumber());
             pst.setDate(7, sqlDate);
             pst.setString(8, doc.getRole());
             pst.setString(9, doc.getHospitalName());
@@ -68,11 +68,19 @@ public class DoctorDirectory {
             String str = "Select * from doctor";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                DoctorClass doc = new DoctorClass(rs.getInt("stateID"), rs.getString("name"),rs.getInt("doctorID"),rs.getString("gender"),rs.getString("email"),rs.getInt("phoneNumber"),rs.getDate("date_of_birth"),rs.getString("specialist"),rs.getString("hospital_name"));
+                DoctorClass doc = new DoctorClass(rs.getInt("stateID"), rs.getString("name"),rs.getInt("doctorID"),rs.getString("gender"),rs.getString("email"),rs.getString("phoneNumber"),rs.getDate("date_of_birth"),rs.getString("specialist"),rs.getString("hospital_name"));
                 doctorDir.add(doc);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Cannot be loaded");
+        }
+    }
+    
+    public static void uniqueId(int num) {
+        for(int i=0;i<doctorDir.size();i++) {
+            if(doctorDir.get(i).getdoctorId()==num) {
+                JOptionPane.showMessageDialog(null, "Doctor ID Already Exists.");
+            } 
         }
     }
     
@@ -84,7 +92,7 @@ public class DoctorDirectory {
         doctor.jTextField4.setEnabled(false);
         doctor.jComboBox1.setSelectedItem(doc.getGender());
         doctor.jTextField6.setText(doc.getEmail());
-        doctor.jTextField7.setText(Integer.toString(doc.getPhoneNumber()));
+        doctor.jTextField7.setText(doc.getPhoneNumber());
         doctor.jDateChooser1.setDate((doc.getDob()));
         doctor.jComboBox2.setSelectedItem(doc.getRole());
         doctor.jTextField10.setText(doc.getHospitalName());
@@ -110,7 +118,7 @@ public class DoctorDirectory {
             pst.setString(1, dc.getName());
             pst.setString(2, dc.getGender());
             pst.setString(3, dc.getEmail());
-            pst.setInt(4, dc.getPhoneNumber());
+            pst.setString(4, dc.getPhoneNumber());
             pst.setDate(5, sqlDate);
             pst.setString(6, dc.getRole());
             pst.setString(7, dc.getHospitalName());

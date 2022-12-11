@@ -14,7 +14,7 @@ import java.util.Date;
 public class PersonClass {
     private String name;
     private int stateID;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String gender;
     private Date dob;
@@ -44,11 +44,11 @@ public class PersonClass {
         this.stateID = stateID;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -76,7 +76,7 @@ public class PersonClass {
         this.dob = dob;
     }
 
-    public PersonClass(String role, String name, int stateID, int phoneNumber, String email, String gender, Date dob) {
+    public PersonClass(String role, String name, int stateID, String phoneNumber, String email, String gender, Date dob) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;

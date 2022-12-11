@@ -6,6 +6,8 @@ package Transport;
 
 import Transport_Department.Bookings;
 import Transport_Department.BookingsDirectory;
+import Transport_Department.TransportClass;
+import Transport_Department.TransportDirectory;
 import static aed_project.AED_Project.rc;
 import javax.swing.JOptionPane;
 
@@ -23,9 +25,14 @@ public class BookingForm extends javax.swing.JFrame {
     }
     
     private static int transId=0;
+    private static int seat = 0;
+    private static float cost = 0;
+     private static float total = 0;
     
-    public void getId(int id) {
+    public void getId(int id, int seats, float c) {
         transId = id;
+        seat = seats;
+        cost = c;
     }
 
     /**
@@ -37,16 +44,19 @@ public class BookingForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+
+        jTextField4.setText("jTextField4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,8 +65,6 @@ public class BookingForm extends javax.swing.JFrame {
         jLabel2.setText("Stateid");
 
         jLabel3.setText("Seats");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         jButton1.setText("Pay Now");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +82,11 @@ public class BookingForm extends javax.swing.JFrame {
 
         jLabel4.setText("Total Cost");
 
-        jTextField3.setText("jTextField3");
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,9 +104,10 @@ public class BookingForm extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1))
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -114,7 +127,7 @@ public class BookingForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -131,9 +144,27 @@ public class BookingForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                int answer = JOptionPane.showConfirmDialog(null, "Confirm Payment", "Book Tickets",JOptionPane.YES_NO_OPTION);
+        this.hide();
+        int answer = JOptionPane.showConfirmDialog(null, "Confirm Payment", "Book Tickets",JOptionPane.YES_NO_OPTION);
+        int seats = seat - Integer.parseInt(jTextField5.getText());
+        for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
+            if(TransportDirectory.getInstance().getTransportDir().get(i).getTransportId() == transId) {
+                TransportClass trans = new TransportClass(transId, 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getType(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getSource(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getDestination(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getTotalSeats(), 
+                        seats, TransportDirectory.getInstance().getTransportDir().get(i).getCost(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getDate(), 
+                        TransportDirectory.getInstance().getTransportDir().get(i).getTransportNumber(),
+                TransportDirectory.getInstance().getTransportDir().get(i).getStatus());
+                TransportDirectory.getInstance().updateDetails(trans, i);
+            }
+        }
         if(answer == 0) {
-            Bookings book = new  Bookings(BookingsDirectory.getInstance().getBookingDir().size()+1,rc.getStateID(),rc.getName(),Integer.parseInt(jComboBox1.getSelectedItem().toString()),Float.parseFloat(jTextField3.getText()),transId,"Booked"); 
+            Bookings book = new Bookings(BookingsDirectory.getInstance().getBookingDir().size()+1,rc.getStateID(),rc.getName(),Integer.parseInt(jTextField5.getText()),total,transId,"Booked"); 
             BookingsDirectory.getInstance().addBooking(book);
         }
         else {
@@ -146,6 +177,12 @@ public class BookingForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+        total = cost * Integer.parseInt(jTextField5.getText());
+        jTextField3.setText(Float.toString(total));
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,13 +222,14 @@ public class BookingForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

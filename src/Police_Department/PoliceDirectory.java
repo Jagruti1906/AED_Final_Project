@@ -39,7 +39,7 @@ public class PoliceDirectory {
             pst.setString(2, pol.getName());
             pst.setString(5, pol.getGender());
             pst.setString(4, pol.getEmail());
-            pst.setInt(3, pol.getPhoneNumber());
+            pst.setString(3, pol.getPhoneNumber());
             pst.setDate(6, sqlDate);
             pst.setString(8,pol.getBranch());
             pst.setString(7,pol.getRole());
@@ -59,7 +59,7 @@ public class PoliceDirectory {
             String str = "Select * from police";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                PoliceClass polad = new PoliceClass(rs.getString("Role"),rs.getString("branch"),rs.getString("name"),rs.getInt("stateID"),rs.getInt("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
+                PoliceClass polad = new PoliceClass(rs.getString("Role"),rs.getString("branch"),rs.getString("name"),rs.getInt("stateID"),rs.getString("phoneNumber"),rs.getString("email"),rs.getString("gender"),rs.getDate("date_of_birth"));
                 policeDir.add(polad);
             }
         } catch (SQLException ex) {
@@ -69,7 +69,7 @@ public class PoliceDirectory {
         public void viewpoliceAdminData(PoliceClass pc, PoliceAdminRegister polAdmin) {
         polAdmin.txtEmail.setText(pc.getEmail());
         polAdmin.txtName.setText(pc.getName());
-        polAdmin.txtPhoneNo.setText(Integer.toString(pc.getPhoneNumber()));
+        polAdmin.txtPhoneNo.setText(pc.getPhoneNumber());
         polAdmin.txtSSN.setText(Integer.toString(pc.getStateID()));
         polAdmin.txtSSN.setEnabled(false);
         polAdmin.jDateChooser.setDate((pc.getDob()));
@@ -85,7 +85,7 @@ public class PoliceDirectory {
        public void viewpoliceOfficerData(PoliceClass pc, PoliceOfficerRegister polAdmin) {
         polAdmin.txtEmail.setText(pc.getEmail());
         polAdmin.txtName.setText(pc.getName());
-        polAdmin.txtPhoneNo.setText(Integer.toString(pc.getPhoneNumber()));
+        polAdmin.txtPhoneNo.setText(pc.getPhoneNumber());
         polAdmin.txtSSN.setText(Integer.toString(pc.getStateID()));
         polAdmin.txtSSN.setEnabled(false);
         polAdmin.jDateChooser.setDate((pc.getDob()));
@@ -110,7 +110,7 @@ public class PoliceDirectory {
             pst.setString(1, pol.getName());
             pst.setString(2, pol.getGender());
             pst.setString(3, pol.getEmail());
-            pst.setInt(4, pol.getPhoneNumber());
+            pst.setString(4, pol.getPhoneNumber());
             pst.setDate(5, sqlDate);
             pst.setString(6, pol.getBranch());
             pst.setInt(7, pol.getStateID());
