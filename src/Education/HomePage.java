@@ -10,7 +10,7 @@ public class HomePage extends JFrame implements ActionListener
     Font f,f1,f2;
     JPanel p1;
     
-    HomePage()
+    public HomePage()
     {
         super("School Management HomePage");
         setLocation(0,0);
@@ -20,7 +20,7 @@ public class HomePage extends JFrame implements ActionListener
         f2=new Font("Gadugi",Font.BOLD,35);
         f1=new Font("MS UI Gothic",Font.BOLD,18);
         
-        ImageIcon ic=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/school background.jpg"));
+        ImageIcon ic=new ImageIcon(ClassLoader.getSystemResource("Icons/school background.jpg"));
         Image img=ic.getImage().getScaledInstance(1550,800,Image.SCALE_DEFAULT);
         ImageIcon ic1=new ImageIcon(img);
         l1=new JLabel(ic1);

@@ -12,7 +12,7 @@ public class AdminSection extends JFrame implements ActionListener
     JPanel p1,p2;
     Font f,f1;
     
-    AdminSection()
+   public AdminSection()
     {
         super("Admin Section");
         setLocation(450,250);
@@ -32,7 +32,7 @@ public class AdminSection extends JFrame implements ActionListener
 //        bt3.addActionListener(this);
         bt4.addActionListener(this);
         
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/focus.png"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/focus.png"));
         Image img2=img.getImage().getScaledInstance(100,180,Image.SCALE_DEFAULT);
         ImageIcon img3=new ImageIcon(img2);
         l2=new JLabel(img3);
@@ -65,7 +65,7 @@ public class AdminSection extends JFrame implements ActionListener
     {
         if(e.getSource()==bt1)
         {
-            new  Add_Resident().setVisible(true);
+            new  Add_School().setVisible(true);
         }
         
         if(e.getSource()==bt4)

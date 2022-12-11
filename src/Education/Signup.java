@@ -14,7 +14,7 @@ public class Signup extends JFrame implements ActionListener
     JPasswordField p1;
     JButton b1,b2;
     
-    Signup()
+    public Signup()
     {
         f=new JFrame("Create New School Admin");
         
@@ -53,7 +53,7 @@ public class Signup extends JFrame implements ActionListener
         t3.setBounds(150,170,150,30);
         f.add(t3);
         
-        ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/signup1.png"));
+        ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("Icons/signup1.png"));
         Image i2=i1.getImage().getScaledInstance(150,150,Image.SCALE_DEFAULT);
         ImageIcon i3=new ImageIcon(i2);
         JLabel l5=new JLabel(i3);

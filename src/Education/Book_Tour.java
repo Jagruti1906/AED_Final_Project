@@ -15,7 +15,7 @@ public class Book_Tour extends JFrame implements ActionListener
     Font f,f1;
     Choice ch1,ch2,ch3;
     
-    Book_Tour()
+    public Book_Tour()
     {
         super("Book School Tour");
         setLocation(50,10);
@@ -165,7 +165,7 @@ public class Book_Tour extends JFrame implements ActionListener
         p3=new JPanel();
         p3.setLayout(new GridLayout(1,1,10,10));
         
-        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("cab_booking/Icons/R.png"));
+        ImageIcon img=new ImageIcon(ClassLoader.getSystemResource("Icons/R.png"));
         Image img1=img.getImage().getScaledInstance(680,500,Image.SCALE_DEFAULT);
         ImageIcon ic1=new ImageIcon(img1);
         l12 = new JLabel(ic1);
