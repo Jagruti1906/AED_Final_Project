@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Login.LoginDirectory;
 import Medical_Department.HospitalDirectory;
 import Police_Department.PoliceAdminRegister;
 import Resident.RegisterResident;
@@ -150,6 +151,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         this.hide();
         PoliceAdminRegister police = new PoliceAdminRegister();
         police.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        police.txtSSN.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         police.getRole("System Admin");
         police.show();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -158,6 +160,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         RegisterFireAdmin fireAdmin = new RegisterFireAdmin();
+        fireAdmin.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         fireAdmin.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         fireAdmin.show();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -174,6 +177,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         this.hide();
         RegisterResident res = new RegisterResident();
         res.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        res.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         res.getRole("System Admin");
         res.show();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -183,6 +187,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         this.hide();
         RegsiterUtilityAdmin rua = new RegsiterUtilityAdmin();
         rua.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        rua.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         rua.getRole("System Admin");
         rua.show();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -192,6 +197,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         this.hide();
         RegisterTransportAdmin rta = new RegisterTransportAdmin();
         rta.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        rta.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         rta.getRole("System Admin");
         rta.show();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -201,6 +207,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
         this.hide();
         RegisterHospitalAdmin resHosp = new RegisterHospitalAdmin();
         resHosp.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        resHosp.txtSSN.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
         resHosp.getRole("System Admin");
         for(int i=0;i<HospitalDirectory.getInstance().getHospitaldir().size();i++) {
             resHosp.jComboBox2.addItem(HospitalDirectory.getInstance().getHospitaldir().get(i).getName());

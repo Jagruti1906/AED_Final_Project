@@ -4,16 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Fire_Department/FireVehicleDirectory.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/DutyClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/PatrollingClass.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/ResidentPoliceMain.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/AppointmentSlot.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/RegisterDoctor.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/DoctorMainFrame.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/RegisterHospitalAdmin.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Transport/ResidentTransportMain.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Transport/RegisterTransportAdmin.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/SystemAdminFrame.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/aed_project/AED_Project.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Medical_Department/AmbulanceDirectory.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/Login.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/AddAmbulanceForm.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI/AddFireVehicle.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/policeAdminMain.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/UI_Medical_Department/HospAdminMainFrame.java</file>
             <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/CrimeReport.java</file>
-            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/AssignDuty.java</file>
+            <file>file:/C:/Users/jagru/OneDrive/Documents/NetBeansProjects/AED_Project/src/Police_Department/PoliceAdminRegister.java</file>
         </group>
     </open-files>
 </project-private>

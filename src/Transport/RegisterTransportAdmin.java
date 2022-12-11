@@ -310,7 +310,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
 
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
         // TODO add your handling code here:
-//        AED_Project.pnValidation(jTextField4.getText());
+        AED_Project.pnValidation(jTextField4.getText());
     }//GEN-LAST:event_jTextField4MouseClicked
 
     /**
