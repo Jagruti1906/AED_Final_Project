@@ -67,6 +67,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 204, 255));
 
         jLabel6.setText("Email ID");
 
