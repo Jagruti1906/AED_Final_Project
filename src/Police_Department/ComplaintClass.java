@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class ComplaintClass {
 
-    public ComplaintClass(int caseID,String name, int stateID, int phoneNumber, String incidentPlace,int zip, Date incidentDate, String complaintType, String incidentTime, String status) {
+    public ComplaintClass(int caseID,String name, int stateID, String phoneNumber, String incidentPlace,int zip, Date incidentDate, String complaintType, String incidentTime, String status) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
@@ -43,11 +43,11 @@ public class ComplaintClass {
         this.stateID = stateID;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -83,7 +83,7 @@ public class ComplaintClass {
         this.incidentTime = incidentTime;
     }
     private int stateID;
-    private int phoneNumber;
+    private String phoneNumber;
     private String incidentPlace;
     private Date incidentDate;
     private String complaintType;

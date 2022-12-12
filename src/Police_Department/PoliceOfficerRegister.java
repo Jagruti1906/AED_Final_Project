@@ -288,9 +288,10 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             PoliceClass pc = new PoliceClass("Police Officer",jComboBox2.getSelectedItem().toString(),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
             LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Police Officer");
             int flag=0,k=0;
+            System.out.println(r);
             for(int i=0;i<PoliceDirectory.getInstance().getPoliceDir().size();i++) {
                 if(r.equals("Police Officer")) {
-                    if(PoliceDirectory.getInstance().getPoliceDir().get(i).getRole().equals("Police Admin")) {
+                    if(PoliceDirectory.getInstance().getPoliceDir().get(i).getRole().equals("Police Officer")) {
                         flag=1;
                         k=i;
                         break;
@@ -301,6 +302,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
                     break;
                 }
             }
+            System.out.println(flag);
             if(flag==1) {
                 PoliceDirectory.getInstance().updatePolice(pc,k);
             police = PoliceDirectory.getInstance().getPoliceDir().get(k);

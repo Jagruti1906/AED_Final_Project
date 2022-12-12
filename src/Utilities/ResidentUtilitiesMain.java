@@ -41,14 +41,16 @@ public class ResidentUtilitiesMain extends javax.swing.JFrame {
         String[] columnNames = {"ID", "Service From", "Service Till","Units Consumed","Unit Cost","Total","Status"};
         int count=0;
         for(int i=0;i<BillsDirectory.getInstance().getBillsDir().size();i++) {
-            if(BillsDirectory.getInstance().getBillsDir().get(i).getType().equals(type)) {
+            if(BillsDirectory.getInstance().getBillsDir().get(i).getType().equals(type)
+                    && BillsDirectory.getInstance().getBillsDir().get(i).getStateID() == rc.getStateID()) {
                 count++;
             }
         }
         String[][] rows = new String[count][7];
         int j=0;
         for(int i=0;i<BillsDirectory.getInstance().getBillsDir().size();i++) {
-            if(BillsDirectory.getInstance().getBillsDir().get(i).getType().equals(type)) {
+            if(BillsDirectory.getInstance().getBillsDir().get(i).getType().equals(type) 
+                    && BillsDirectory.getInstance().getBillsDir().get(i).getStateID() == rc.getStateID()) {
                 int id = BillsDirectory.getInstance().getBillsDir().get(i).getBillID();
                 rows[j][0] = Integer.toString(id);
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

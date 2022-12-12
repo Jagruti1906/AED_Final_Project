@@ -99,7 +99,7 @@ public class alertsmainform extends javax.swing.JFrame {
         jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
 
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 

@@ -40,7 +40,7 @@ public class ComplaintDirectory {
             pst.setInt(1,cc.getCaseID());
             pst.setInt(2, cc.getStateID());
             pst.setString(3, cc.getName());
-            pst.setInt(4, cc.getPhoneNumber());
+            pst.setString(4, cc.getPhoneNumber());
             pst.setString(5, cc.getIncidentPlace());
             pst.setInt(6, cc.getZip());
             pst.setDate(7, sqlDate);
@@ -66,7 +66,7 @@ public class ComplaintDirectory {
             String str = "Select * from complaints";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                ComplaintClass cc = new ComplaintClass(rs.getInt("CaseID"),rs.getString("Name"), rs.getInt("Stateid"),rs.getInt("Phone Number"),rs.getString("Incident_place"),rs.getInt("Zip"),rs.getDate("Incident_Date"),rs.getString("Complaint_type"),rs.getString("Incident_time"),rs.getString("Status"));
+                ComplaintClass cc = new ComplaintClass(rs.getInt("CaseID"),rs.getString("Name"), rs.getInt("Stateid"),rs.getString("Phone Number"),rs.getString("Incident_place"),rs.getInt("Zip"),rs.getDate("Incident_Date"),rs.getString("Complaint_type"),rs.getString("Incident_time"),rs.getString("Status"));
                 complaintDir.add(cc);
             }
         } catch (SQLException ex) {

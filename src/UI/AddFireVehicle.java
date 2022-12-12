@@ -52,7 +52,7 @@ public class AddFireVehicle extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField4MouseClicked(evt);
@@ -64,7 +64,7 @@ public class AddFireVehicle extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);

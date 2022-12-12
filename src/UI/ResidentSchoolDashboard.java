@@ -159,7 +159,7 @@ public class ResidentSchoolDashboard extends javax.swing.JFrame {
         bt.jTextField3.setEnabled(false);
         bt.jTextField2.setText(rc.getEmail());
         bt.jTextField3.setText(rc.getPhoneNumber());
-        bt.jDateChooser3.setMinSelectableDate(new Date());
+        bt.jDateChooser4.setMinSelectableDate(new Date());
         bt.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 

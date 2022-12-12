@@ -252,10 +252,14 @@ public class CrimeReport extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here
         try{
-            ComplaintClass cc = new ComplaintClass(ComplaintDirectory.getInstance().getComplaintDir().size()+1,jTextField1.getText(),Integer.parseInt(jTextField2.getText()),Integer.parseInt(jTextField3.getText()),jTextField4.getText(),Integer.parseInt(jTextField5.getText()),jDateChooser1.getDate(),jTextField6.getText(),jComboBox1.getSelectedItem().toString(),"Pending");
+            System.out.println("djds");
+            ComplaintClass cc = new ComplaintClass(ComplaintDirectory.getInstance().getComplaintDir().size()+1,jTextField1.getText(),Integer.parseInt(jTextField2.getText()),jTextField3.getText(),jTextField4.getText(),Integer.parseInt(jTextField5.getText()),jDateChooser1.getDate(),jTextField6.getText(),jComboBox1.getSelectedItem().toString(),"Pending");
+            System.out.println("sjklsd");
             ComplaintDirectory.getInstance().addComplaint(cc);
+            System.out.println("akljsa");
         } catch(Exception e) {
             System.out.println("Please fill all details");
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -156,7 +156,7 @@ public class PoliceOfficerMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         PoliceOfficerRegister por = new PoliceOfficerRegister();
-        por.getRole("Police");
+        por.getRole("Police Officer");
         PoliceDirectory.getInstance().viewpoliceOfficerData(police, por);
         por.show();
         

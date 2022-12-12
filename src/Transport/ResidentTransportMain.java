@@ -9,6 +9,7 @@ import Transport_Department.TransportClass;
 import Transport_Department.TransportDirectory;
 import UI.ResidentPage;
 import static aed_project.AED_Project.rc;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -206,44 +207,32 @@ public class ResidentTransportMain extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String[] columnNames = {"TransportID","Date","Departure Time","Arrival Time","Seats","Cost"};
-        int count=0;
         check=2;
         try {
-            for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date date2 = formatter.parse(formatter.format(jDateChooser1.getDate()));
-            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
-            int checkDate = date1.compareTo(date2);
-            if(TransportDirectory.getInstance().getTransportDir().get(i).getSource().equals(jTextField1.getText()) 
-               && TransportDirectory.getInstance().getTransportDir().get(i).getDestination().equals(jTextField2.getText())
-              && checkDate==0) {
-               count++;
+           String[][] rows = new String[TransportDirectory.getInstance().getTransportDir().size()][6];
+            int j=0;
+            for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++){
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date date2 = formatter.parse(formatter.format(jDateChooser1.getDate()));
+//                Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
+                int checkDate = date2.compareTo(TransportDirectory.getInstance().getTransportDir().get(i).getDate());
+                if(TransportDirectory.getInstance().getTransportDir().get(i).getSource().equals(jTextField1.getText()) 
+                   && TransportDirectory.getInstance().getTransportDir().get(i).getDestination().equals(jTextField2.getText())
+                    && checkDate==0) {
+                    rows[j][0]=Integer.toString(TransportDirectory.getInstance().getTransportDir().get(i).getTransportId());
+                    String s = formatter.format(TransportDirectory.getInstance().getTransportDir().get(i).getDate());
+                    rows[j][1] = s;
+                    rows[j][3]=TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime();
+                    rows[j][2]=TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime();
+                    rows[j][4]=Integer.toString(TransportDirectory.getInstance().getTransportDir().get(i).getAvailableSeats());
+                    rows[j][5] = Float.toString(TransportDirectory.getInstance().getTransportDir().get(i).getCost());   
+                     j++;
+               }
             }
-            }
-           String[][] rows = new String[count][6];
-       int j=0;
-        for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++){
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date date2 = formatter.parse(formatter.format(jDateChooser1.getDate()));
-           Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
-            int checkDate = date1.compareTo(date2);
-            if(TransportDirectory.getInstance().getTransportDir().get(i).getSource().equals(jTextField1.getText()) 
-               && TransportDirectory.getInstance().getTransportDir().get(i).getDestination().equals(jTextField2.getText())
-                && checkDate==0) {
-                rows[j][0]=Integer.toString(TransportDirectory.getInstance().getTransportDir().get(i).getTransportId());
-                String s = formatter.format(TransportDirectory.getInstance().getTransportDir().get(i).getDate());
-                rows[j][1] = s;
-                rows[j][3]=TransportDirectory.getInstance().getTransportDir().get(i).getArrivalTime();
-                rows[j][2]=TransportDirectory.getInstance().getTransportDir().get(i).getDepartTime();
-                rows[j][4]=Integer.toString(TransportDirectory.getInstance().getTransportDir().get(i).getAvailableSeats());
-                rows[j][5] = Float.toString(TransportDirectory.getInstance().getTransportDir().get(i).getCost());   
-                 j++;
-           }
-        }
                 DefaultTableModel model = new DefaultTableModel (rows, columnNames);
                 jTable1.setModel(model);
         }
-        catch(Exception e) {
+        catch(ParseException e) {
             System.out.println(e);
         } 
     }//GEN-LAST:event_jButton1ActionPerformed

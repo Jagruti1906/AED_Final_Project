@@ -388,7 +388,7 @@ public class RegisterDoctor extends javax.swing.JFrame {
                 doctor = DoctorDirectory.getInstance().getDoctorDir().get(k);
                 LoginDirectory.getInstance().updateUser(login.getStateID(), login);
             }
-            else {
+     else {
                 DoctorDirectory.getInstance().addDoctor(doc);
                 LoginDirectory.getInstance().addUser(login);
                 Properties properties = new Properties();

@@ -283,15 +283,16 @@ public class SchoolAdminRegister extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.hide();
+        SchoolAdminClass person;
         try{
-            SchoolAdminClass person = new SchoolAdminClass("School Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),jTextField4.getText(),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate(), schAdmin.getSchoolName());
+            if(r.equals("School Admin")) {
+                person = new SchoolAdminClass("School Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),jTextField4.getText(),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate(), schAdmin.getSchoolName());
+            }
+            else {
+                person = new SchoolAdminClass("School Admin", jTextField2.getText(), Integer.parseInt(jTextField1.getText()),jTextField4.getText(),jTextField3.getText(), jComboBox1.getSelectedItem().toString(),jDateChooser1.getDate(), jComboBox2.getSelectedItem().toString());
+            }
             LoginClass login = new LoginClass(Integer.parseInt(jTextField1.getText()),jTextField5.getText(),"School Admin");
             int flag=0,k=0;
-            System.out.println(person.getName());
-            System.out.println(person.getStateID());
-            System.out.println(person.getEmail());
-            System.out.println(person.getPhoneNumber());
-            System.out.println(person.getGender());
             for(int i=0;i<SchoolAdminDirectory.getInstance().getSchoolAdminDir().size();i++) {
                 if(r.equals("School Admin")) {
                     if(SchoolAdminDirectory.getInstance().getSchoolAdminDir().get(i).getStateID() == schAdmin.getStateID()) {
@@ -358,7 +359,7 @@ public class SchoolAdminRegister extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         if(r.equals("School Admin")) {
-            SchoolAdminMain tam = new SchoolAdminMain();
+            MainSchoolAdmin tam = new MainSchoolAdmin();
             tam.show();
         }
         else {

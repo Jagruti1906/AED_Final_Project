@@ -255,9 +255,7 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
@@ -293,9 +291,9 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1)))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -320,7 +318,13 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         try{
-            HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",hospAdmin.getHospitalName(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            HospitalAdminClass hosp;
+            if(r.equals("Hospital Admin")) {
+                hosp = new HospitalAdminClass("Hospital Admin",hospAdmin.getHospitalName(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            }
+            else {
+                hosp = new HospitalAdminClass("Hospital Admin",jComboBox2.getSelectedItem().toString(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
+            }
             LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
             int flag=0,k=0;
             for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {

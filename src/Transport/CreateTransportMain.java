@@ -7,6 +7,8 @@ package Transport;
 import Transport_Department.TransportClass;
 import Transport_Department.TransportDirectory;
 import aed_project.AED_Project;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -279,9 +281,13 @@ public class CreateTransportMain extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            TransportClass tc = new TransportClass(TransportDirectory.getInstance().getTransportDir().size()+1, jComboBox1.getSelectedItem().toString(), jTextField1.getText(), jTextField2.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField3.getText()), Float.parseFloat(jTextField6.getText()), jTextField5.getText(), jTextField4.getText(), jDateChooser1.getDate(), Integer.parseInt(jTextField7.getText()), "Available");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String s = formatter.format(jDateChooser1.getDate());
+            Date date2 = formatter.parse(s);
+            System.out.println(date2);
+            TransportClass tc = new TransportClass(TransportDirectory.getInstance().getTransportDir().size()+1, jComboBox1.getSelectedItem().toString(), jTextField1.getText(), jTextField2.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField3.getText()), Float.parseFloat(jTextField6.getText()), jTextField5.getText(), jTextField4.getText(), date2, Integer.parseInt(jTextField7.getText()), "Available");
+            System.out.println(tc.getDate());
             TransportDirectory.getInstance().addTransport(tc);
-            System.out.println(jTextField7.getText());
         } catch(Exception e) {
             System.out.println("Please fill all details");
         }
