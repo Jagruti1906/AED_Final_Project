@@ -5,6 +5,7 @@
 package Fire_Department;
 
 import Login.LoginDirectory;
+import School.SchoolAdminRegister;
 import Transport.RegisterTransportAdmin;
 import UI.RegisterFireAdmin;
 import User.PersonClass;
@@ -137,6 +138,22 @@ public class AdminsDirectory {
     }
         
     public void viewTransportAdmin(PersonClass person, RegisterTransportAdmin tam){
+        tam.jTextField1.setText(Integer.toString(person.getStateID()));
+        tam.jTextField1.setEnabled(false);
+        tam.jTextField2.setText(person.getName());
+        tam.jTextField3.setText(person.getEmail());
+        tam.jComboBox1.setSelectedItem(person.getGender());
+        tam.jTextField4.setText(person.getPhoneNumber());
+        tam.jDateChooser1.setDate((person.getDob()));
+        
+        for (int i=0;i<LoginDirectory.getInstance().getLoginDir().size();i++){
+            if(LoginDirectory.getInstance().getLoginDir().get(i).getStateID()==person.getStateID()){
+                tam.jTextField5.setText(LoginDirectory.getInstance().getLoginDir().get(i).getPassword());
+            }
+        }
+    }
+    
+    public void viewSchoolAdmin(PersonClass person, SchoolAdminRegister tam){
         tam.jTextField1.setText(Integer.toString(person.getStateID()));
         tam.jTextField1.setEnabled(false);
         tam.jTextField2.setText(person.getName());

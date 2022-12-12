@@ -13,6 +13,7 @@ import Police_Department.PoliceDirectory;
 import Police_Department.PoliceOfficerMain;
 import Police_Department.policeAdminMain;
 import Resident.ResidentDirectory;
+import School.MainSchoolAdmin;
 import Transport.TransportAdminMain;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
@@ -296,6 +297,20 @@ public class Login extends javax.swing.JFrame {
                             if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
                                 System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
                                 tam.getTransportAdmin(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                                break;
+                            }
+                        }
+                        tam.show();
+                        break;
+                    }
+                    else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("School Admin")) {
+                        this.hide();
+                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        MainSchoolAdmin tam = new MainSchoolAdmin();
+                        for(int j=0;j<size;j++) {
+                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
+                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
+                                tam.getData(AdminsDirectory.getInstance().getAdminsDir().get(j));
                                 break;
                             }
                         }

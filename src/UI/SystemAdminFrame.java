@@ -13,6 +13,7 @@ import UI_Medical_Department.CreateHospital;
 import Utilities.RegsiterUtilityAdmin;
 import java.util.Date;
 import Education.AdminSection;
+import School.SchoolAdminMain;
 
 /**
  *
@@ -97,7 +98,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("Register School Admin");
+        jButton8.setText("Education Department");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -243,7 +244,7 @@ public class SystemAdminFrame extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        AdminSection as = new AdminSection();
+        SchoolAdminMain as = new SchoolAdminMain();
         as.show();
     }//GEN-LAST:event_jButton8ActionPerformed
 
