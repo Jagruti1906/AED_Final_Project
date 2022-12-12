@@ -45,7 +45,6 @@ public class AssignDuty extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,11 +62,6 @@ public class AssignDuty extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Zip Code");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -75,12 +69,10 @@ public class AssignDuty extends javax.swing.JFrame {
         });
 
         jDateChooser3.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser3.setForeground(new java.awt.Color(0, 0, 0));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "21200", "21201", "21202", "21203", "21204" }));
 
+        jButton1.setBackground(new java.awt.Color(78, 80, 82));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Assign");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +81,7 @@ public class AssignDuty extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(78, 80, 82));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

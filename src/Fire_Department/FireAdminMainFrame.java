@@ -63,6 +63,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
+        jButton2.setBackground(new java.awt.Color(78, 80, 82));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Vehicles List");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +72,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(78, 80, 82));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Edit Profile");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +81,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(78, 80, 82));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Alerts");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +90,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(78, 80, 82));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +99,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(78, 80, 82));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Add Vehicle");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +108,6 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
             }
         });
 
-        table.setBackground(new java.awt.Color(255, 255, 255));
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -123,7 +127,7 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Fire Admin ");
 
@@ -156,8 +160,8 @@ public class FireAdminMainFrame extends javax.swing.JFrame {
                 .addGap(0, 82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(219, 219, 219))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(198, 198, 198))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
