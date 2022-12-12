@@ -235,6 +235,28 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
             else {
                 AdminsDirectory.getInstance().addAdmin(person);
                 LoginDirectory.getInstance().addUser(login);
+                Properties properties = new Properties();
+                properties.put("mail.smtp.auth","true");
+                properties.put("mail.smtp.starttls.enable","true");
+                properties.put("mail.smtp.host","smtp.gmail.com");
+                properties.put("mail.smtp.port","587");
+                Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+                    @Override
+                    protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                        return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                    }
+
+
+                });
+                Message message = new MimeMessage(session);
+                message.setSubject("StateId and password Assigned");
+                String s = "You have been assigned your state ID and password. Your state ID is " + jTextField1.getText() + " and password is " + jTextField5.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+                message.setContent(s,"text/plain");
+                message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
+                message.setSentDate(new Date());
+                Transport.send(message);
+                JOptionPane.showMessageDialog(null,"Sent");
             }
             if(r.equals("Transport Admin")) {
                 TransportAdminMain tam = new TransportAdminMain();
@@ -244,30 +266,7 @@ public class RegisterTransportAdmin extends javax.swing.JFrame {
                 SystemAdminFrame saf = new SystemAdminFrame();
                 saf.show();
 
-            }
-            Properties properties = new Properties();
-            properties.put("mail.smtp.auth","true");
-            properties.put("mail.smtp.starttls.enable","true");
-            properties.put("mail.smtp.host","smtp.gmail.com");
-            properties.put("mail.smtp.port","587");
-            Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
-                @Override
-                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                    return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-                }
-            
-
-            });
-            Message message = new MimeMessage(session);
-            message.setSubject("StateId and password Assigned");
-            String s = "You have been assigned your state ID and password. Your state ID is " + jTextField1.getText() + " and password is " + jTextField5.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
-            message.setContent(s,"text/plain");
-            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
-            message.setSentDate(new Date());
-            Transport.send(message);
-            JOptionPane.showMessageDialog(null,"Sent");
-            
+            }            
         } catch(Exception e) {
             System.out.println("Please fill all details");
         }

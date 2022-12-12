@@ -208,7 +208,6 @@ public class RegisterDoctor extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Hospital Name");
 
-        registerBtn.setBackground(new java.awt.Color(78, 80, 82));
         registerBtn.setForeground(new java.awt.Color(255, 255, 255));
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -314,9 +313,9 @@ public class RegisterDoctor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,16 +376,7 @@ public class RegisterDoctor extends javax.swing.JFrame {
             else {
                 DoctorDirectory.getInstance().addDoctor(doc);
                 LoginDirectory.getInstance().addUser(login);
-            }
-            if(role.equals("Doctor")) {
-                DoctorMainFrame doct = new DoctorMainFrame();
-                doct.show();
-            }
-            else {
-                HospAdminMainFrame hosp = new HospAdminMainFrame();
-                hosp.show();
-            }
-            Properties properties = new Properties();
+                Properties properties = new Properties();
             properties.put("mail.smtp.auth","true");
             properties.put("mail.smtp.starttls.enable","true");
             properties.put("mail.smtp.host","smtp.gmail.com");
@@ -408,6 +398,15 @@ public class RegisterDoctor extends javax.swing.JFrame {
             message.setSentDate(new Date());
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
+            }
+            if(role.equals("Doctor")) {
+                DoctorMainFrame doct = new DoctorMainFrame();
+                doct.show();
+            }
+            else {
+                HospAdminMainFrame hosp = new HospAdminMainFrame();
+                hosp.show();
+            }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null,"Please fill all details");
         }

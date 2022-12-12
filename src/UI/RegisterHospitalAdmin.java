@@ -289,26 +289,6 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-//        HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",txtHospName.getText(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),Integer.parseInt(txtPhoneNo.getText()),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
-//        LoginClass login = new LoginClass(Integer.parseInt(txtSSN.getText()),txtPass.getText(),"Hospital Admin");
-//        int flag=0,k=0;
-//        for(int i=0;i<HospitalAdminDirectory.getInstance().getHospitalAdminDir().size();i++) {
-//            if(HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(i).getStateID() == hospAdmin.getStateID()) {
-//                flag=1;
-//                k=i;
-//                break;
-//            }
-//        }
-//        if(flag==1) {
-//            HospitalAdminDirectory.getInstance().updateHospAdminData(hosp,k);
-//            hospAdmin = HospitalAdminDirectory.getInstance().getHospitalAdminDir().get(k);
-//            LoginDirectory.getInstance().updateUser(login.getStateID(), login);
-//        }
-//        else {
-//            HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
-//            LoginDirectory.getInstance().addUser(login);
-//        }
-//        this.hide();
         this.hide();
         try{
             HospitalAdminClass hosp = new HospitalAdminClass("Hospital Admin",jComboBox2.getSelectedItem().toString(),Integer.parseInt(txtAdmin.getText()),txtName.getText(),Integer.parseInt(txtSSN.getText()),txtPhoneNo.getText(),txtEmail.getText(),jComboBox1.getSelectedItem().toString(),jDateChooser.getDate());
@@ -336,15 +316,6 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
             else {
                 HospitalAdminDirectory.getInstance().addHospitalAdmin(hosp);
             LoginDirectory.getInstance().addUser(login);
-            }
-            if(r.equals("Hospital Admin")) {
-                HospAdminMainFrame ho = new HospAdminMainFrame();
-                ho.show();
-            }
-            else {
-                SystemAdminFrame sys = new SystemAdminFrame();
-                sys.show();
-            }
             Properties properties = new Properties();
             properties.put("mail.smtp.auth","true");
             properties.put("mail.smtp.starttls.enable","true");
@@ -367,6 +338,16 @@ public class RegisterHospitalAdmin extends javax.swing.JFrame {
             message.setSentDate(new Date());
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
+            }
+            if(r.equals("Hospital Admin")) {
+                HospAdminMainFrame ho = new HospAdminMainFrame();
+                ho.show();
+            }
+            else {
+                SystemAdminFrame sys = new SystemAdminFrame();
+                sys.show();
+            }
+            
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null,"Please fill all details");
         }

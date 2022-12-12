@@ -303,7 +303,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             else {
                 PoliceDirectory.getInstance().addPolice(pc);
             LoginDirectory.getInstance().addUser(login);
-            }
+            
                     Properties properties = new Properties();
             properties.put("mail.smtp.auth","true");
             properties.put("mail.smtp.starttls.enable","true");
@@ -325,7 +325,8 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(txtEmail.getText()));
             message.setSentDate(new Date());
             Transport.send(message);
-            JOptionPane.showMessageDialog(null,"Sent");
+            JOptionPane.showMessageDialog(null,"Sent"); 
+            }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null,"Please fill all details");
         }

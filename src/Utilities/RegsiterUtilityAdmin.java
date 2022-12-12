@@ -236,18 +236,7 @@ public class RegsiterUtilityAdmin extends javax.swing.JFrame {
             else {
                 AdminsDirectory.getInstance().addAdmin(person);
                 LoginDirectory.getInstance().addUser(login);
-            }
-            if(r.equals("Utility Admin")) {
-                UtilityAdminMain uam = new UtilityAdminMain();
-                uam.show();
-            }
-            else {
-                    SystemAdminFrame saf = new SystemAdminFrame();
-                    saf.show();
-                    
-                
-            }
-            Properties properties = new Properties();
+                Properties properties = new Properties();
             properties.put("mail.smtp.auth","true");
             properties.put("mail.smtp.starttls.enable","true");
             properties.put("mail.smtp.host","smtp.gmail.com");
@@ -269,6 +258,15 @@ public class RegsiterUtilityAdmin extends javax.swing.JFrame {
             message.setSentDate(new Date());
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
+            }
+            if(r.equals("Utility Admin")) {
+                UtilityAdminMain uam = new UtilityAdminMain();
+                uam.show();
+            }
+            else {
+                    SystemAdminFrame saf = new SystemAdminFrame();
+                    saf.show();
+            }
         } catch(Exception e) {
            JOptionPane.showMessageDialog(null,"Please fill all details");
         }
