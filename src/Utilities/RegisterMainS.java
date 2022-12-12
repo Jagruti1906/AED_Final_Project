@@ -232,16 +232,7 @@ public class RegisterMainS extends javax.swing.JFrame {
             else {
                 AdminsDirectory.getInstance().addAdmin(person);
                 LoginDirectory.getInstance().addUser(login);
-            }
-            if(r.equals("Supplier")) {
-                SupplierMainFrame s = new SupplierMainFrame();
-                s.show();
-            }
-            else {
-                UtilityAdminMain uam = new UtilityAdminMain();
-                uam.show();
-            }
-            Properties properties = new Properties();
+                Properties properties = new Properties();
             properties.put("mail.smtp.auth","true");
             properties.put("mail.smtp.starttls.enable","true");
             properties.put("mail.smtp.host","smtp.gmail.com");
@@ -263,6 +254,15 @@ public class RegisterMainS extends javax.swing.JFrame {
             message.setSentDate(new Date());
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
+            }
+            if(r.equals("Supplier")) {
+                SupplierMainFrame s = new SupplierMainFrame();
+                s.show();
+            }
+            else {
+                UtilityAdminMain uam = new UtilityAdminMain();
+                uam.show();
+            }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null,"Please fill all details");
         }

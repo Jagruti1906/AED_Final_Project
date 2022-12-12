@@ -154,7 +154,6 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Phone Number");
 
-        jButton2.setBackground(new java.awt.Color(78, 80, 82));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +162,6 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(78, 80, 82));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +240,7 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -254,8 +252,8 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,6 +313,28 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
             else {
                 AdminsDirectory.getInstance().addAdmin(person);
                 LoginDirectory.getInstance().addUser(login);
+                Properties properties = new Properties();
+                properties.put("mail.smtp.auth","true");
+                properties.put("mail.smtp.starttls.enable","true");
+                properties.put("mail.smtp.host","smtp.gmail.com");
+                properties.put("mail.smtp.port","587");
+                Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+                    @Override
+                    protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                        return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                    }
+
+
+                });
+                Message message = new MimeMessage(session);
+                message.setSubject("StateId and password Assigned");
+                String s = "You have been assigned your state ID and password. Your state ID is " + jTextField1.getText() + " and password is " + jTextField5.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+                message.setContent(s,"text/plain");
+                message.setFrom(new InternetAddress("aedproject50@gmail.com"));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
+                message.setSentDate(new Date());
+                Transport.send(message);
+                JOptionPane.showMessageDialog(null,"Sent");
             }
             if(r.equals("Fire Admin")) {
                 FireAdminMainFrame fire = new FireAdminMainFrame();
@@ -324,28 +344,6 @@ public class RegisterFireAdmin extends javax.swing.JFrame {
                 SystemAdminFrame sys = new SystemAdminFrame();
                 sys.show();
             }
-            Properties properties = new Properties();
-            properties.put("mail.smtp.auth","true");
-            properties.put("mail.smtp.starttls.enable","true");
-            properties.put("mail.smtp.host","smtp.gmail.com");
-            properties.put("mail.smtp.port","587");
-            Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
-                @Override
-                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                    return new javax.mail.PasswordAuthentication("aedproject50@gmail.com","soeyqgtfpukeiady");  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-                }
-            
-
-            });
-            Message message = new MimeMessage(session);
-            message.setSubject("StateId and password Assigned");
-            String s = "You have been assigned your state ID and password. Your state ID is " + jTextField1.getText() + " and password is " + jTextField5.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
-            message.setContent(s,"text/plain");
-            message.setFrom(new InternetAddress("aedproject50@gmail.com"));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(jTextField3.getText()));
-            message.setSentDate(new Date());
-            Transport.send(message);
-            JOptionPane.showMessageDialog(null,"Sent");
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null,"Please fill all details");
         }

@@ -332,16 +332,7 @@ public class RegisterResident extends javax.swing.JFrame {
             else {
                 ResidentDirectory.getInstance().addResident(resident);
                 LoginDirectory.getInstance().addUser(login);
-            }
-            if(r.equals("System Admin")) {
-                SystemAdminFrame sys = new SystemAdminFrame();
-                sys.show();
-            }
-            else {
-                ResidentPage res = new ResidentPage();
-                res.show();
-            }
-                    Properties properties = new Properties();
+                Properties properties = new Properties();
             properties.put("mail.smtp.auth","true");
             properties.put("mail.smtp.starttls.enable","true");
             properties.put("mail.smtp.host","smtp.gmail.com");
@@ -363,6 +354,16 @@ public class RegisterResident extends javax.swing.JFrame {
             message.setSentDate(new Date());
             Transport.send(message);
             JOptionPane.showMessageDialog(null,"Sent");
+            }
+            if(r.equals("System Admin")) {
+                SystemAdminFrame sys = new SystemAdminFrame();
+                sys.show();
+            }
+            else {
+                ResidentPage res = new ResidentPage();
+                res.show();
+            }
+                    
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null,"Please fill all details");
         }
