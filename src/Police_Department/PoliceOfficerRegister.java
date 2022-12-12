@@ -127,7 +127,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Date Of Birth");
+        jLabel10.setText("Date Of Joining");
 
         txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -147,7 +147,6 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(78, 80, 82));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +155,6 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(78, 80, 82));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

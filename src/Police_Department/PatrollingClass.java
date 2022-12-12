@@ -13,13 +13,13 @@ import java.util.Date;
 public class PatrollingClass {
     private String name;
     private int stateID;
-    private int phoneNumber;
+    private String phoneNumber;
     private Date date;
     private String report;
     private String status;
     private int zip;
 
-    public PatrollingClass(String name, int stateID, int phoneNumber, Date date, String report, int zip, String status) {
+    public PatrollingClass(String name, int stateID, String phoneNumber, Date date, String report, int zip, String status) {
         this.name = name;
         this.stateID = stateID;
         this.phoneNumber = phoneNumber;
@@ -45,11 +45,11 @@ public class PatrollingClass {
         this.stateID = stateID;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

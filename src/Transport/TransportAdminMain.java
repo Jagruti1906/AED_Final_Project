@@ -147,6 +147,7 @@ public class TransportAdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.hide();
         CreateTransportMain ctm = new CreateTransportMain();
+        ctm.jDateChooser1.getJCalendar().setMinSelectableDate(new Date());
         ctm.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -78,7 +78,7 @@ public class RegisterMainS extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Date of Birth");
+        jLabel8.setText("Date of Joining");
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

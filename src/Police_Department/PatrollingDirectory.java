@@ -34,12 +34,12 @@ public class PatrollingDirectory {
         Statement stmt;
         try {
             stmt = DatabaseConnectionClass.getInstance().getCon().createStatement();
-            String query1 = "INSERT INTO patrol(StateId, Name, PhoneNumber, Date, Report, Zip)" + " VALUES(?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO patrol(StateId, Name, PhoneNumber, Date, Report, Zip,Status)" + " VALUES(?,?,?,?,?,?,?)";
             java.sql.Date sqlDate = new java.sql.Date(pc.getDate().getTime());
             PreparedStatement pst = DatabaseConnectionClass.getInstance().getCon().prepareStatement(query1);
             pst.setInt(1,pc.getStateID());
             pst.setString(2, pc.getName());
-            pst.setInt(3, pc.getPhoneNumber());
+            pst.setString(3, pc.getPhoneNumber());
             pst.setDate(4, sqlDate);
             pst.setString(5, pc.getReport());
             pst.setInt(6, pc.getZip());
@@ -63,7 +63,7 @@ public class PatrollingDirectory {
             String str = "Select * from patrol";
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next()) {
-                PatrollingClass pc = new PatrollingClass(rs.getString("Name"),rs.getInt("StateId"),rs.getInt("PhoneNumber"),rs.getDate("Date"),rs.getString("Report"), rs.getInt("Zip"), rs.getString("Status"));
+                PatrollingClass pc = new PatrollingClass(rs.getString("Name"),rs.getInt("StateId"),rs.getString("PhoneNumber"),rs.getDate("Date"),rs.getString("Report"), rs.getInt("Zip"), rs.getString("Status"));
                 patrollingDir.add(pc);
             }
         } catch (SQLException ex) {

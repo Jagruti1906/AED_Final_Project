@@ -182,7 +182,7 @@ public class ResidentTransportMain extends javax.swing.JFrame {
            String[][] rows = new String[count][6];
        int j=0;
         for(int i=0;i<TransportDirectory.getInstance().getTransportDir().size();i++){
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date2 = formatter.parse(formatter.format(jDateChooser1.getDate()));
            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TransportDirectory.getInstance().getTransportDir().get(i).getDate().toString());
             int checkDate = date1.compareTo(date2);

@@ -299,7 +299,6 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
 
     private void ambulanceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ambulanceListActionPerformed
         // TODO add your handling code here:
-        jPanel1.setVisible(true);
         String[] columnNames = {"Ambulance Type", "Ambulance Number", "Status"};
         check=1;
         int count=0;
@@ -330,6 +329,8 @@ public class HospAdminMainFrame extends javax.swing.JFrame {
         doc.jTextField10.setText(hospAdmin.getHospitalName());
         doc.jTextField10.setEnabled(false);
         doc.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        doc.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        doc.jTextField1.setEnabled(false);
         doc.getRole("Hospital Admin");
         doc.show();
     }//GEN-LAST:event_addDocActionPerformed

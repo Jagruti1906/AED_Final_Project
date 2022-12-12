@@ -294,9 +294,10 @@ public class policeAdminMain extends javax.swing.JFrame {
                 rows[j][6] = ComplaintDirectory.getInstance().getComplaintDir().get(i).getStatus();
                 j++;
             }
+        
+        }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
         jTable1.setModel(model);
-        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -346,7 +347,7 @@ public class policeAdminMain extends javax.swing.JFrame {
                         ad.jTextField1.setEnabled(false);
                         ad.jTextField2.setText(model.getValueAt(index, 1).toString());
                         ad.jTextField2.setEnabled(false);
-                        ad.jDateChooser3.getJCalendar().setMaxSelectableDate(new Date());
+                        ad.jDateChooser3.getJCalendar().setMinSelectableDate(new Date());
                     }
                 }
                 ad.show();
@@ -406,9 +407,10 @@ public class policeAdminMain extends javax.swing.JFrame {
                 rows[j][6] = ComplaintDirectory.getInstance().getComplaintDir().get(i).getStatus();
                 j++;
             }
+        
+        }
         DefaultTableModel model = new DefaultTableModel (rows, columnNames);
         jTable1.setModel(model);
-        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

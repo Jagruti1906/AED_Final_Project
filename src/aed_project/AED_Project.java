@@ -26,6 +26,8 @@ import Resident.RegisterResident;
 import Resident.ResidentClass;
 import Resident.ResidentDirectory;
 import School.AdmissionDirectory;
+import School.SchoolAdminClass;
+import School.SchoolAdminDirectory;
 import School.SchoolDirectory;
 import Transport_Department.BookingsDirectory;
 import Transport_Department.TransportDirectory;
@@ -66,7 +68,7 @@ public class AED_Project {
     public static PersonClass verifier;
     public static PersonClass UtilityAdmin;
     public static PersonClass TransportAdmin;
-    public static PersonClass schAdmin;
+    public static SchoolAdminClass schAdmin;
     
     public static void nameValidation(String name) {
           try {
@@ -146,6 +148,7 @@ public class AED_Project {
         BookingsDirectory.getInstance().getBookingsData();
         SchoolDirectory.getInstance().getSchoolData();
         AdmissionDirectory.getInstance().getadmissiondata();
+        SchoolAdminDirectory.getInstance().getSchoolAdminData();
 //        System.out.println(LoginDirectory.getInstance().getLoginDir().get(0).getStateID());
         Login login = new Login();
         login.show();

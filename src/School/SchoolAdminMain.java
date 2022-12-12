@@ -24,6 +24,10 @@ public class SchoolAdminMain extends javax.swing.JFrame {
     public SchoolAdminMain() {
         initComponents();
     }
+    
+    public void getData(SchoolAdminClass school) {
+        schAdmin = school;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,7 +112,11 @@ public class SchoolAdminMain extends javax.swing.JFrame {
         this.hide();
         SchoolAdminRegister rsa = new SchoolAdminRegister();
         rsa.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
-        rsa.jTextField2.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        rsa.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        rsa.jTextField1.setEnabled(false);
+        for(int i=0;i<SchoolDirectory.getInstance().getSchoolDir().size();i++) {
+            rsa.jComboBox2.addItem(SchoolDirectory.getInstance().getSchoolDir().get(i).getSchoolName());
+        }
         rsa.getRole("System Admin");
         rsa.show();
     }//GEN-LAST:event_jButton2ActionPerformed

@@ -14,6 +14,7 @@ import Police_Department.PoliceOfficerMain;
 import Police_Department.policeAdminMain;
 import Resident.ResidentDirectory;
 import School.MainSchoolAdmin;
+import School.SchoolAdminDirectory;
 import Transport.TransportAdminMain;
 import UI_Medical_Department.DoctorMainFrame;
 import UI_Medical_Department.HospAdminMainFrame;
@@ -204,7 +205,6 @@ public class Login extends javax.swing.JFrame {
                                 break;
                             }
                         }
-                        hospFrame.jPanel1.setVisible(false);
                         hospFrame.show();
                         break;
                     }
@@ -305,12 +305,13 @@ public class Login extends javax.swing.JFrame {
                     }
                     else if(LoginDirectory.getInstance().getLoginDir().get(i).getStatus().equals("School Admin")) {
                         this.hide();
-                        int size = AdminsDirectory.getInstance().getAdminsDir().size();
+                        int size = SchoolAdminDirectory.getInstance().getSchoolAdminDir().size();
+                        System.out.println(size);
                         MainSchoolAdmin tam = new MainSchoolAdmin();
                         for(int j=0;j<size;j++) {
-                            if(stateID == AdminsDirectory.getInstance().getAdminsDir().get(j).getStateID()) {
-                                System.out.println(AdminsDirectory.getInstance().getAdminsDir().get(j).getName());
-                                tam.getData(AdminsDirectory.getInstance().getAdminsDir().get(j));
+                            if(stateID == SchoolAdminDirectory.getInstance().getSchoolAdminDir().get(j).getStateID()) {
+                                System.out.println(SchoolAdminDirectory.getInstance().getSchoolAdminDir().get(j).getName());
+                                tam.getData(SchoolAdminDirectory.getInstance().getSchoolAdminDir().get(j));
                                 break;
                             }
                         }

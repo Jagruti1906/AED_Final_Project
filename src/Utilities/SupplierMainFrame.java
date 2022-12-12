@@ -9,6 +9,7 @@ import Resident.ResidentDirectory;
 import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.supplier;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -214,6 +215,8 @@ public class SupplierMainFrame extends javax.swing.JFrame {
         bill.jTextField3.setText(model.getValueAt(index, 2).toString());
         bill.jTextField3.setEnabled(false);
         bill.jTextField5.setEnabled(false);
+        bill.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        bill.jDateChooser2.getJCalendar().setMinSelectableDate(new Date());
         if(type.equals("Gas")) {
             bill.jTextField5.setText(Double.toString(2));
             bill.getType("Gas");

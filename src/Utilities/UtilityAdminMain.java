@@ -10,6 +10,7 @@ import UI.Login;
 import User.PersonClass;
 import static aed_project.AED_Project.UtilityAdmin;
 import static aed_project.AED_Project.verifier;
+import java.util.Date;
 
 /**
  *
@@ -107,6 +108,8 @@ public class UtilityAdminMain extends javax.swing.JFrame {
         this.hide();
         RegisterMainV rv = new RegisterMainV();
         rv.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        rv.jTextField1.setEnabled(false);
+        rv.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         rv.show();
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -116,6 +119,8 @@ public class UtilityAdminMain extends javax.swing.JFrame {
         this.hide();
         RegisterMainS rs = new RegisterMainS();
         rs.jTextField1.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        rs.jTextField1.setEnabled(false);
+        rs.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
         rs.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+
+
 /**
  *
  * @author jagru
@@ -29,7 +31,7 @@ public class MainSchoolAdmin extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void getData(PersonClass schoolAdmin) {
+    public void getData(SchoolAdminClass schoolAdmin) {
         schAdmin = schoolAdmin;
     }
     /**
@@ -133,7 +135,7 @@ public class MainSchoolAdmin extends javax.swing.JFrame {
         this.hide();
         SchoolAdminRegister tam = new SchoolAdminRegister();
         tam.getRole("School Admin");
-        AdminsDirectory.getInstance().viewSchoolAdmin(schAdmin,tam);
+        SchoolAdminDirectory.getInstance().viewSchoolAdminData(schAdmin,tam);
         tam.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
