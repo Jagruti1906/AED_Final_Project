@@ -257,6 +257,9 @@ public class ResidentPage extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        this.hide();
+        ResidentSchoolDashboard rsd = new ResidentSchoolDashboard();
+        rsd.show();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

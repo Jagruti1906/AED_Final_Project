@@ -53,6 +53,11 @@ public class AddSchoolMain extends javax.swing.JFrame {
                 jComboBox1HierarchyChanged(evt);
             }
         });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Huntington", "Tremont", "Fenway" }));
 
@@ -92,7 +97,7 @@ public class AddSchoolMain extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(56, 56, 56)
                         .addComponent(jButton2)))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,12 +139,17 @@ public class AddSchoolMain extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            SchoolClass sch = new SchoolClass(SchoolDirectory.getInstance().getSchoolDir().size()+1,jTextField1.getText(),jComboBox1.getSelectedItem().toString(),jComboBox2.getSelectedItem().toString());
-        SchoolDirectory.getInstance().addSchool(sch);
+            SchoolClass login = new SchoolClass(SchoolDirectory.getInstance().getSchoolDir().size()+1,jTextField1.getText(),jComboBox1.getSelectedItem().toString(),jComboBox2.getSelectedItem().toString());
+        SchoolDirectory.getInstance().addSchool(login);
         } catch(Exception e) {
             System.out.println("Please fill all details");
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
