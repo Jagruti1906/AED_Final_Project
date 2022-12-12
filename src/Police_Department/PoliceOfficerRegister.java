@@ -319,7 +319,7 @@ public class PoliceOfficerRegister extends javax.swing.JFrame {
             });
             Message message = new MimeMessage(session);
             message.setSubject("StateId and password Assigned");
-            String s = "You have been assigned your state ID and password. Your state ID is " + txtName.getText() + " and password is " + txtPass.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+            String s = "You have been assigned your state ID and password. Your state ID is " + txtSSN.getText() + " and password is " + txtPass.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
             message.setContent(s,"text/plain");
             message.setFrom(new InternetAddress("aedproject50@gmail.com"));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(txtEmail.getText()));

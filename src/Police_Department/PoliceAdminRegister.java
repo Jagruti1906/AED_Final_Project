@@ -128,7 +128,6 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(78, 80, 82));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +136,6 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(78, 80, 82));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Register");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -257,9 +255,9 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -325,7 +323,7 @@ public class PoliceAdminRegister extends javax.swing.JFrame {
             });
             Message message = new MimeMessage(session);
             message.setSubject("StateId and password Assigned");
-            String s = "You have been assigned your state ID and password. Your state ID is " + txtName.getText() + " and password is " + txtPass.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
+            String s = "You have been assigned your state ID and password. Your state ID is " + txtSSN.getText() + " and password is " + txtPass.getText() + ". Kindly log in to your account with these credentials and edit your profile.";
             message.setContent(s,"text/plain");
             message.setFrom(new InternetAddress("aedproject50@gmail.com"));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(txtEmail.getText()));

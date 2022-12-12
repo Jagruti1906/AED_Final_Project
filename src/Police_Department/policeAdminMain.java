@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Police_Department;
+import Login.LoginDirectory;
 import Medical_Department.AlertsClass;
 import Medical_Department.AlertsDirectory;
 import Medical_Department.AmbulanceClass;
@@ -252,6 +253,8 @@ public class policeAdminMain extends javax.swing.JFrame {
         this.hide();
         PoliceOfficerRegister par = new PoliceOfficerRegister();
         par.jDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        par.txtSSN.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        par.txtSSN.setEnabled(false);
         par.getRole("Police Admin");
         par.show();
     }//GEN-LAST:event_jButton2ActionPerformed
