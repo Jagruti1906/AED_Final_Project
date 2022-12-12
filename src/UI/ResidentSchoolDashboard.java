@@ -4,6 +4,14 @@
  */
 package UI;
 
+import School.AdmissionDirectory;
+import School.BookTour;
+import School.SchoolDirectory;
+import static aed_project.AED_Project.rc;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jagru
@@ -43,6 +51,11 @@ public class ResidentSchoolDashboard extends javax.swing.JFrame {
         });
 
         jButton2.setText("View Bookings");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -116,8 +129,41 @@ public class ResidentSchoolDashboard extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        
+        BookTour bt = new BookTour();
+        System.out.println(rc.getName());
+        for(int i=0;i<SchoolDirectory.getInstance().getSchoolDir().size();i++) {
+            bt.jComboBox1.addItem(SchoolDirectory.getInstance().getSchoolDir().get(i).getSchoolName());
+        }
+        bt.jTextField1.setText(rc.getName());
+        bt.jTextField1.setEnabled(false);
+        bt.jTextField2.setEnabled(false);
+        bt.jTextField3.setEnabled(false);
+        bt.jTextField2.setText(rc.getEmail());
+        bt.jTextField3.setText(rc.getPhoneNumber());
+        bt.jDateChooser3.setMinSelectableDate(new Date());
+        bt.show();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String[] columnNames = {"Admission Id","School Name", "Date","Status"};
+        String[][] rows = new String[AdmissionDirectory.getInstance().getAdmissionDir().size()][4];
+        int j=0;
+        for(int i=0;i<AdmissionDirectory.getInstance().getAdmissionDir().size();i++) {
+             if(AdmissionDirectory.getInstance().getAdmissionDir().get(i).getName().equals(rc.getName())){
+                int adId = AdmissionDirectory.getInstance().getAdmissionDir().get(i).getAdmissionId();
+                rows[j][0] = Integer.toString(adId);
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(AdmissionDirectory.getInstance().getAdmissionDir().get(i).getDate());
+                rows[j][2] = s;
+                rows[j][1] = AdmissionDirectory.getInstance().getAdmissionDir().get(i).getSchoolName();
+                rows[j][3] = AdmissionDirectory.getInstance().getAdmissionDir().get(i).getStatus();
+                j++;
+            }
+        }
+        DefaultTableModel model = new DefaultTableModel (rows, columnNames);
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

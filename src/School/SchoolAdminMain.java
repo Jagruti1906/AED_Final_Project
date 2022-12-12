@@ -4,7 +4,13 @@
  */
 package School;
 
+import Fire_Department.AdminsDirectory;
+import Login.LoginDirectory;
+import Schoolframes.AddSchoolMain;
 import UI.Login;
+import UI.SystemAdminFrame;
+import static aed_project.AED_Project.schAdmin;
+import java.util.Date;
 
 /**
  *
@@ -42,8 +48,13 @@ public class SchoolAdminMain extends javax.swing.JFrame {
         });
 
         jButton2.setText("Add School Admin");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Logout");
+        jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -55,15 +66,12 @@ public class SchoolAdminMain extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton3)))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1)))
                 .addContainerGap(425, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,11 +79,11 @@ public class SchoolAdminMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(133, 133, 133)
                 .addComponent(jButton1)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(47, 47, 47)
                 .addComponent(jButton3)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
 
         pack();
@@ -84,16 +92,26 @@ public class SchoolAdminMain extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        Login log = new Login();
+        SystemAdminFrame log = new SystemAdminFrame();
         log.show();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.hide();
-        AddSchoolMain sm = new AddSchoolMain();
-        sm.show();
+        AddSchoolMain asm = new AddSchoolMain();
+        asm.show();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        SchoolAdminRegister rsa = new SchoolAdminRegister();
+        rsa.jDateChooser1.getJCalendar().setMaxSelectableDate(new Date());
+        rsa.jTextField2.setText(Integer.toString(LoginDirectory.getInstance().getLoginDir().size()+200));
+        rsa.getRole("System Admin");
+        rsa.show();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
