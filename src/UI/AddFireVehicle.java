@@ -44,8 +44,7 @@ public class AddFireVehicle extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        addAmbulance.setBackground(new java.awt.Color(78, 80, 82));
-        addAmbulance.setForeground(new java.awt.Color(255, 255, 255));
+        addAmbulance.setForeground(new java.awt.Color(0, 0, 0));
         addAmbulance.setText("Add");
         addAmbulance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +52,7 @@ public class AddFireVehicle extends javax.swing.JFrame {
             }
         });
 
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField4MouseClicked(evt);
@@ -64,6 +64,7 @@ public class AddFireVehicle extends javax.swing.JFrame {
             }
         });
 
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -71,7 +72,7 @@ public class AddFireVehicle extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(78, 80, 82));
         jLabel1.setText("Add Fire Vehicle");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

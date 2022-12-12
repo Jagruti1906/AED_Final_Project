@@ -45,15 +45,17 @@ public class AddAmbulanceForm extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(78, 80, 82));
         jLabel1.setText("Add Ambulance");
 
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField2MouseClicked(evt);
@@ -65,8 +67,7 @@ public class AddAmbulanceForm extends javax.swing.JFrame {
             }
         });
 
-        addAmbulance.setBackground(new java.awt.Color(78, 80, 82));
-        addAmbulance.setForeground(new java.awt.Color(255, 255, 255));
+        addAmbulance.setForeground(new java.awt.Color(0, 0, 0));
         addAmbulance.setText("Add");
         addAmbulance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
